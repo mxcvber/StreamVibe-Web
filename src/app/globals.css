@@ -1,26 +1,212 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
+/*
+ * StreamVibe design tokens.
+ * Source: Figma "StreamVibe - Produce UI" (2r18HpPPFNUyIAnr3M27QQ), 🌈 Guide page.
+ * The file defines its palette as colour styles (no Figma variables / text styles);
+ * font sizes and spacing were measured on the ⭐ Design artboards
+ * (Desktop 1920 · Laptop 1440 · Mobile 390).
+ *
+ * `static` so every palette variable is always emitted: the shadcn semantic
+ * tokens further down reference them with var() from plain CSS, outside any
+ * utility class, and Tailwind would otherwise tree-shake the unused ones.
+ */
+@theme static {
+  /* ── Colours ─────────────────────────────────────────────────────────
+   * Strict palette: Tailwind's default colours are removed so only the
+   * design's colours exist. Names mirror the Figma style names 1:1
+   * (Figma "Black/10" → `bg-black-10`).
+   */
+  --color-*: initial;
+
+  /* Absolute */
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* Red — brand / primary actions */
+  --color-red-45: #e50000;
+  --color-red-50: #ff0000;
+  --color-red-55: #ff1a1a;
+  --color-red-60: #ff3333;
+  --color-red-80: #ff9999;
+  --color-red-90: #ffcccc;
+  --color-red-95: #ffe5e5;
+  --color-red-99: #fffafa;
+
+  /* Black — page background, surfaces, borders */
+  --color-black-06: #0f0f0f;
+  --color-black-08: #141414;
+  --color-black-10: #1a1a1a;
+  --color-black-12: #1f1f1f;
+  --color-black-15: #262626;
+  --color-black-20: #333333;
+  --color-black-25: #404040;
+  --color-black-30: #4d4d4d;
+
+  /* Grey — secondary text */
+  --color-grey-60: #999999;
+  --color-grey-65: #a6a6a6;
+  --color-grey-70: #b3b3b3;
+  --color-grey-75: #bfbfbf;
+  --color-grey-90: #e4e4e7;
+  --color-grey-95: #f1f1f3;
+  --color-grey-97: #f7f7f8;
+  --color-grey-99: #fcfcfd;
+
+  /* ── Font sizes ──────────────────────────────────────────────────────
+   * The file has no text styles, so tokens are named by their px value.
+   * Line-height is 150% throughout the design.
+   *   Desktop 1920: 14 16 18 20 22 24 30 38 40 48 58
+   *   Laptop  1440: 12 14 16 18 20 24 28 30 38 48
+   *   Mobile   390: 12 14 16 18 20 24 28
+   * Weights: Regular 400 · Medium 500 · SemiBold 600 · Bold 700
+   * (Tailwind's font-normal / font-medium / font-semibold / font-bold).
+   */
+  --text-*: initial;
+  --text-12: 0.75rem;   --text-12--line-height: 1.5;
+  --text-14: 0.875rem;  --text-14--line-height: 1.5;
+  --text-16: 1rem;      --text-16--line-height: 1.5;
+  --text-18: 1.125rem;  --text-18--line-height: 1.5;
+  --text-20: 1.25rem;   --text-20--line-height: 1.5;
+  --text-22: 1.375rem;  --text-22--line-height: 1.5;
+  --text-24: 1.5rem;    --text-24--line-height: 1.5;
+  --text-28: 1.75rem;   --text-28--line-height: 1.5;
+  --text-30: 1.875rem;  --text-30--line-height: 1.5;
+  --text-38: 2.375rem;  --text-38--line-height: 1.5;
+  --text-40: 2.5rem;    --text-40--line-height: 1.5;
+  --text-48: 3rem;      --text-48--line-height: 1.5;
+  --text-58: 3.625rem;  --text-58--line-height: 1.5;
+
+  /* ── Spacing ─────────────────────────────────────────────────────────
+   * The design sits on a 4px grid, which is Tailwind's default
+   * `--spacing: 0.25rem` multiplier, so numeric steps are left alone
+   * (any multiple of 0.25 is valid):
+   *   4→1  6→1.5  8→2  10→2.5  12→3  14→3.5  16→4  18→4.5  20→5  24→6
+   *   30→7.5  34→8.5  40→10  50→12.5  60→15  72→18  80→20  100→25
+   *   120→30  150→37.5  162→40.5
+   * Named tokens below are the measured page-layout values.
+   */
+  --spacing-gutter-mobile: 1rem;       /* 16px  */
+  --spacing-gutter-laptop: 5rem;       /* 80px  */
+  --spacing-gutter-desktop: 10.125rem; /* 162px */
+  --spacing-section-mobile: 2.5rem;    /* 40px  heading → content */
+  --spacing-section-laptop: 3.75rem;   /* 60px  */
+  --spacing-section-desktop: 5rem;     /* 80px  */
+
+  /* Content widths → `max-w-laptop`, `max-w-desktop` (mobile is fluid) */
+  --container-laptop: 80rem;           /* 1280px = 1440 − 2×80  */
+  --container-desktop: 99.75rem;       /* 1596px = 1920 − 2×162 */
+}
+
+/* Manrope is loaded by next/font in src/app/layout.tsx as `--font-manrope`. */
+@theme inline {
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+}
+
+/*
+ * shadcn/ui semantic tokens, aliased onto the palette above so the copied
+ * components (`bg-primary`, `text-muted-foreground`, `border`, …) pick up the
+ * design's colours. The design is dark-only, so the "dark" values live
+ * directly on :root and there is no `.dark` class or dark variant.
+ *
+ *   background / foreground  page surface and text
+ *   card                     raised surfaces (category, plan cards)
+ *   popover                  floating surfaces (menus, later)
+ *   primary                  red brand actions
+ *   secondary                subtle filled actions (nav pill, icon buttons)
+ *   muted                    quiet surfaces + secondary text (paragraphs)
+ *   accent                   hover surfaces
+ *   border / input / ring    hairlines and focus rings
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: var(--color-black-08);
+  --foreground: var(--color-white);
+  --card: var(--color-black-10);
+  --card-foreground: var(--color-white);
+  --popover: var(--color-black-06);
+  --popover-foreground: var(--color-white);
+  --primary: var(--color-red-45);
+  --primary-foreground: var(--color-white);
+  --secondary: var(--color-black-10);
+  --secondary-foreground: var(--color-white);
+  --muted: var(--color-black-12);
+  --muted-foreground: var(--color-grey-60);
+  --accent: var(--color-black-12);
+  --accent-foreground: var(--color-white);
+  --destructive: var(--color-red-50);
+  --border: var(--color-black-15);
+  --input: var(--color-black-15);
+  --ring: var(--color-red-45);
+  --chart-1: var(--color-red-45);
+  --chart-2: var(--color-red-60);
+  --chart-3: var(--color-red-80);
+  --chart-4: var(--color-grey-60);
+  --chart-5: var(--color-black-30);
+  --sidebar: var(--color-black-06);
+  --sidebar-foreground: var(--color-white);
+  --sidebar-primary: var(--color-red-45);
+  --sidebar-primary-foreground: var(--color-white);
+  --sidebar-accent: var(--color-black-12);
+  --sidebar-accent-foreground: var(--color-white);
+  --sidebar-border: var(--color-black-15);
+  --sidebar-ring: var(--color-red-45);
+
+  /* Corner radii used by the design: 8px buttons · 10px badges, tabs and
+   * inner images · 12px cards and containers. */
+  --radius: 0.75rem;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* shadcn derives sm/md as ×0.6 / ×0.8 of --radius (7.2px / 9.6px); the
+   * design uses exact 8 / 10 / 12 / 16, so the first four are pinned. */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.625rem;
+  --radius-lg: var(--radius);
+  --radius-xl: 1rem;
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  body {
+    @apply bg-background text-foreground;
+  }
 }
