@@ -19,6 +19,24 @@ and Redis in Docker for local dev. Movie data comes from the **TMDB API** and is
 Postgres. The frontend is expected to read from the NestJS API rather than calling TMDB
 directly. Stripe is planned for subscriptions.
 
+## Responsive layout
+
+The Figma file has three artboards per page — **Desktop 1920 · Laptop 1440 · Mobile 390** — and
+they map onto Tailwind's default breakpoints like this (mobile-first, no theme overrides):
+
+| Viewport    | Artboard                                                    | Prefix |
+| ----------- | ----------------------------------------------------------- | ------ |
+| `< 768`     | Mobile                                                      | (base) |
+| `768–1023`  | Mobile, plus light tablet tweaks (2-col grids, 40px gutter) | `md:`  |
+| `1024–1535` | Laptop                                                      | `lg:`  |
+| `≥ 1536`    | Desktop                                                     | `2xl:` |
+
+Every class list follows **base = mobile, `lg:` = laptop, `2xl:` = desktop**. Use `md:` only for
+tablet tweaks and `xl:` only where a component genuinely needs a fourth step (the category
+carousel's five-per-view). `Container` caps content at 1596px with an 80px gutter from `lg`,
+which yields the desktop artboard's 162px gutter at 1920 by itself — don't add a wider gutter at
+`2xl`, it would make cards smaller at 1536 than at 1440.
+
 ## Commands
 
 | Command            | Purpose                                                                  |
