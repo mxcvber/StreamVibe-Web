@@ -6,14 +6,18 @@ import { billingPeriods, plans } from '@/data/plans'
 
 /**
  * Tabs wrap the heading row too, because the Monthly/Yearly switch sits
- * beside the heading in the design while the cards it controls sit below.
+ * beside the heading in the design (under it on mobile) while the cards it
+ * controls sit below.
  */
 export function PlansSection() {
   return (
     <section id='pricing'>
       <Container>
-        <Tabs defaultValue={billingPeriods[0].value} className='gap-20'>
-          <div className='flex items-end gap-25'>
+        <Tabs
+          defaultValue={billingPeriods[0].value}
+          className='gap-section-mobile lg:gap-section-laptop 2xl:gap-section-desktop'
+        >
+          <div className='flex flex-col gap-5 md:flex-row md:items-end md:gap-25'>
             <SectionHeading
               className='flex-1'
               title="Choose the plan that's right for you"
@@ -32,7 +36,11 @@ export function PlansSection() {
             </TabsList>
           </div>
           {billingPeriods.map((period) => (
-            <TabsContent key={period.value} value={period.value} className='grid grid-cols-3 gap-7.5'>
+            <TabsContent
+              key={period.value}
+              value={period.value}
+              className='grid grid-cols-1 gap-5 min-[1300px]:grid-cols-3 2xl:gap-7.5'
+            >
               {plans.map((plan) => (
                 <PlanCard key={plan.id} plan={plan} period={period.value} />
               ))}

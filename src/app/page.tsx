@@ -10,7 +10,7 @@ export default function HomePage() {
     <>
       <Hero />
 
-      <div className='mt-50 flex flex-col gap-37.5'>
+      <div className='mt-25 flex flex-col gap-20 lg:mt-37.5 lg:gap-30 2xl:mt-50 2xl:gap-37.5'>
         <CategoriesSection />
         <DevicesSection />
         <FaqSection />

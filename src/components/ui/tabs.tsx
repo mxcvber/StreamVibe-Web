@@ -15,14 +15,14 @@ function Tabs({ className, orientation = 'horizontal', ...props }: React.Compone
   )
 }
 
-// The design's segmented control: a bordered black-06 pill with 10px padding
+// The design's segmented control: a bordered black-06 pill with 8px padding (10px on desktop)
 // whose active segment is a filled black-12 rounded rectangle.
 function TabsList({ className, ...props }: React.ComponentProps<typeof TabsPrimitive.List>) {
   return (
     <TabsPrimitive.List
       data-slot='tabs-list'
       className={cn(
-        'inline-flex w-fit items-center rounded-md border bg-black-06 p-2.25 text-muted-foreground group-data-vertical/tabs:flex-col',
+        'inline-flex w-fit items-center rounded-md border bg-black-06 p-1.75 text-muted-foreground group-data-vertical/tabs:flex-col 2xl:p-2.25',
         className,
       )}
       {...props}
@@ -35,7 +35,7 @@ function TabsTrigger({ className, ...props }: React.ComponentProps<typeof TabsPr
     <TabsPrimitive.Trigger
       data-slot='tabs-trigger'
       className={cn(
-        'inline-flex items-center justify-center rounded-md px-6 py-3.5 text-18 font-medium whitespace-nowrap text-muted-foreground transition-colors outline-none hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 data-active:bg-muted data-active:text-foreground',
+        'inline-flex items-center justify-center rounded-md px-5 py-3 text-14 font-medium whitespace-nowrap text-muted-foreground transition-colors outline-none hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 data-active:bg-muted data-active:text-foreground 2xl:px-6 2xl:py-3.5 2xl:text-18',
         className,
       )}
       {...props}

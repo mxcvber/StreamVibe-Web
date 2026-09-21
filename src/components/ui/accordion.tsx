@@ -45,7 +45,7 @@ function AccordionTrigger({
       <AccordionPrimitive.Trigger
         data-slot="accordion-trigger"
         className={cn(
-          "group/accordion-trigger flex flex-1 items-center gap-6 rounded-sm text-left outline-none transition-colors focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50",
+          "group/accordion-trigger flex flex-1 items-center gap-4 rounded-sm text-left outline-none transition-colors focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 2xl:gap-6",
           className
         )}
         {...props}
@@ -53,11 +53,11 @@ function AccordionTrigger({
         {children}
         <PlusIcon
           data-slot="accordion-trigger-icon"
-          className="pointer-events-none size-7.5 shrink-0 group-aria-expanded/accordion-trigger:hidden"
+          className="pointer-events-none size-6 shrink-0 group-aria-expanded/accordion-trigger:hidden 2xl:size-7.5"
         />
         <MinusIcon
           data-slot="accordion-trigger-icon"
-          className="pointer-events-none hidden size-7.5 shrink-0 group-aria-expanded/accordion-trigger:block"
+          className="pointer-events-none hidden size-6 shrink-0 group-aria-expanded/accordion-trigger:block 2xl:size-7.5"
         />
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
@@ -72,7 +72,7 @@ function AccordionContent({
   return (
     <AccordionPrimitive.Content
       data-slot="accordion-content"
-      className="overflow-hidden text-18 text-muted-foreground data-open:animate-accordion-down data-closed:animate-accordion-up"
+      className="overflow-hidden text-14 text-muted-foreground data-open:animate-accordion-down data-closed:animate-accordion-up lg:text-16 2xl:text-18"
       {...props}
     >
       <div className={cn("pb-5", className)}>{children}</div>
