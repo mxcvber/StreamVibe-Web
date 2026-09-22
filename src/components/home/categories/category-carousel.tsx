@@ -1,20 +1,17 @@
 'use client'
 
-import { useCallback, useState, useSyncExternalStore } from 'react'
-
 import { CarouselProgress } from '@/components/home/categories/carousel-progress'
 import { CategoryCard } from '@/components/home/categories/category-card'
 import { SectionHeading } from '@/components/layout/section-heading'
 import {
   Carousel,
-  type CarouselApi,
   CarouselContent,
+  CarouselDots,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel'
 import type { Genre } from '@/data/genres'
-import { cn } from '@/lib/utils'
 
 /**
  * Cards per page follow the slide widths in the markup below: fixed-width
@@ -39,36 +36,8 @@ const carouselOptions = {
  * a progress bar beneath the cards, which live in the same context.
  */
 export function CategoryCarousel({ genres }: { genres: Genre[] }) {
-  const [api, setApi] = useState<CarouselApi>()
-
-  // Page count and position are read straight from Embla (an external store)
-  // whenever it reports a change.
-  const subscribe = useCallback(
-    (onStoreChange: () => void) => {
-      if (!api) return () => {}
-      api.on('select', onStoreChange)
-      api.on('reInit', onStoreChange)
-      return () => {
-        api.off('select', onStoreChange)
-        api.off('reInit', onStoreChange)
-      }
-    },
-    [api],
-  )
-  const pages = useSyncExternalStore(
-    subscribe,
-    () => api?.scrollSnapList().length ?? 0,
-    () => 0,
-  )
-  const currentPage = useSyncExternalStore(
-    subscribe,
-    () => api?.selectedScrollSnap() ?? 0,
-    () => 0,
-  )
-
   return (
     <Carousel
-      setApi={setApi}
       opts={carouselOptions}
       className='flex flex-col gap-section-mobile lg:gap-section-laptop 2xl:gap-section-desktop'
     >
@@ -79,27 +48,14 @@ export function CategoryCarousel({ genres }: { genres: Genre[] }) {
           description="Whether you're looking for a comedy to make you laugh, a drama to make you think, or a documentary to learn something new"
         />
         <div className='hidden items-center gap-3 rounded-lg border border-black-12 bg-black-06 p-2.75 lg:flex 2xl:gap-4 2xl:p-3.75'>
-          <CarouselPrevious className='cursor-pointer' />
-          <div
-            className='flex w-17.25 items-center gap-0.75 2xl:w-20.25'
-            role='group'
+          <CarouselPrevious />
+          <CarouselDots
+            className='w-17.25 2xl:w-20.25'
+            activeClassName='w-4.5 2xl:w-5.75'
+            label={(page, pages) => `Page ${page + 1} of ${pages}`}
             aria-label='Carousel pages'
-          >
-            {Array.from({ length: pages }, (_, page) => (
-              <button
-                key={page}
-                type='button'
-                aria-current={page === currentPage ? 'true' : undefined}
-                aria-label={`Page ${page + 1} of ${pages}`}
-                onClick={() => api?.scrollTo(page)}
-                className={cn(
-                  'h-1 rounded-full transition-colors outline-none focus-visible:ring-3 focus-visible:ring-ring/50',
-                  page === currentPage ? 'w-4.5 bg-primary 2xl:w-5.75' : 'flex-1 bg-black-20',
-                )}
-              />
-            ))}
-          </div>
-          <CarouselNext className='cursor-pointer' />
+          />
+          <CarouselNext />
         </div>
       </div>
 

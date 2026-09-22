@@ -31,6 +31,19 @@ type CarouselContextProps = {
 
 const CarouselContext = React.createContext<CarouselContextProps | null>(null)
 
+// Embla is an external store: components subscribe to its selection events and
+// read the scroll state directly instead of mirroring it into React state from
+// an effect. Shared by Carousel and CarouselDots.
+function subscribeToSelection(api: CarouselApi, onStoreChange: () => void) {
+  if (!api) return () => {}
+  api.on('select', onStoreChange)
+  api.on('reInit', onStoreChange)
+  return () => {
+    api.off('select', onStoreChange)
+    api.off('reInit', onStoreChange)
+  }
+}
+
 function useCarousel() {
   const context = React.useContext(CarouselContext)
 
@@ -57,20 +70,7 @@ function Carousel({
     },
     plugins,
   )
-  // Embla is an external store: subscribe to its events and read the scroll
-  // state directly instead of mirroring it into React state from an effect.
-  const subscribe = React.useCallback(
-    (onStoreChange: () => void) => {
-      if (!api) return () => {}
-      api.on('select', onStoreChange)
-      api.on('reInit', onStoreChange)
-      return () => {
-        api.off('select', onStoreChange)
-        api.off('reInit', onStoreChange)
-      }
-    },
-    [api],
-  )
+  const subscribe = React.useCallback((onStoreChange: () => void) => subscribeToSelection(api, onStoreChange), [api])
   const canScrollPrev = React.useSyncExternalStore(
     subscribe,
     () => api?.canScrollPrev() ?? false,
@@ -174,7 +174,7 @@ function CarouselPrevious({
       data-slot='carousel-previous'
       variant={variant}
       size={size}
-      className={cn('touch-manipulation', orientation === 'vertical' && 'rotate-90', className)}
+      className={cn('touch-manipulation cursor-pointer', orientation === 'vertical' && 'rotate-90', className)}
       disabled={!canScrollPrev}
       onClick={scrollPrev}
       {...props}
@@ -198,7 +198,7 @@ function CarouselNext({
       data-slot='carousel-next'
       variant={variant}
       size={size}
-      className={cn('touch-manipulation', orientation === 'vertical' && 'rotate-90', className)}
+      className={cn('touch-manipulation cursor-pointer', orientation === 'vertical' && 'rotate-90', className)}
       disabled={!canScrollNext}
       onClick={scrollNext}
       {...props}
@@ -209,4 +209,72 @@ function CarouselNext({
   )
 }
 
-export { type CarouselApi, Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext, useCarousel }
+type CarouselDotsProps = Omit<React.ComponentProps<'div'>, 'children'> & {
+  /** Width of the active dot, e.g. `w-4.5 2xl:w-5.75`; the others share what's left. */
+  activeClassName?: string
+  /** Accessible name for each dot. */
+  label?: (index: number, count: number) => string
+}
+
+// One pill per scroll snap, the active one wider and red, the rest sharing the
+// remaining width. Defaults are the Movies hero indicator (81×4px, 3px gaps,
+// 23px active dot); the categories carousel narrows it via className.
+function CarouselDots({
+  className,
+  activeClassName = 'w-5.75',
+  label = (index, count) => `Slide ${index + 1} of ${count}`,
+  ...props
+}: CarouselDotsProps) {
+  const { api } = useCarousel()
+  const subscribe = React.useCallback((onStoreChange: () => void) => subscribeToSelection(api, onStoreChange), [api])
+  const count = React.useSyncExternalStore(
+    subscribe,
+    () => api?.scrollSnapList().length ?? 0,
+    () => 0,
+  )
+  const selected = React.useSyncExternalStore(
+    subscribe,
+    () => api?.selectedScrollSnap() ?? 0,
+    () => 0,
+  )
+
+  return (
+    <div
+      role='group'
+      aria-label='Slides'
+      data-slot='carousel-dots'
+      className={cn('flex w-20.25 items-center gap-0.75', className)}
+      {...props}
+    >
+      {Array.from({ length: count }, (_, index) => (
+        <button
+          key={index}
+          type='button'
+          aria-current={index === selected ? 'true' : undefined}
+          aria-label={label(index, count)}
+          onClick={() => api?.scrollTo(index)}
+          className={cn(
+            // An invisible ::before takes each 4px pill to a 24px-tall target
+            // without changing the layout box, the same trick as
+            // `CarouselProgress`. The 1.5px inline inset is half the row's 3px
+            // gap, so neighbouring targets meet without overlapping; it is an
+            // arbitrary value because the spacing scale only steps by 0.25.
+            'relative h-1 rounded-full transition-colors outline-none before:absolute before:-inset-x-[1.5px] before:-inset-y-2.5 focus-visible:ring-3 focus-visible:ring-ring/50',
+            index === selected ? cn('bg-primary', activeClassName) : 'flex-1 bg-black-20',
+          )}
+        />
+      ))}
+    </div>
+  )
+}
+
+export {
+  type CarouselApi,
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+  CarouselDots,
+  useCarousel,
+}
