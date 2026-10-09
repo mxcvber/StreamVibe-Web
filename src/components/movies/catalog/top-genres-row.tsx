@@ -3,8 +3,8 @@ import { connection } from 'next/server'
 import { GenreCarousel } from '@/components/genres/genre-carousel'
 import { CatalogRowHeading } from '@/components/movies/catalog/catalog-row-heading'
 import { CatalogRowMessage } from '@/components/movies/catalog/catalog-row-message'
+import type { Genre } from '@/data/genres'
 import { getTopInGenres } from '@/lib/api/carousel'
-import type { GenreTopMovies } from '@/lib/api/types'
 import { toGenreCards } from '@/lib/top-genres'
 
 const HEADING_ID = 'movies-top-genres-heading'
@@ -23,9 +23,11 @@ const TITLE = 'Popular Top 10 In Genres'
 export async function TopGenresRow() {
   await connection()
 
-  let items: GenreTopMovies[]
+  // Mapped inside the `try` too, so one malformed item shows the message
+  // rather than failing the page.
+  let genres: Genre[]
   try {
-    items = await getTopInGenres()
+    genres = toGenreCards(await getTopInGenres())
   } catch (error) {
     console.error('Failed to load the top movies per genre', error)
     return (
@@ -36,7 +38,6 @@ export async function TopGenresRow() {
   }
 
   // Empty until the API has imported movies, since cards need four posters.
-  const genres = toGenreCards(items)
   if (genres.length === 0) {
     return <CatalogRowMessage title={TITLE}>There are no top movies to show yet.</CatalogRowMessage>
   }
