@@ -1,6 +1,10 @@
+import { Suspense } from 'react'
+
 import { Container } from '@/components/layout/container'
 import { CatalogBox } from '@/components/movies/catalog/catalog-box'
 import { GenresRow } from '@/components/movies/catalog/genres-row'
+import { TopGenresRow } from '@/components/movies/catalog/top-genres-row'
+import { TopGenresRowSkeleton } from '@/components/movies/catalog/top-genres-row-skeleton'
 
 /**
  * The browsable rows under the Movies hero, framed by `CatalogBox`. The
@@ -13,6 +17,9 @@ export function MoviesCatalog() {
       <Container>
         <CatalogBox label='Movies'>
           <GenresRow />
+          <Suspense fallback={<TopGenresRowSkeleton />}>
+            <TopGenresRow />
+          </Suspense>
         </CatalogBox>
       </Container>
     </section>

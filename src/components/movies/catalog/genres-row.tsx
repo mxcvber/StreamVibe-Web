@@ -1,13 +1,10 @@
 import { GenreCarousel } from '@/components/genres/genre-carousel'
+import { CatalogRowHeading } from '@/components/movies/catalog/catalog-row-heading'
 import { genres } from '@/data/genres'
 
 const HEADING_ID = 'movies-genres-heading'
 
-/**
- * "Our Genres" — the home page's genre cards under a title-only heading, which
- * centres against the controls and sits closer to the cards (20/40/50px) than
- * a home section heading does.
- */
+/** "Our Genres" — the home page's genre cards under a title-only heading. */
 export function GenresRow() {
   return (
     <GenreCarousel
@@ -17,9 +14,9 @@ export function GenresRow() {
       heading={
         // The key looks redundant but isn't: this element crosses from a Server
         // Component into the client GenreCarousel, and React warns without it.
-        <h2 key={HEADING_ID} id={HEADING_ID} className='flex-1 text-24 font-bold lg:self-center lg:text-30 2xl:text-38'>
+        <CatalogRowHeading key={HEADING_ID} id={HEADING_ID}>
           Our Genres
-        </h2>
+        </CatalogRowHeading>
       }
     />
   )
