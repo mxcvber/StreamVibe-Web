@@ -3,9 +3,17 @@ import Link from 'next/link'
 import { ArrowRightIcon } from '@/components/icons/arrow-right'
 import { PosterMosaic } from '@/components/home/hero/poster-mosaic'
 import { Card } from '@/components/ui/card'
+import { genreCardStyles, type GenreCardVariant } from '@/components/genres/genre-variants'
 import type { Genre } from '@/data/genres'
+import { cn } from '@/lib/utils'
 
-export function GenreCard({ genre }: { genre: Genre }) {
+type GenreCardProps = {
+  genre: Genre
+  variant?: GenreCardVariant
+}
+
+export function GenreCard({ genre, variant = 'genre' }: GenreCardProps) {
+  const styles = genreCardStyles[variant]
   const [a, b, c, d] = genre.posters
 
   return (
@@ -13,31 +21,37 @@ export function GenreCard({ genre }: { genre: Genre }) {
       href={`/movies?genre=${genre.slug}`}
       className='group block rounded-lg outline-none focus-visible:ring-3 focus-visible:ring-ring/50'
     >
-      <Card className='p-4.75 transition-colors group-hover:border-black-20 lg:p-5.75 2xl:p-7.25'>
-        {/* 2×2 poster mosaic fading into the card so the title reads cleanly.
-            Sized by the artboards' aspect ratios (138.4×140 mobile, 191.8×210
-            laptop, 235.4×252 desktop) rather than a fixed height, so the tiles
-            keep their proportions when the card shrinks with the viewport
-            instead of turning tall and narrow. */}
-        <div className='relative aspect-[138.4/140] overflow-hidden lg:aspect-[191.8/210] 2xl:aspect-[235.4/252]'>
+      <Card className={cn('transition-colors group-hover:border-black-20', styles.card)}>
+        {/* 2×2 poster mosaic fading into the card so the title reads cleanly. */}
+        <div className={cn('relative overflow-hidden', styles.mosaic)}>
           <PosterMosaic
             rows={[
               [a, b],
               [c, d],
             ]}
-            sizes='(min-width: 1536px) 120px, (min-width: 1024px) 96px, 72px'
-            tileClassName='rounded-md'
-            className='absolute inset-0 [--mosaic-gap:5px]'
+            sizes={styles.sizes}
+            tileClassName={styles.tile}
+            className={cn('absolute inset-0', styles.gap)}
           />
           <div className='absolute inset-0 bg-linear-to-b from-card/0 to-card' />
         </div>
-        <div className='flex items-center gap-2'>
+        <div className={cn('flex items-center', styles.footer)}>
           {/* min-w-0 lets the flex item shrink below its text width so the
               ellipsis can kick in on narrow cards ("Science Fiction"). */}
-          <h3 className='min-w-0 flex-1 truncate text-14 font-semibold lg:text-16 2xl:text-18' title={genre.name}>
-            {genre.name}
-          </h3>
-          <ArrowRightIcon className='size-5 shrink-0 lg:size-6 2xl:size-7.5' />
+          <div className='flex min-w-0 flex-1 flex-col items-start gap-0.5 2xl:gap-1'>
+            {variant === 'top10' && (
+              // leading-none + padding reproduces the design's cap-height
+              // trimmed box (25px tall on mobile, 32px on desktop) in every
+              // browser, which `text-box-trim` doesn't yet.
+              <span className='rounded-lg bg-primary px-2 py-[6.5px] text-12 leading-none font-semibold 2xl:px-2.5 2xl:py-2 2xl:text-16'>
+                Top 10 In
+              </span>
+            )}
+            <h3 className={cn('w-full truncate font-semibold', styles.title)} title={genre.name}>
+              {genre.name}
+            </h3>
+          </div>
+          <ArrowRightIcon className={cn('shrink-0', styles.icon)} />
         </div>
       </Card>
     </Link>

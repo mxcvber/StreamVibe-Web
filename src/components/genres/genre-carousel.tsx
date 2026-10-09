@@ -4,6 +4,11 @@ import type { ComponentProps, ReactNode } from 'react'
 
 import { GenreCard } from '@/components/genres/genre-card'
 import {
+  genreCarouselOptions,
+  genreSlideClassName,
+  type GenreCardVariant,
+} from '@/components/genres/genre-variants'
+import {
   Carousel,
   CarouselContent,
   CarouselDots,
@@ -15,24 +20,10 @@ import { CarouselProgress } from '@/components/ui/carousel-progress'
 import type { Genre } from '@/data/genres'
 import { cn } from '@/lib/utils'
 
-/**
- * Cards per page follow the slide widths in the markup below: fixed-width
- * cards that scroll one at a time under `lg` (the basis includes the 20px
- * slide gutter, so 198px is the mobile artboard's 178px card), a quarter of
- * the row from `lg` and the artboards' five from `xl`. Embla re-initialises
- * itself when a breakpoint query flips.
- */
-const carouselOptions = {
-  align: 'start',
-  slidesToScroll: 1,
-  breakpoints: {
-    '(min-width: 64rem)': { slidesToScroll: 4 },
-    '(min-width: 80rem)': { slidesToScroll: 5 },
-  },
-} as const
-
 type GenreCarouselProps = Omit<ComponentProps<'div'>, 'children'> & {
   genres: Genre[]
+  /** Which card the row shows; see `GenreCard`. */
+  variant?: GenreCardVariant
   /**
    * Sits left of the prev/next controls as a flex item of the heading row, so
    * it should carry `flex-1`. The row aligns its items to the end (a heading
@@ -44,17 +35,18 @@ type GenreCarouselProps = Omit<ComponentProps<'div'>, 'children'> & {
 
 /**
  * The genre cards used by the home page's categories section and the Movies
- * page's "Our Genres" row. The whole block lives inside <Carousel> because the
- * designs put the prev/next controls in the heading row, and they must share
- * the carousel context with the slides below. Under `lg` the designs drop the
+ * page's "Our Genres" and "Popular Top 10 In Genres" rows. The whole block
+ * lives inside <Carousel> because the designs put the prev/next controls in
+ * the heading row, and they must share the carousel context with the slides
+ * below. Under `lg` the designs drop the
  * controls for a progress bar beneath the cards, which live in the same
  * context. The heading → cards gap differs per page, so callers override it
  * through `className`.
  */
-export function GenreCarousel({ genres, heading, className, ...props }: GenreCarouselProps) {
+export function GenreCarousel({ genres, variant = 'genre', heading, className, ...props }: GenreCarouselProps) {
   return (
     <Carousel
-      opts={carouselOptions}
+      opts={genreCarouselOptions[variant]}
       className={cn('flex flex-col gap-section-mobile lg:gap-section-laptop 2xl:gap-section-desktop', className)}
       {...props}
     >
@@ -75,8 +67,8 @@ export function GenreCarousel({ genres, heading, className, ...props }: GenreCar
       <div className='flex flex-col gap-6'>
         <CarouselContent className='-ml-5 2xl:-ml-7.5'>
           {genres.map((genre) => (
-            <CarouselItem key={genre.slug} className='basis-49.5 pl-5 md:basis-65 lg:basis-1/4 xl:basis-1/5 2xl:pl-7.5'>
-              <GenreCard genre={genre} />
+            <CarouselItem key={genre.slug} className={cn('pl-5 2xl:pl-7.5', genreSlideClassName[variant])}>
+              <GenreCard genre={genre} variant={variant} />
             </CarouselItem>
           ))}
         </CarouselContent>

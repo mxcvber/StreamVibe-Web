@@ -1,12 +1,15 @@
-import { poster, type PosterSrc } from "@/data/posters";
+import { poster } from "@/data/posters";
 
 export type Genre = {
   /** TMDB genre id — the same id stored in the backend's `genres` table. */
   id: number;
   slug: string;
   name: string;
-  /** Four posters shown as a 2×2 mosaic on the category card. */
-  posters: [PosterSrc, PosterSrc, PosterSrc, PosterSrc];
+  /**
+   * Four posters shown as a 2×2 mosaic on the category card: local
+   * placeholders here, TMDB URLs when the genre comes from the API.
+   */
+  posters: [string, string, string, string];
 };
 
 /**
