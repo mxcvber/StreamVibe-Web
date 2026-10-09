@@ -2,7 +2,7 @@
 
 import { useCallback, useSyncExternalStore } from 'react'
 
-import { useCarouselScrub } from '@/components/home/categories/use-carousel-scrub'
+import { useCarouselScrub } from '@/hooks/use-carousel-scrub'
 import { useCarousel } from '@/components/ui/carousel'
 import { cn } from '@/lib/utils'
 

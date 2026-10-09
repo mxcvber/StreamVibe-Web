@@ -5,7 +5,7 @@ import { PosterMosaic } from '@/components/home/hero/poster-mosaic'
 import { Card } from '@/components/ui/card'
 import type { Genre } from '@/data/genres'
 
-export function CategoryCard({ genre }: { genre: Genre }) {
+export function GenreCard({ genre }: { genre: Genre }) {
   const [a, b, c, d] = genre.posters
 
   return (

@@ -1,8 +1,8 @@
 'use client'
 
-import { CarouselProgress } from '@/components/home/categories/carousel-progress'
-import { CategoryCard } from '@/components/home/categories/category-card'
-import { SectionHeading } from '@/components/layout/section-heading'
+import type { ComponentProps, ReactNode } from 'react'
+
+import { GenreCard } from '@/components/genres/genre-card'
 import {
   Carousel,
   CarouselContent,
@@ -11,7 +11,9 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel'
+import { CarouselProgress } from '@/components/ui/carousel-progress'
 import type { Genre } from '@/data/genres'
+import { cn } from '@/lib/utils'
 
 /**
  * Cards per page follow the slide widths in the markup below: fixed-width
@@ -29,24 +31,35 @@ const carouselOptions = {
   },
 } as const
 
+type GenreCarouselProps = Omit<ComponentProps<'div'>, 'children'> & {
+  genres: Genre[]
+  /**
+   * Sits left of the prev/next controls as a flex item of the heading row, so
+   * it should carry `flex-1`. The row aligns its items to the end (a heading
+   * with a description bottom-aligns with the controls); a title-only heading
+   * can opt into centring with `lg:self-center`, where the controls appear.
+   */
+  heading: ReactNode
+}
+
 /**
- * The whole categories section lives inside <Carousel> because the design puts
- * the prev/next controls in the heading row, and they must share the carousel
- * context with the slides below. Under `lg` the design drops the controls for
- * a progress bar beneath the cards, which live in the same context.
+ * The genre cards used by the home page's categories section and the Movies
+ * page's "Our Genres" row. The whole block lives inside <Carousel> because the
+ * designs put the prev/next controls in the heading row, and they must share
+ * the carousel context with the slides below. Under `lg` the designs drop the
+ * controls for a progress bar beneath the cards, which live in the same
+ * context. The heading → cards gap differs per page, so callers override it
+ * through `className`.
  */
-export function CategoryCarousel({ genres }: { genres: Genre[] }) {
+export function GenreCarousel({ genres, heading, className, ...props }: GenreCarouselProps) {
   return (
     <Carousel
       opts={carouselOptions}
-      className='flex flex-col gap-section-mobile lg:gap-section-laptop 2xl:gap-section-desktop'
+      className={cn('flex flex-col gap-section-mobile lg:gap-section-laptop 2xl:gap-section-desktop', className)}
+      {...props}
     >
       <div className='flex flex-col gap-5 md:flex-row md:items-end md:gap-25'>
-        <SectionHeading
-          className='flex-1'
-          title='Explore our wide variety of categories'
-          description="Whether you're looking for a comedy to make you laugh, a drama to make you think, or a documentary to learn something new"
-        />
+        {heading}
         <div className='hidden items-center gap-3 rounded-lg border border-black-12 bg-black-06 p-2.75 lg:flex 2xl:gap-4 2xl:p-3.75'>
           <CarouselPrevious />
           <CarouselDots
@@ -63,7 +76,7 @@ export function CategoryCarousel({ genres }: { genres: Genre[] }) {
         <CarouselContent className='-ml-5 2xl:-ml-7.5'>
           {genres.map((genre) => (
             <CarouselItem key={genre.slug} className='basis-49.5 pl-5 md:basis-65 lg:basis-1/4 xl:basis-1/5 2xl:pl-7.5'>
-              <CategoryCard genre={genre} />
+              <GenreCard genre={genre} />
             </CarouselItem>
           ))}
         </CarouselContent>
