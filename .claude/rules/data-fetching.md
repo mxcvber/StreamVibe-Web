@@ -50,6 +50,10 @@ export async function getTopInGenres(): Promise<GenreTopMovies[]> {
   like the loaded content so nothing shifts.
 - Catch request errors in the component. Log them with `console.error`, and render the row's
   heading with a short inline message so the rest of the page still works.
+- Map API data to UI shapes inside the `try` too, so a malformed item shows the inline message
+  instead of failing the page.
+- Rows of movie cards go through `MovieRow` (`src/components/movies/catalog/movie-row.tsx`):
+  add the variant to `movie-variants.ts` and pass `load`, `toMovies` and `renderCard`.
 - Posters are TMDB paths. Build URLs with `tmdbPosterUrl` (`src/lib/tmdb-image.ts`).
   `image.tmdb.org` is allowed in `images.remotePatterns`.
 
