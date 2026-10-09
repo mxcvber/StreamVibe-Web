@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Fragment } from "react";
 
 import { Container } from "@/components/layout/container";
+import { CopyrightYear } from "@/components/layout/copyright-year";
 import { FooterLinkColumn } from "@/components/layout/footer-link-column";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -40,7 +41,7 @@ export function SiteFooter() {
         <div className="flex flex-col gap-5 2xl:gap-6">
           <Separator />
           <div className="flex flex-col gap-5 text-14 text-muted-foreground md:flex-row md:items-center md:justify-between 2xl:text-18">
-            <p>© {new Date().getFullYear()} StreamVibe, All Rights Reserved</p>
+            <p>© <CopyrightYear /> StreamVibe, All Rights Reserved</p>
             <nav aria-label="Legal" className="flex items-center gap-4 2xl:gap-5">
               {legal.map((link, index) => (
                 <Fragment key={link.href}>

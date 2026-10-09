@@ -2,7 +2,14 @@ import type { NextConfig } from "next";
 import { PHASE_DEVELOPMENT_SERVER } from "next/constants";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Data is cached per function with `'use cache'` + `cacheLife` + `cacheTag`
+  // (see src/lib/api). This removes the `dynamic`, `revalidate` and
+  // `fetchCache` segment exports.
+  cacheComponents: true,
+  images: {
+    // Posters from the API are TMDB image paths, served from TMDB's CDN.
+    remotePatterns: [new URL("https://image.tmdb.org/t/p/**")],
+  },
 };
 
 export default function config(phase: string): NextConfig {
