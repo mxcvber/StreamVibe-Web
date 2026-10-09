@@ -6,6 +6,11 @@ import { createCn } from "cn/config"
 // (`text-18 text-white` -> `text-white`). Registering the sizes fixes that.
 const fontSizes = ["12", "14", "16", "18", "20", "22", "24", "28", "30", "38", "40", "48", "58"]
 
+// Likewise the section spacing tokens: unregistered, `gap-section-mobile` isn't
+// seen as a gap, so a caller's `gap-5` is appended instead of replacing it and
+// the token wins by stylesheet order.
+const sectionSpacing = ["section-mobile", "section-laptop", "section-desktop"]
+
 export const cn = createCn({
-  extend: { classGroups: { "font-size": [{ text: fontSizes }] } },
+  extend: { classGroups: { "font-size": [{ text: fontSizes }], gap: [{ gap: sectionSpacing }] } },
 })
