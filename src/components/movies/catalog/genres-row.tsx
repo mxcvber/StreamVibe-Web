@@ -13,7 +13,7 @@ export function GenresRow() {
       className='gap-5 lg:gap-10 2xl:gap-12.5'
       heading={
         // The key looks redundant but isn't: this element crosses from a Server
-        // Component into the client GenreCarousel, and React warns without it.
+        // Component into the client RowCarousel, and React warns without it.
         <CatalogRowHeading key={HEADING_ID} id={HEADING_ID}>
           Our Genres
         </CatalogRowHeading>
