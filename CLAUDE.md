@@ -87,11 +87,9 @@ revalidateTag('movies', 'max') // Next 16
 `cacheLife` and `cacheTag` are stable imports from `next/cache`, joined by `updateTag()` and
 `refresh()`.
 
-> **Open decision — flag it, do not silently pick.** `cacheComponents: true` enables PPR and
-> `use cache` but _removes_ the `dynamic`, `revalidate` and `fetchCache` segment exports.
-> `next.config.ts` is currently empty, so the project is on the legacy caching model by
-> default. Settle this before writing the data-fetching layer; it changes how every page is
-> authored.
+**Decided: Cache Components.** `cacheComponents: true` is on, so the `dynamic`, `revalidate`
+and `fetchCache` segment exports are gone, and an unstable value such as `new Date()` fails the
+prerender unless it is cached. Data-fetching conventions are in `.claude/rules/data-fetching.md`.
 
 **next/image.** `images.qualities` defaults to `[75]` only and other `quality` values are
 coerced to the nearest allowed one; `minimumCacheTTL` moved from 60s to 4 hours;
