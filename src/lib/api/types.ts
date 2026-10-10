@@ -78,3 +78,24 @@ export type MustWatchResponse = {
   /** The 20 highest-rated movies, by weighted rating. */
   items: MustWatchMovie[]
 }
+
+/** A movie reduced to what a catalog grid card needs. */
+export type MovieListItem = {
+  /** TMDB movie id. */
+  id: number
+  title: string
+  /** TMDB image path ("/abc123.jpg"); build the URL with `tmdbPosterUrl`. */
+  posterPath: string
+  /** "YYYY-MM-DD"; null when TMDB had no release date. */
+  releaseDate: string | null
+  /** TMDB average, 0–10; halve it for the 5-star display. */
+  voteAverage: number
+}
+
+/** GET /movies?sort=&rating=&cursor= */
+export type MovieListResponse = {
+  /** One page of the catalog, in the requested sort order. */
+  items: MovieListItem[]
+  /** Pass as `cursor` to get the next page; null on the last page. */
+  nextCursor: number | null
+}

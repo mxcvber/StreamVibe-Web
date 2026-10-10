@@ -22,8 +22,11 @@ export const movieRowCopy = {
   'must-watch': { title: 'Must - Watch Movies', headingId: 'movies-must-watch-heading', noun: 'must-watch movies' },
 } satisfies Record<MovieCardVariant, { title: string; headingId: string; noun: string }>
 
-/** Padding (less the 1px border Figma draws inside the box), gap and radius. */
-const cardBox = 'gap-3 rounded-md p-2.75 lg:gap-4 lg:p-3.75 2xl:gap-5 2xl:rounded-lg 2xl:p-4.75'
+/**
+ * Padding (less the 1px border Figma draws inside the box), gap and radius.
+ * Shared with the "All Movies" grid card.
+ */
+export const cardBox = 'gap-3 rounded-md p-2.75 lg:gap-4 lg:p-3.75 2xl:gap-5 2xl:rounded-lg 2xl:p-4.75'
 
 /**
  * Card styles. Padding and the poster → chips gap are 12/16/20px across the
