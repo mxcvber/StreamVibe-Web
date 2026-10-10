@@ -54,6 +54,9 @@ export async function getTopInGenres(): Promise<GenreTopMovies[]> {
   instead of failing the page.
 - Rows of movie cards go through `MovieRow` (`src/components/movies/catalog/movie-row.tsx`):
   add the variant to `movie-variants.ts` and pass `load`, `toMovies` and `renderCard`.
+- Paging from the browser ("Load more") goes through a Server Action that calls the cached
+  data function and returns UI-shaped data (`src/app/movies/all/actions.ts`). The browser
+  never gets `API_URL`. Anyone can POST to an action, so validate its arguments.
 - Posters are TMDB paths. Build URLs with `tmdbPosterUrl` (`src/lib/tmdb-image.ts`).
   `image.tmdb.org` is allowed in `images.remotePatterns`.
 
