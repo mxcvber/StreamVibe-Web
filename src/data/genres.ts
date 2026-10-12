@@ -20,6 +20,10 @@ export type Genre = {
  * The five Figma genres keep their exact poster sets; the others are loosely
  * thematic picks from the same 54-poster pool. All of it is placeholder
  * artwork until posters come from the TMDB-backed API.
+ *
+ * The ids, slugs and names are real, though: genre pages
+ * (`/movies/genres/[slug]`) resolve their slug to the API's genre id and the
+ * name they show through `findGenre`.
  */
 export const genres: Genre[] = [
   { id: 28, slug: "action", name: "Action", posters: [poster(37), poster(19), poster(21), poster(38)] },
@@ -42,3 +46,8 @@ export const genres: Genre[] = [
   { id: 10752, slug: "war", name: "War", posters: [poster(27), poster(30), poster(34), poster(22)] },
   { id: 37, slug: "western", name: "Western", posters: [poster(35), poster(34), poster(12), poster(27)] },
 ];
+
+/** The genre with this URL slug ("science-fiction"), or undefined. */
+export function findGenre(slug: string): Genre | undefined {
+  return genres.find((genre) => genre.slug === slug);
+}

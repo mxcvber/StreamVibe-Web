@@ -7,9 +7,10 @@ import { Skeleton } from '@/components/ui/skeleton'
 const PLACEHOLDERS = 10
 
 /**
- * Stands in for `AllMovies` while the API responds: placeholder cards built
- * like `CatalogMovieCard` (padding, poster ratio, title and stars at their
- * line heights) in the same grid, so nothing shifts when the cards arrive.
+ * Stands in for `AllMovies` or `GenreMovies` while the API responds:
+ * placeholder cards built like `CatalogMovieCard` (padding, poster ratio,
+ * title and stars at their line heights) in the same grid, so nothing shifts
+ * when the cards arrive.
  */
 export function MovieGridSkeleton() {
   return (

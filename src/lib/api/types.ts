@@ -92,9 +92,9 @@ export type MovieListItem = {
   voteAverage: number
 }
 
-/** GET /movies?sort=&rating=&cursor= */
+/** GET /movies?sort=&rating=&cursor= and GET /genres/:id/movies?cursor= */
 export type MovieListResponse = {
-  /** One page of the catalog, in the requested sort order. */
+  /** One page of the catalog: in the requested sort on /movies, newest first on a genre. */
   items: MovieListItem[]
   /** Pass as `cursor` to get the next page; null on the last page. */
   nextCursor: number | null

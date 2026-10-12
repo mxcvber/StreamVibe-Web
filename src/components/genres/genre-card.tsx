@@ -18,7 +18,7 @@ export function GenreCard({ genre, variant = 'genre' }: GenreCardProps) {
 
   return (
     <Link
-      href={`/movies?genre=${genre.slug}`}
+      href={`/movies/genres/${genre.slug}`}
       className='group block rounded-lg outline-none focus-visible:ring-3 focus-visible:ring-ring/50'
     >
       <Card className={cn('transition-colors group-hover:border-black-20', styles.card)}>
