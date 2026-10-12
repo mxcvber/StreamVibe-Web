@@ -1,10 +1,10 @@
 import { connection } from 'next/server'
 
-import type { MoviesPage } from '@/app/movies/all/actions'
+import { loadMoreMovies } from '@/app/movies/all/actions'
 import { BrowseMessage } from '@/components/movies/browse/browse-message'
 import { MovieGrid } from '@/components/movies/browse/movie-grid'
 import { getMovies } from '@/lib/api/movies'
-import { toCatalogMovies } from '@/lib/catalog-movies'
+import { type MoviesPage, toMoviesPage } from '@/lib/catalog-movies'
 import { DEFAULT_MOVIE_SORT, type MovieFilters } from '@/lib/movie-filters'
 
 type AllMoviesProps = {
@@ -25,8 +25,7 @@ export async function AllMovies({ filters }: AllMoviesProps) {
 
   let page: MoviesPage
   try {
-    const { items, nextCursor } = await getMovies(filters)
-    page = { movies: toCatalogMovies(items), nextCursor }
+    page = toMoviesPage(await getMovies(filters))
   } catch (error) {
     console.error('Failed to load the movie catalog', error)
     return <BrowseMessage>We couldn&apos;t load the movies right now. Please try again later.</BrowseMessage>
@@ -42,5 +41,5 @@ export async function AllMovies({ filters }: AllMoviesProps) {
     )
   }
 
-  return <MovieGrid filters={filters} initialPage={page} />
+  return <MovieGrid initialPage={page} loadMoreAction={loadMoreMovies.bind(null, filters)} />
 }

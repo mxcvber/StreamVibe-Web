@@ -2,30 +2,33 @@
 
 import { useState, useTransition } from 'react'
 
-import { type MoviesPage, loadMoreMovies } from '@/app/movies/all/actions'
 import { BrowseMessage } from '@/components/movies/browse/browse-message'
 import { movieGridClassName } from '@/components/movies/browse/browse-variants'
 import { CatalogMovieCard } from '@/components/movies/browse/catalog-movie-card'
 import { Button } from '@/components/ui/button'
-import type { MovieFilters } from '@/lib/movie-filters'
+import type { MoviesPage } from '@/lib/catalog-movies'
 import { cn } from '@/lib/utils'
 
 type MovieGridProps = {
-  /** The sort and filter every page is loaded with. */
-  filters: MovieFilters
   /** The first page, rendered on the server. */
   initialPage: MoviesPage
+  /**
+   * The Server Action that loads the page after a cursor, bound by the server
+   * parent to whatever else the list needs (`loadMoreMovies.bind(null,
+   * filters)`, `loadMoreGenreMovies.bind(null, genreId)`).
+   */
+  loadMoreAction: (cursor: number) => Promise<MoviesPage>
 }
 
 /**
- * The "All Movies" grid with a "Load more" button that appends the next page
- * through the `loadMoreMovies` Server Action, in the same sort and filter.
- * Changing them remounts the grid (its <Suspense> is keyed by them), which
- * starts it over from the first page. The button disappears on the
- * last page. If a page fails, the loaded cards stay and the button offers a
- * retry.
+ * A catalog grid ("All Movies", a genre's page) with a "Load more" button
+ * that appends the next page through `loadMoreAction`. On "All Movies",
+ * changing the sort or filter remounts the grid (its <Suspense> is keyed by
+ * them), which starts it over from the first page. The button disappears on
+ * the last page. If a page fails, the loaded cards stay and the button offers
+ * a retry.
  */
-export function MovieGrid({ filters, initialPage }: MovieGridProps) {
+export function MovieGrid({ initialPage, loadMoreAction }: MovieGridProps) {
   const [movies, setMovies] = useState(initialPage.movies)
   const [cursor, setCursor] = useState(initialPage.nextCursor)
   const [failed, setFailed] = useState(false)
@@ -37,7 +40,7 @@ export function MovieGrid({ filters, initialPage }: MovieGridProps) {
     setFailed(false)
     startTransition(async () => {
       try {
-        const page = await loadMoreMovies(filters, cursor)
+        const page = await loadMoreAction(cursor)
         // Updates after an `await` need their own transition to stay part of it.
         startTransition(() => {
           setMovies((loaded) => {
