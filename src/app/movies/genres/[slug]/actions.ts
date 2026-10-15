@@ -1,7 +1,7 @@
 'use server'
 
 import { genres } from '@/data/genres'
-import { getGenreMovies } from '@/lib/api/genres'
+import { getGenreMovies } from '@/lib/api/movies'
 import { type MoviesPage, toMoviesPage } from '@/lib/catalog-movies'
 
 /**

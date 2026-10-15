@@ -3,14 +3,18 @@ import { cardBox } from '@/components/movies/movie-variants'
 import { Card } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
 
-/** Two full rows on desktop (five columns), more on smaller screens. */
+/**
+ * Two full rows on desktop (five columns), more on smaller screens; exactly a
+ * top-10 page.
+ */
 const PLACEHOLDERS = 10
 
 /**
- * Stands in for `AllMovies` or `GenreMovies` while the API responds:
- * placeholder cards built like `CatalogMovieCard` (padding, poster ratio,
- * title and stars at their line heights) in the same grid, so nothing shifts
- * when the cards arrive.
+ * Stands in for `AllMovies`, `GenreMovies` or `TopTenMovies` while the API
+ * responds: placeholder cards built like `CatalogMovieCard` (padding, poster
+ * ratio, title and stars at their line heights) in the same grid, so nothing
+ * shifts when the cards arrive. A top-10 card's rank badge sits over the
+ * poster, so it needs no placeholder of its own.
  */
 export function MovieGridSkeleton() {
   return (

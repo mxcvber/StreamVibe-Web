@@ -1,7 +1,7 @@
 import type { MovieListItem, MovieListResponse } from '@/lib/api/types'
 import { tmdbPosterUrl } from '@/lib/tmdb-image'
 
-/** What a catalog grid card ("All Movies", a genre's page) renders. */
+/** What a catalog grid card ("All Movies", a genre's page, its top 10) renders. */
 export type CatalogMovie = {
   id: number
   title: string
@@ -17,8 +17,13 @@ export type MoviesPage = {
   nextCursor: number | null
 }
 
-/** Maps a page of the API's catalog to the grid cards' shape, keeping its order. */
-export function toCatalogMovies(items: MovieListItem[]): CatalogMovie[] {
+/**
+ * Maps the API's movies to the grid cards' shape, keeping their order. Takes
+ * only the fields a card reads, so catalog pages and top-10 lists both fit.
+ */
+export function toCatalogMovies(
+  items: Pick<MovieListItem, 'id' | 'title' | 'posterPath' | 'voteAverage'>[],
+): CatalogMovie[] {
   return items.map(({ id, title, posterPath, voteAverage }) => ({
     id,
     title,
@@ -30,7 +35,7 @@ export function toCatalogMovies(items: MovieListItem[]): CatalogMovie[] {
   }))
 }
 
-/** Maps a `GET /movies` or `GET /genres/:id/movies` page to a grid page. */
+/** Maps a `GET /movies` or `GET /movies/:id/genre` page to a grid page. */
 export function toMoviesPage({ items, nextCursor }: MovieListResponse): MoviesPage {
   return { movies: toCatalogMovies(items), nextCursor }
 }

@@ -3,7 +3,7 @@
 import { useState, useTransition } from 'react'
 
 import { BrowseMessage } from '@/components/movies/browse/browse-message'
-import { movieGridClassName } from '@/components/movies/browse/browse-variants'
+import { movieGridClassName, movieGridItemClassName } from '@/components/movies/browse/browse-variants'
 import { CatalogMovieCard } from '@/components/movies/browse/catalog-movie-card'
 import { Button } from '@/components/ui/button'
 import type { MoviesPage } from '@/lib/catalog-movies'
@@ -62,7 +62,7 @@ export function MovieGrid({ initialPage, loadMoreAction }: MovieGridProps) {
     <div className='flex flex-col items-center gap-6 lg:gap-10 2xl:gap-12.5'>
       <ul className={cn('w-full', movieGridClassName)}>
         {movies.map((movie) => (
-          <li key={movie.id} className='flex flex-col *:flex-1'>
+          <li key={movie.id} className={movieGridItemClassName}>
             <CatalogMovieCard movie={movie} />
           </li>
         ))}

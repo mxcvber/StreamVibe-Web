@@ -29,6 +29,9 @@ export const movieSortHints: Partial<Record<MovieSort, string>> = {
  */
 export const movieGridClassName = 'grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 lg:gap-5 2xl:grid-cols-5 2xl:gap-7.5'
 
+/** Each grid cell: the card stretches to the row's tallest. */
+export const movieGridItemClassName = 'flex flex-col *:flex-1'
+
 export const catalogMovieCardStyles = {
   // TMDB posters are 2:3.
   poster: 'aspect-[2/3] rounded-md 2xl:rounded-lg',
@@ -36,6 +39,10 @@ export const catalogMovieCardStyles = {
   // 1536px, 236px on a 1920px desktop.
   sizes: '(min-width: 1536px) 236px, (min-width: 1024px) 20vw, (min-width: 768px) 30vw, 45vw',
   title: 'line-clamp-1 text-14 font-semibold lg:text-16 2xl:text-18',
+  // The top-10 rank pinned to the poster's corner. No artboard draws it, so
+  // it copies `GenreCard`'s "Top 10 In" badge (25px tall, 32px on desktop),
+  // which links to the page.
+  rank: 'absolute top-2 left-2 rounded-lg bg-primary px-2 py-[6.5px] text-12 leading-none font-semibold 2xl:top-3 2xl:left-3 2xl:px-2.5 2xl:py-2 2xl:text-16',
 }
 
 /** The toolbar and grid's shared spacing, loaded and in the fallback. */

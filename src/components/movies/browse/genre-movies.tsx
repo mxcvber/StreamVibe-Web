@@ -4,8 +4,8 @@ import { loadMoreGenreMovies } from '@/app/movies/genres/[slug]/actions'
 import { BrowseMessage } from '@/components/movies/browse/browse-message'
 import { MovieGrid } from '@/components/movies/browse/movie-grid'
 import type { Genre } from '@/data/genres'
-import { getGenreMovies } from '@/lib/api/genres'
 import { type MoviesPage, toMoviesPage } from '@/lib/catalog-movies'
+import { getGenreMovies } from '@/lib/api/movies'
 
 type GenreMoviesProps = {
   genre: Genre

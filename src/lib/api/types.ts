@@ -92,10 +92,27 @@ export type MovieListItem = {
   voteAverage: number
 }
 
-/** GET /movies?sort=&rating=&cursor= and GET /genres/:id/movies?cursor= */
+/** GET /movies?sort=&rating=&cursor= and GET /movies/:id/genre?cursor= */
 export type MovieListResponse = {
   /** One page of the catalog: in the requested sort on /movies, newest first on a genre. */
   items: MovieListItem[]
   /** Pass as `cursor` to get the next page; null on the last page. */
   nextCursor: number | null
+}
+
+/** A movie reduced to what a top-10 grid card needs. */
+export type TopTenMovie = {
+  /** TMDB movie id. */
+  id: number
+  title: string
+  /** TMDB image path ("/abc123.jpg"); build the URL with `tmdbPosterUrl`. */
+  posterPath: string
+  /** TMDB average, 0–10; halve it for the 5-star display. */
+  voteAverage: number
+}
+
+/** GET /movies/:id/genre/top-10 */
+export type TopTenMoviesResponse = {
+  /** The genre's 10 most popular movies, most popular first. */
+  items: TopTenMovie[]
 }
