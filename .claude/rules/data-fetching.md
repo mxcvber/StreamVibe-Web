@@ -60,6 +60,9 @@ export async function getTopInGenres(): Promise<GenreTopMovies[]> {
 - Paginated poster grids go through `MovieGrid` (`src/components/movies/browse/movie-grid.tsx`).
   The server parent passes the first page and the action bound to the list's arguments as
   `loadMoreAction` (`loadMoreGenreMovies.bind(null, genre.id)`), so a new list needs no new grid.
+- A fixed-size poster list (a genre's top 10) has no pages, so it skips `MovieGrid`: a server
+  component renders `CatalogMovieCard`s in `movieGridClassName` itself
+  (`src/components/movies/browse/top-ten-movies.tsx`).
 - Posters are TMDB paths. Build URLs with `tmdbPosterUrl` (`src/lib/tmdb-image.ts`).
   `image.tmdb.org` is allowed in `images.remotePatterns`.
 
