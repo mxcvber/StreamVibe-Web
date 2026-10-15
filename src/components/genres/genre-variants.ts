@@ -41,6 +41,12 @@ export const genreCardStyles = {
   },
 } satisfies Record<GenreCardVariant, Record<string, string>>
 
+/** Where each card leads: the genre's full list, or its top 10. */
+export const genreCardHref = {
+  genre: (slug: string) => `/movies/genres/${slug}`,
+  top10: (slug: string) => `/movies/genres/${slug}/top-10`,
+} satisfies Record<GenreCardVariant, (slug: string) => string>
+
 /**
  * Slide widths: fixed-width cards that scroll one at a time under `lg` (the
  * basis includes the 20px slide gutter, so 198px is the mobile artboard's

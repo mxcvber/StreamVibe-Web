@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { ArrowRightIcon } from '@/components/icons/arrow-right'
 import { PosterMosaic } from '@/components/home/hero/poster-mosaic'
 import { Card } from '@/components/ui/card'
-import { genreCardStyles, type GenreCardVariant } from '@/components/genres/genre-variants'
+import { genreCardHref, genreCardStyles, type GenreCardVariant } from '@/components/genres/genre-variants'
 import type { Genre } from '@/data/genres'
 import { cn } from '@/lib/utils'
 
@@ -18,7 +18,7 @@ export function GenreCard({ genre, variant = 'genre' }: GenreCardProps) {
 
   return (
     <Link
-      href={`/movies/genres/${genre.slug}`}
+      href={genreCardHref[variant](genre.slug)}
       className='group block rounded-lg outline-none focus-visible:ring-3 focus-visible:ring-ring/50'
     >
       <Card className={cn('transition-colors group-hover:border-black-20', styles.card)}>
