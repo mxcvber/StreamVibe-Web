@@ -12,10 +12,14 @@ type PlanCardProps = {
 export function PlanCard({ plan, period }: PlanCardProps) {
   const unit = billingPeriods.find((p) => p.value === period)?.unit ?? period
 
+  // Padding is the artboards' 24 / 40 / 50px less the 1px border. Phones
+  // under 375px keep 16px: at 24px a 360px phone can't fit both buttons.
   return (
-    <Card className='max-w-137.5 mx-auto gap-7.5 p-4 sm:p-8 lg:gap-10 lg:p-9.75 2xl:gap-12.5 2xl:p-12.25'>
-      <CardHeader>
-        <CardTitle className='font-bold'>{plan.name}</CardTitle>
+    <Card className='max-w-137.5 mx-auto gap-7.5 p-4 min-[375px]:p-5.75 sm:p-8 lg:gap-10 lg:p-9.75 2xl:gap-12.5 2xl:p-12.25'>
+      {/* flex-1 lines the prices and buttons up across a row of cards when one
+          description runs a line longer, as they are in Figma. */}
+      <CardHeader className='flex-1'>
+        <CardTitle className='font-bold'>{plan.name} Plan</CardTitle>
         <CardDescription>{plan.description}</CardDescription>
       </CardHeader>
       {/* Figma gives the price row a 0.73 line-height (18 / 22 / 29px tall). It

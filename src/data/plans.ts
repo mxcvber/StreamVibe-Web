@@ -1,11 +1,16 @@
 export type BillingPeriod = "monthly" | "yearly";
 
+export type PlanId = "basic" | "standard" | "premium";
+
 export type Plan = {
-  id: string;
+  id: PlanId;
+  /** "Basic": the comparison table and its phone switch use it bare, the cards add " Plan". */
   name: string;
   description: string;
   /** Price in USD for each billing period. */
   price: Record<BillingPeriod, number>;
+  /** Badged "Popular" in the comparison table, and the plan its phone switch opens on. */
+  popular?: boolean;
 };
 
 export const billingPeriods: { value: BillingPeriod; label: string; unit: string }[] = [
@@ -21,21 +26,22 @@ export const billingPeriods: { value: BillingPeriod; label: string; unit: string
 export const plans: Plan[] = [
   {
     id: "basic",
-    name: "Basic Plan",
+    name: "Basic",
     description:
       "Enjoy an extensive library of movies, featuring a range of content, including recently released titles.",
     price: { monthly: 9.99, yearly: 99.9 },
   },
   {
     id: "standard",
-    name: "Standard Plan",
+    name: "Standard",
     description:
       "Access to a wider selection of movies, including most new releases and exclusive content",
     price: { monthly: 12.99, yearly: 129.9 },
+    popular: true,
   },
   {
     id: "premium",
-    name: "Premium Plan",
+    name: "Premium",
     description:
       "Access to the widest selection of movies, including all new releases and Offline Viewing",
     price: { monthly: 14.99, yearly: 149.9 },
