@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils'
 
 type MovieCardPosterProps = {
   src: string
-  /** The movie's title. */
+  /** The movie's title, or '' when the card shows the title as text. */
   alt: string
   /** The variant's `sizes` hint. */
   sizes: string
