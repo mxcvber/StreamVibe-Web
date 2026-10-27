@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-import { siteConfig } from '@/config/site'
+import { siteConfig } from '@/data/site-config'
 
 export const metadata: Metadata = {
   // The template is repeated rather than inherited: a layout passes its own

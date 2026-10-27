@@ -8,7 +8,7 @@ import { BellIcon } from '@/components/icons/bell'
 import { SearchIcon } from '@/components/icons/search'
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetClose, SheetContent, SheetFooter, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
-import { siteConfig } from '@/config/site'
+import { siteConfig } from '@/data/site-config'
 import { isActive } from '@/lib/nav'
 import { cn } from '@/lib/utils'
 

@@ -1,8 +1,8 @@
 ---
 paths:
   - src/components/movies/browse/**
-  - src/app/movies/all/**
-  - src/app/movies/genres/**
+  - src/app/**/movies/all/**
+  - src/app/**/movies/genres/**
   - src/lib/movie-filters.ts
   - src/lib/catalog-movies.ts
 ---

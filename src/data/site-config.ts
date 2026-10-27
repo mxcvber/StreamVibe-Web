@@ -1,21 +1,13 @@
 import type { ComponentType, SVGProps } from 'react'
-
 import { FacebookIcon } from '@/components/icons/facebook'
 import { LinkedinIcon } from '@/components/icons/linkedin'
 import { TwitterIcon } from '@/components/icons/twitter'
+import { FooterColumn, NavLink } from '@/types/site-config'
 
-export type NavLink = { title: string; href: string }
-
-export type FooterColumn = { title: string; links: NavLink[] }
-
-export type SocialLink = NavLink & {
+type SocialLink = NavLink & {
   icon: ComponentType<SVGProps<SVGSVGElement>>
 }
 
-/**
- * Site-wide navigation. Only the home page exists yet; the other hrefs are
- * the routes the Figma pages will get, so links already point at them.
- */
 export const siteConfig = {
   name: 'StreamVibe',
   description:

@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { sendSupportMessage } from '@/app/support/actions'
+import { sendSupportMessage } from '@/app/(pages)/support/actions'
 import { ContactTextField } from '@/components/support/contact/contact-text-field'
 import { PhoneField } from '@/components/support/contact/phone-field'
 import { TermsField } from '@/components/support/contact/terms-field'

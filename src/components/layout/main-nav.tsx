@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 import { buttonVariants } from '@/components/ui/button'
-import { siteConfig } from '@/config/site'
+import { siteConfig } from '@/data/site-config'
 import { isActive } from '@/lib/nav'
 import { cn } from '@/lib/utils'
 

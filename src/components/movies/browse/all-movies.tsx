@@ -1,6 +1,6 @@
 import { connection } from 'next/server'
 
-import { loadMoreMovies } from '@/app/movies/all/actions'
+import { loadMoreMovies } from '@/app/(pages)/movies/all/actions'
 import { BrowseMessage } from '@/components/movies/browse/browse-message'
 import { MovieGrid } from '@/components/movies/browse/movie-grid'
 import { getMovies } from '@/lib/api/movies'
@@ -35,9 +35,7 @@ export async function AllMovies({ filters }: AllMoviesProps) {
     // Upcoming narrows the list as a filter does, and is often empty with one.
     const filtered = filters.rating !== null || filters.sort !== DEFAULT_MOVIE_SORT
     return (
-      <BrowseMessage>
-        {filtered ? 'No movies match these filters.' : 'There are no movies to show yet.'}
-      </BrowseMessage>
+      <BrowseMessage>{filtered ? 'No movies match these filters.' : 'There are no movies to show yet.'}</BrowseMessage>
     )
   }
 

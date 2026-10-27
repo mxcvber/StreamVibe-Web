@@ -1,6 +1,6 @@
 import { connection } from 'next/server'
 
-import { loadMoreGenreMovies } from '@/app/movies/genres/[slug]/actions'
+import { loadMoreGenreMovies } from '@/app/(pages)/movies/genres/[slug]/actions'
 import { BrowseMessage } from '@/components/movies/browse/browse-message'
 import { MovieGrid } from '@/components/movies/browse/movie-grid'
 import type { Genre } from '@/data/genres'
