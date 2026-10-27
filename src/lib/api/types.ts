@@ -116,3 +116,65 @@ export type TopTenMoviesResponse = {
   /** The genre's 10 most popular movies, most popular first. */
   items: TopTenMovie[]
 }
+
+/** A genre chip on the movie page; its id links to the genre's movies. */
+export type GenreTag = {
+  /** TMDB genre id. */
+  id: number
+  name: string
+}
+
+/** Shared base of a cast and a crew card: the person the credit is for. */
+export type CreditPerson = {
+  /** TMDB person id. */
+  id: number
+  name: string
+  /** TMDB image path; null when TMDB has no photo. */
+  profilePath: string | null
+}
+
+export type CastMember = CreditPerson & {
+  /** The role; null when TMDB names none. */
+  character: string | null
+}
+
+export type CrewMember = CreditPerson & {
+  /** This person's key jobs on the movie, highest-ranked first. */
+  jobs: string[]
+}
+
+/** GET /movies/:id — everything the movie page shows except its reviews. */
+export type MovieDetail = {
+  /** TMDB movie id. */
+  id: number
+  title: string
+  tagline: string | null
+  overview: string | null
+  /** TMDB image path ("/abc123.jpg"); build the URL with `tmdbPosterUrl`. */
+  posterPath: string
+  /** Landscape hero image; null for a few movies — use the poster then. */
+  backdropPath: string | null
+  /** YouTube video id of the trailer. */
+  trailerKey: string
+  /** "YYYY-MM-DD"; null when TMDB had no release date. */
+  releaseDate: string | null
+  /** Minutes; null when unknown. */
+  runtime: number | null
+  /** Null when unknown, as is revenue. */
+  budget: number | null
+  revenue: number | null
+  homepage: string | null
+  /** ISO 3166-1 codes, e.g. "IN". */
+  originCountry: string[]
+  /** TMDB average, 0–10; halve it for the 5-star display. */
+  voteAverage: number
+  /** StreamVibe review average, 1–5; null until the movie has a review. */
+  streamVibeRating: number | null
+  reviewCount: number
+  /** By name. */
+  genres: GenreTag[]
+  /** Top-billed, lead first. */
+  cast: CastMember[]
+  /** Key jobs only, one entry per person. */
+  crew: CrewMember[]
+}

@@ -1,9 +1,10 @@
 import 'server-only'
 
+import { isAxiosError } from 'axios'
 import { cacheLife, cacheTag } from 'next/cache'
 
 import { api } from '@/lib/api/client'
-import type { MovieListResponse, TopTenMovie, TopTenMoviesResponse } from '@/lib/api/types'
+import type { MovieDetail, MovieListResponse, TopTenMovie, TopTenMoviesResponse } from '@/lib/api/types'
 import type { MovieFilters } from '@/lib/movie-filters'
 
 type GetMoviesOptions = MovieFilters & {
@@ -72,4 +73,28 @@ export async function getGenreTopTenMovies(genreId: number): Promise<TopTenMovie
 
   const { data } = await api.get<TopTenMoviesResponse>(`/movies/${genreId}/genre/top-10`)
   return data.items
+}
+
+/**
+ * One movie's page data, everything but its reviews. `id` is the TMDB movie
+ * id and part of the cache key, so every movie is cached on its own. The data
+ * only changes when the TMDB import runs, so an hour-long cache is plenty;
+ * `revalidateTag('movie-detail', 'max')` refreshes every movie.
+ *
+ * Returns null when the API has no such movie (404), so the page can call
+ * `notFound()` outside its error handling. The null is cached like a movie:
+ * an unknown id stays unknown until the next import. Any other failure throws.
+ */
+export async function getMovie(id: number): Promise<MovieDetail | null> {
+  'use cache'
+  cacheLife('hours')
+  cacheTag('movie-detail')
+
+  try {
+    const { data } = await api.get<MovieDetail>(`/movies/${id}`)
+    return data
+  } catch (error) {
+    if (isAxiosError(error) && error.response?.status === 404) return null
+    throw error
+  }
 }

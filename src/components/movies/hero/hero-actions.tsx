@@ -17,8 +17,8 @@ import type { Movie } from '@/data/movies'
 export function HeroActions({ slug }: { slug: Movie['slug'] }) {
   return (
     <div className='flex w-full flex-col gap-5 md:w-auto md:flex-row md:items-center'>
-      {/* The movie page's route; it 404s until that page lands, like the other
-          links the design pre-wires. */}
+      {/* The movie page is /movies/<TMDB id>, so these placeholder slugs 404
+          until the featured movies come from the API with real ids. */}
       <Button asChild size='lg' className='w-full md:w-auto'>
         <Link href={`/movies/${slug}`}>
           <PlayIcon />
