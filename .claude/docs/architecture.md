@@ -103,5 +103,16 @@ Every card is a server component.
 
 ## Where things live
 
-Being reorganised. Until this section is rewritten, map old paths to new ones with
+Being reorganised. Settled so far:
+- Every page except home is in the route group `src/app/(pages)/`, which URLs don't include.
+  Home stays at `src/app/page.tsx` beside the root layout and `globals.css`. A route's Server
+  Actions sit beside it as `actions.ts`.
+- Local data and the site config are in `src/data/` (`siteConfig` in `site-config.ts`).
+  `src/config/` is gone.
+- A type that other modules import goes in `src/types/`, so far one file per module, named
+  after it (`NavLink` and `FooterColumn` in `site-config.ts`). A type used only in its own file
+  stays there and isn't exported (`SocialLink`). `Genre`, `MoviesPage`, `MovieFilters` and the
+  API response types still sit beside their code because the refactor hasn't reached them.
+
+Until this section is complete, map old paths to new ones with
 `git diff -M --name-status pre-refactor HEAD -- src`.

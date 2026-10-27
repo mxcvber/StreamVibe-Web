@@ -12,7 +12,9 @@ separately from content edits, so git keeps detecting renames.
 When it's done, sync the docs:
 1. Map old paths to new with `git diff -M --name-status pre-refactor HEAD -- src`.
 2. Re-scope each rule's `paths:` and check every glob still matches
-   (`git ls-files ':(glob)<glob>'`).
+   (`git ls-files ':(glob)<glob>'`). Keep `(…)` and `[…]` out of globs
+   (`src/app/**/movies/all/**`, not `src/app/(pages)/movies/all/**`). Some glob libraries read
+   them as syntax, and git treats parentheses literally, so this check can't tell.
 3. Check every backticked symbol in `.claude/rules/` and `.claude/docs/` still exists; fix
    renames.
 4. Re-check the rules' landmines against the new code.
