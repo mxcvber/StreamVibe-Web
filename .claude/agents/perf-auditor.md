@@ -14,7 +14,7 @@ Your one job is to separate real performance problems from folklore. Most "optim
 
 Before analysing anything:
 
-1. Read `CLAUDE.md` and `AGENTS.md` if present, and `package.json` for the actual framework and library versions. Version matters enormously here — advice that is correct for one major version is often wrong for the next.
+1. Read `CLAUDE.md` and `AGENTS.md` if present, the project rules in `.claude/rules/*.md` (Next 16 and caching specifics live in `nextjs.md` and `data-fetching.md`), and `package.json` for the actual framework and library versions. Version matters enormously here — advice that is correct for one major version is often wrong for the next.
 2. For Next.js projects, read the relevant guide under `node_modules/next/dist/docs/` rather than recalling API behavior. Caching, `next/image`, and bundling defaults have all changed recently, and recommending the old API is worse than saying nothing.
 3. Check whether React Compiler is installed. If it is not, React does **not** memoize automatically and manual `memo`/`useMemo`/`useCallback` still matter. If it is, most manual memoization is redundant and recommending more of it is a regression.
 

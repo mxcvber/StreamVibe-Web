@@ -1,102 +1,51 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
 @AGENTS.md
 
 ## Project
 
-StreamVibe is a movie platform. **This repo is the frontend only.**
+StreamVibe is a movie platform. **This repo is the Next.js frontend only.** The backend
+(NestJS, Prisma, PostgreSQL, Redis) is the separate repo `../api`, with its own CLAUDE.md. The
+frontend reads only from that API, through the server-only `API_URL`, never from TMDB.
+Stripe (planned) belongs to the backend.
 
 It is a portfolio project, and its learning goals are part of the point: working with a large
 database, seeding and handling large numbers of fake users, and working with Claude across a
 long-running multi-session build. It is the largest project this author has taken on, so
-**explain architectural reasoning rather than silently making large-scale decisions** — when a
+**explain architectural reasoning rather than silently making large-scale decisions**. When a
 choice is expensive to reverse, surface the trade-off instead of just picking one.
-
-**Backend (planned, not in this repo):** NestJS, Prisma, PostgreSQL and Redis, with Postgres
-and Redis in Docker for local dev. Movie data comes from the **TMDB API** and is stored in
-Postgres. The frontend is expected to read from the NestJS API rather than calling TMDB
-directly. Stripe is planned for subscriptions.
-
-## Responsive layout
-
-The Figma file has three artboards per page — **Desktop 1920 · Laptop 1440 · Mobile 390** — and
-they map onto Tailwind's default breakpoints like this (mobile-first, no theme overrides):
-
-| Viewport    | Artboard                                                    | Prefix |
-| ----------- | ----------------------------------------------------------- | ------ |
-| `< 768`     | Mobile                                                      | (base) |
-| `768–1023`  | Mobile, plus light tablet tweaks (2-col grids, 40px gutter) | `md:`  |
-| `1024–1535` | Laptop                                                      | `lg:`  |
-| `≥ 1536`    | Desktop                                                     | `2xl:` |
-
-Every class list follows **base = mobile, `lg:` = laptop, `2xl:` = desktop**. Use `md:` only for
-tablet tweaks and `xl:` only where a component genuinely needs a fourth step (the category
-carousel's five-per-view). `Container` caps content at 1596px with an 80px gutter from `lg`,
-which yields the desktop artboard's 162px gutter at 1920 by itself — don't add a wider gutter at
-`2xl`, it would make cards smaller at 1536 than at 1440.
 
 ## Commands
 
-| Command            | Purpose                                                                  |
-| ------------------ | ------------------------------------------------------------------------ |
-| `npm run dev`      | Dev server on http://localhost:3000 (Turbopack; outputs to `.next/dev`)  |
-| `npm run build`    | Production build                                                         |
-| `npm start`        | Serve the production build                                               |
-| `npm run lint`     | Bare `eslint` — note this is **not** `next lint`, which no longer exists |
-| `npx tsc --noEmit` | Type-check                                                               |
+- `npm run dev`: dev server on http://localhost:3000 (Turbopack, outputs to `.next/dev`)
+- `npm run build` / `npm start`: production build / serve it
+- `npm run lint`: bare `eslint` (`next lint` no longer exists)
+- `npx tsc --noEmit`: type-check
 
-## Next.js 16 — read before writing any Next code
+## Essentials
 
-This project is on **Next.js 16.3.4** with React 19.2.8. The rules below contradict Next 14/15
-knowledge. **When unsure about a Next API, read `node_modules/next/dist/docs/` rather than
-recalling it** — the upgrade notes are at `01-app/02-guides/upgrading/version-16.md`.
+- **Next.js 16.3.4, React 19.2.8, Cache Components on.** Request APIs (`params`,
+  `searchParams`, `cookies()`, `headers()`) are Promises; `PageProps`/`LayoutProps` are global,
+  never imported; no `dynamic`/`revalidate`/`fetchCache`/`dynamicParams` exports; an uncached
+  `new Date()` fails the prerender; `revalidateTag` takes two arguments; middleware is
+  `proxy.ts`. Details: `.claude/rules/nextjs.md`.
+- **Mobile-first classes:** base = Mobile 390, `md:` = tablet tweaks, `lg:` = Laptop 1440,
+  `2xl:` = Desktop 1920. Details: `.claude/rules/styling.md`.
 
-**Async request APIs.** `params`, `searchParams`, `cookies()`, `headers()` and `draftMode()`
-are Promise-only; the Next 15 synchronous fallback is gone.
+## Where knowledge lives
 
-```tsx
-export default async function Page(props: PageProps<'/movies/[slug]'>) {
-  const { slug } = await props.params
-}
-```
+- `.claude/rules/*.md` load automatically when you touch matching files: nextjs, styling,
+  components, ui-primitives, carousel, data-fetching, browse and forms.
+- `.claude/docs/` (read on demand):
+  - `architecture.md`: before cross-cutting work, or to find where something lives.
+  - `design.md`: before comparing with Figma (lists the deliberate deviations).
+  - `state.md`: what's built, placeholders, what's missing, known issues.
+- A change that moves or renames something a rule or doc names updates them in the same change.
 
-**Route type helpers are global.** `PageProps<'/route'>`, `LayoutProps<'/'>` and
-`RouteContext<'/route'>` are generated by `next dev` / `next build` / `npx next typegen` — do
-not import them. `src/app/layout.tsx` already uses `LayoutProps<"/">`.
+## Refactor in progress (temporary)
 
-**Middleware → proxy.** The `middleware` filename and named export are deprecated in favour of
-`proxy.ts` exporting `proxy`. Its runtime is `nodejs` and is not configurable — `edge` is
-unsupported there. `skipMiddlewareUrlNormalize` is now `skipProxyUrlNormalize`. Relevant once
-auth lands.
-
-**Turbopack is the default** for dev and build; do not add `--turbopack`. A custom `webpack`
-config makes `next build` fail unless a bundler flag is passed. `experimental.turbopack` is now
-top-level `turbopack: {}`.
-
-**Caching.** `fetch` is no longer cached by default and blocks render until it resolves — opt
-in with `use cache` or wrap in `<Suspense>`. `revalidateTag` now requires a second argument
-naming a `cacheLife` profile; the one-argument form is a TypeScript error:
-
-```ts
-revalidateTag('movies') // Next 15
-revalidateTag('movies', 'max') // Next 16
-```
-
-`cacheLife` and `cacheTag` are stable imports from `next/cache`, joined by `updateTag()` and
-`refresh()`.
-
-**Decided: Cache Components.** `cacheComponents: true` is on, so the `dynamic`, `revalidate`
-and `fetchCache` segment exports are gone, and an unstable value such as `new Date()` fails the
-prerender unless it is cached. Data-fetching conventions are in `.claude/rules/data-fetching.md`.
-
-**next/image.** `images.qualities` defaults to `[75]` only and other `quality` values are
-coerced to the nearest allowed one; `minimumCacheTTL` moved from 60s to 4 hours;
-`images.domains` is deprecated in favour of `remotePatterns`. **TMDB posters will need a
-`remotePatterns` entry for `image.tmdb.org`.**
-
-**Also:** parallel routes require an explicit `default.js` per slot or the build fails; AMP,
-`serverRuntimeConfig`/`publicRuntimeConfig` and `experimental.ppr` are removed; Next no longer
-suppresses `scroll-behavior: smooth` on navigation unless `<html>` carries
-`data-scroll-behavior="smooth"`. Requires Node.js >= 20.9.
+The author is restructuring folders and removing most comments. Tag `pre-refactor` keeps the
+commented code: when the reason behind something is unclear, read
+`git show pre-refactor:<old path>` (map paths with
+`git diff -M --name-status pre-refactor HEAD -- src`). Rule `paths:` and doc references may
+lag; `.claude/docs/state.md` records the last sync.
