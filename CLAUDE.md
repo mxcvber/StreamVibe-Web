@@ -35,7 +35,7 @@ choice is expensive to reverse, surface the trade-off instead of just picking on
 ## Where knowledge lives
 
 - `.claude/rules/*.md` load automatically when you touch matching files: nextjs, styling,
-  components, ui-primitives, carousel, data-fetching, browse and forms.
+  code-style, components, ui-primitives, carousel, data-fetching, browse and forms.
 - `.claude/docs/` (read on demand):
   - `architecture.md`: before cross-cutting work, or to find where something lives.
   - `design.md`: before comparing with Figma (lists the deliberate deviations).
