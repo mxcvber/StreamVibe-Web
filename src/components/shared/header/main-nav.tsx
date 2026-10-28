@@ -2,18 +2,11 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-
 import { buttonVariants } from '@/components/shared/ui/button'
 import { siteConfig } from '@/data/site-config'
 import { isActive } from '@/lib/nav'
 import { cn } from '@/lib/utils'
 
-/**
- * The centred navigation pill (laptop and desktop; phones get `MobileNav`).
- * Matches Figma literally: the active item is a filled button while the
- * others are plain text. Figma pads the pill 8px (10px on desktop), drawn
- * here as the 4px border plus 4px (6px) of padding.
- */
 export function MainNav({ className }: { className?: string }) {
   const pathname = usePathname()
 

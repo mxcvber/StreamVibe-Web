@@ -13,8 +13,7 @@ const SORT_LABEL_ID = 'movies-sort-label'
 const RATING_LABEL_ID = 'movies-rating-label'
 
 const labelClassName = 'text-14 font-medium text-grey-60 2xl:text-16'
-const itemClassName =
-  'px-3 data-[state=on]:bg-black-15 data-[state=on]:text-foreground 2xl:h-10 2xl:px-4 2xl:text-16'
+const itemClassName = 'px-3 data-[state=on]:bg-black-15 data-[state=on]:text-foreground 2xl:h-10 2xl:px-4 2xl:text-16'
 
 type CatalogToolbarProps = {
   /** The filters in the URL. */

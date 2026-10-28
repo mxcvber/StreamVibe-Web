@@ -5,6 +5,7 @@ export function FooterLinkColumn({ title, links }: FooterColumn) {
   return (
     <div className='flex flex-col gap-4 lg:gap-5 2xl:gap-6'>
       <h3 className='text-16 font-semibold lg:text-18 2xl:text-20'>{title}</h3>
+
       <ul className='flex flex-col gap-2 lg:gap-2.5 2xl:gap-3.5'>
         {links.map((link) => (
           <li key={link.href}>

@@ -1,5 +1,4 @@
 import Link from 'next/link'
-
 import { BellIcon } from '@/components/icons/bell'
 import { Logo } from '@/components/icons/logo'
 import { SearchIcon } from '@/components/icons/search'
@@ -8,11 +7,6 @@ import { MainNav } from '@/components/shared/header/main-nav'
 import { MobileNav } from '@/components/shared/header/mobile-nav'
 import { Button } from '@/components/shared/ui/button'
 
-/**
- * Floats over the top of the page (the hero runs underneath it, as in the
- * design). Pages without a hero should reserve the header's height of top
- * padding: 88px on mobile, 98px on laptop, 120px on desktop.
- */
 export function SiteHeader() {
   return (
     <header className='absolute inset-x-0 top-0 z-50'>
@@ -32,6 +26,7 @@ export function SiteHeader() {
           >
             <SearchIcon />
           </Button>
+
           <Button
             variant='ghost'
             size='icon'

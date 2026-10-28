@@ -20,7 +20,11 @@ export function TermsField({ control, className }: { control: ContactFormControl
       name='agreeToTerms'
       control={control}
       render={({ field, fieldState }) => (
-        <Field orientation='horizontal' data-invalid={fieldState.invalid} className={cn('gap-2 2xl:gap-2.5', className)}>
+        <Field
+          orientation='horizontal'
+          data-invalid={fieldState.invalid}
+          className={cn('gap-2 2xl:gap-2.5', className)}
+        >
           <Checkbox
             ref={field.ref}
             id={ID}
