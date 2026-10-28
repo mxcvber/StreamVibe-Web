@@ -4,7 +4,7 @@ import { MovieCardLink } from '@/components/movies/movie-card/movie-card-link'
 import { MovieCardPoster } from '@/components/movies/movie-card/movie-card-poster'
 import { MovieChip } from '@/components/movies/movie-card/movie-chip'
 import { movieCardStyles, trendingChipCompact } from '@/components/movies/movie-variants'
-import { Card } from '@/components/ui/card'
+import { Card } from '@/components/shared/ui/card'
 import type { TrendingMovie } from '@/lib/trending-movies'
 import { cn } from '@/lib/utils'
 

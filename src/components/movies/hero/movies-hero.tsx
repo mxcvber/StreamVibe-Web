@@ -1,4 +1,4 @@
-import { Container } from '@/components/layout/container'
+import { Container } from '@/components/shared/container'
 import { HeroCarousel } from '@/components/movies/hero/hero-carousel'
 import { featuredMovies } from '@/data/movies'
 

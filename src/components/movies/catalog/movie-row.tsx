@@ -11,7 +11,7 @@ import {
   movieSlideClassName,
   movieTrackClassName,
 } from '@/components/movies/movie-variants'
-import { CarouselItem } from '@/components/ui/carousel'
+import { CarouselItem } from '@/components/shared/ui/carousel'
 
 type MovieRowProps<TItem, TMovie extends { id: number }> = {
   variant: MovieCardVariant

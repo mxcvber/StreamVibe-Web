@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
 
-import { Container } from '@/components/layout/container'
+import { Container } from '@/components/shared/container'
 import { CatalogBox } from '@/components/movies/catalog/catalog-box'
 import { GenresRow } from '@/components/movies/catalog/genres-row'
 import { MustWatchRow } from '@/components/movies/catalog/must-watch-row'

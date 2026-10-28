@@ -2,7 +2,7 @@ import { MovieCardLink } from '@/components/movies/movie-card/movie-card-link'
 import { MovieCardPoster } from '@/components/movies/movie-card/movie-card-poster'
 import { ReleaseDateChip } from '@/components/movies/movie-card/release-date-chip'
 import { movieCardStyles } from '@/components/movies/movie-variants'
-import { Card } from '@/components/ui/card'
+import { Card } from '@/components/shared/ui/card'
 import type { NewRelease } from '@/lib/new-releases'
 
 const styles = movieCardStyles['new-releases']

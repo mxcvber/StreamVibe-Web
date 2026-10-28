@@ -1,11 +1,11 @@
 import Link from 'next/link'
 import { Fragment } from 'react'
 
-import { Container } from '@/components/layout/container'
-import { CopyrightYear } from '@/components/layout/copyright-year'
-import { FooterLinkColumn } from '@/components/layout/footer-link-column'
-import { Button } from '@/components/ui/button'
-import { Separator } from '@/components/ui/separator'
+import { Container } from '@/components/shared/container'
+import { CopyrightYear } from '@/components/shared/footer/copyright-year'
+import { FooterLinkColumn } from '@/components/shared/footer/footer-link-column'
+import { Button } from '@/components/shared/ui/button'
+import { Separator } from '@/components/shared/ui/separator'
 import { siteConfig } from '@/data/site-config'
 
 export function SiteFooter() {

@@ -1,7 +1,7 @@
 import { catalogMovieCardStyles as styles, movieGridClassName } from '@/components/movies/browse/browse-variants'
 import { cardBox } from '@/components/movies/movie-variants'
-import { Card } from '@/components/ui/card'
-import { Skeleton } from '@/components/ui/skeleton'
+import { Card } from '@/components/shared/ui/card'
+import { Skeleton } from '@/components/shared/ui/skeleton'
 
 /**
  * Two full rows on desktop (five columns), more on smaller screens; exactly a

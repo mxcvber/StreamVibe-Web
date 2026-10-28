@@ -1,7 +1,7 @@
 import { genreCardStyles, genreSlideClassName } from '@/components/genres/genre-variants'
 import { CatalogRowHeading } from '@/components/movies/catalog/catalog-row-heading'
-import { Card } from '@/components/ui/card'
-import { Skeleton } from '@/components/ui/skeleton'
+import { Card } from '@/components/shared/ui/card'
+import { Skeleton } from '@/components/shared/ui/skeleton'
 import { cn } from '@/lib/utils'
 
 /** Enough placeholders to fill a page at every width (4 from `lg`). */

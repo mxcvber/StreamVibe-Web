@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 
-import { Container } from '@/components/layout/container'
+import { Container } from '@/components/shared/container'
 import { cn } from '@/lib/utils'
 
 type MovieHeroFrameProps = {

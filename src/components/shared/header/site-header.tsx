@@ -3,10 +3,10 @@ import Link from 'next/link'
 import { BellIcon } from '@/components/icons/bell'
 import { Logo } from '@/components/icons/logo'
 import { SearchIcon } from '@/components/icons/search'
-import { Container } from '@/components/layout/container'
-import { MainNav } from '@/components/layout/main-nav'
-import { MobileNav } from '@/components/layout/mobile-nav'
-import { Button } from '@/components/ui/button'
+import { Container } from '@/components/shared/container'
+import { MainNav } from '@/components/shared/header/main-nav'
+import { MobileNav } from '@/components/shared/header/mobile-nav'
+import { Button } from '@/components/shared/ui/button'
 
 /**
  * Floats over the top of the page (the hero runs underneath it, as in the

@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { HeroPlayGraphic } from '@/components/icons/abstract-design'
 import { PlayIcon } from '@/components/icons/play'
 import { PosterMosaic } from '@/components/home/hero/poster-mosaic'
-import { Button } from '@/components/ui/button'
+import { Button } from '@/components/shared/ui/button'
 import { heroOverlaySrc, heroPosterRows } from '@/data/posters'
 
 export function Hero() {

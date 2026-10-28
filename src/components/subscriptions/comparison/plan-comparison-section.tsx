@@ -1,4 +1,4 @@
-import { Container } from '@/components/layout/container'
+import { Container } from '@/components/shared/container'
 import { SectionHeading } from '@/components/layout/section-heading'
 import { PlanComparisonTable } from '@/components/subscriptions/comparison/plan-comparison-table'
 import { PlanComparisonTabs } from '@/components/subscriptions/comparison/plan-comparison-tabs'

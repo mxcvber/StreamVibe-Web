@@ -3,7 +3,7 @@ import type { ComponentProps, ReactNode } from 'react'
 import { RowCarousel } from '@/components/carousel/row-carousel'
 import { GenreCard } from '@/components/genres/genre-card'
 import { genreCarouselOptions, genreSlideClassName, type GenreCardVariant } from '@/components/genres/genre-variants'
-import { CarouselItem } from '@/components/ui/carousel'
+import { CarouselItem } from '@/components/shared/ui/carousel'
 import type { Genre } from '@/data/genres'
 import { cn } from '@/lib/utils'
 

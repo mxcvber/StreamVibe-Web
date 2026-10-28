@@ -1,6 +1,6 @@
 import { BookmarkIcon } from '@/components/icons/bookmark'
 import { PlayIcon } from '@/components/icons/play'
-import { Button } from '@/components/ui/button'
+import { Button } from '@/components/shared/ui/button'
 
 /**
  * Play Now and Add to bookmarks: the artboards' add / like / sound icon

@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import { Manrope } from 'next/font/google'
 import './globals.css'
 
-import { SiteFooter } from '@/components/layout/site-footer'
-import { SiteHeader } from '@/components/layout/site-header'
+import { SiteFooter } from '@/components/shared/footer/site-footer'
+import { SiteHeader } from '@/components/shared/header/site-header'
 import { siteConfig } from '@/data/site-config'
 
 const manrope = Manrope({

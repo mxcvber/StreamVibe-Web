@@ -1,4 +1,4 @@
-import { Container } from '@/components/layout/container'
+import { Container } from '@/components/shared/container'
 import { ContactForm } from '@/components/support/contact/contact-form'
 import { ContactPosterBox } from '@/components/support/contact/contact-poster-box'
 

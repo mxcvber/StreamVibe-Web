@@ -1,5 +1,5 @@
 import { PlanFeatureList } from '@/components/subscriptions/comparison/plan-feature-list'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/shared/ui/tabs'
 import { plans } from '@/data/plans'
 import { cn } from '@/lib/utils'
 

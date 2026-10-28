@@ -5,9 +5,9 @@ import { Controller } from 'react-hook-form'
 
 import type { ContactFormControl } from '@/components/support/contact/contact-form-control'
 import { CountryFlag } from '@/components/support/contact/country-flag'
-import { Field, FieldError, FieldLabel } from '@/components/ui/field'
-import { Input } from '@/components/ui/input'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { Field, FieldError, FieldLabel } from '@/components/shared/ui/field'
+import { Input } from '@/components/shared/ui/input'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/shared/ui/select'
 import { countries, findCountry } from '@/data/countries'
 
 const ID = 'contact-phone'

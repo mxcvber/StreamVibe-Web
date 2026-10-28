@@ -3,7 +3,7 @@
 import type { FocusEvent, PointerEvent } from 'react'
 import { useCallback, useEffect, useRef, useState } from 'react'
 
-import type { CarouselApi } from '@/components/ui/carousel'
+import type { CarouselApi } from '@/components/shared/ui/carousel'
 import { usePrefersReducedMotion } from '@/hooks/use-prefers-reduced-motion'
 
 /**

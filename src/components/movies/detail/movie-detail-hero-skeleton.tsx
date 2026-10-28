@@ -1,5 +1,5 @@
 import { MovieHeroFrame } from '@/components/movies/detail/movie-hero-frame'
-import { Skeleton } from '@/components/ui/skeleton'
+import { Skeleton } from '@/components/shared/ui/skeleton'
 
 /**
  * Stands in for `MovieDetailHero` while the API responds: the same frame, a

@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-import { buttonVariants } from '@/components/ui/button'
+import { buttonVariants } from '@/components/shared/ui/button'
 import { siteConfig } from '@/data/site-config'
 import { isActive } from '@/lib/nav'
 import { cn } from '@/lib/utils'

@@ -1,5 +1,5 @@
 import { GenreCarousel } from "@/components/genres/genre-carousel";
-import { Container } from "@/components/layout/container";
+import { Container } from "@/components/shared/container";
 import { SectionHeading } from "@/components/layout/section-heading";
 import { genres } from "@/data/genres";
 

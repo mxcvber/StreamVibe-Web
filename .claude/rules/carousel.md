@@ -1,6 +1,6 @@
 ---
 paths:
-  - src/components/ui/carousel*.tsx
+  - src/components/shared/ui/carousel*.tsx
   - src/hooks/**
   - src/components/**/*carousel*.tsx
   - src/components/**/*-variants.ts

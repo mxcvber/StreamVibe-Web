@@ -1,4 +1,4 @@
-import { Card, CardDescription, CardTitle } from "@/components/ui/card";
+import { Card, CardDescription, CardTitle } from "@/components/shared/ui/card";
 import type { Device } from "@/data/devices";
 
 /**

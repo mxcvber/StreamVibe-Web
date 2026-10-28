@@ -3,7 +3,7 @@
 import { useCallback, useSyncExternalStore } from 'react'
 
 import { useCarouselScrub } from '@/hooks/use-carousel-scrub'
-import { useCarousel } from '@/components/ui/carousel'
+import { useCarousel } from '@/components/shared/ui/carousel'
 import { cn } from '@/lib/utils'
 
 const TRACK_WIDTH = 79

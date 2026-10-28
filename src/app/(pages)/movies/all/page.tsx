@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { Suspense } from 'react'
 
-import { Container } from '@/components/layout/container'
+import { Container } from '@/components/shared/container'
 import { MovieBrowser } from '@/components/movies/browse/movie-browser'
 import { MovieBrowserFallback } from '@/components/movies/browse/movie-browser-fallback'
 import { CatalogBox } from '@/components/movies/catalog/catalog-box'

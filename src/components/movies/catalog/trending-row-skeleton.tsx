@@ -1,5 +1,5 @@
 import { MovieRowSkeleton } from '@/components/movies/catalog/movie-row-skeleton'
-import { Skeleton } from '@/components/ui/skeleton'
+import { Skeleton } from '@/components/shared/ui/skeleton'
 
 /** Stands in for `TrendingRow` while the API responds. */
 export function TrendingRowSkeleton() {

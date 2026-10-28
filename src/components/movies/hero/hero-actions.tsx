@@ -4,7 +4,7 @@ import { PlayIcon } from '@/components/icons/play'
 import { PlusIcon } from '@/components/icons/plus'
 import { ThumbsUpIcon } from '@/components/icons/thumbs-up'
 import { VolumeIcon } from '@/components/icons/volume'
-import { Button } from '@/components/ui/button'
+import { Button } from '@/components/shared/ui/button'
 import type { Movie } from '@/data/movies'
 
 /**

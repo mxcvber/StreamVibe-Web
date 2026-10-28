@@ -3,7 +3,7 @@ import { MovieCardLink } from '@/components/movies/movie-card/movie-card-link'
 import { MovieCardPoster } from '@/components/movies/movie-card/movie-card-poster'
 import { StarRating } from '@/components/movies/movie-card/star-rating'
 import { cardBox } from '@/components/movies/movie-variants'
-import { Card } from '@/components/ui/card'
+import { Card } from '@/components/shared/ui/card'
 import type { CatalogMovie } from '@/lib/catalog-movies'
 
 type CatalogMovieCardProps = {

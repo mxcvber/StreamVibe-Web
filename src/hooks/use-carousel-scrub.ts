@@ -1,7 +1,7 @@
 import type { PointerEvent } from 'react'
 import { useRef } from 'react'
 
-import type { CarouselApi } from '@/components/ui/carousel'
+import type { CarouselApi } from '@/components/shared/ui/carousel'
 
 const clamp01 = (n: number) => Math.min(1, Math.max(0, n))
 

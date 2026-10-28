@@ -5,7 +5,7 @@ import { useState, useTransition } from 'react'
 import { BrowseMessage } from '@/components/movies/browse/browse-message'
 import { movieGridClassName, movieGridItemClassName } from '@/components/movies/browse/browse-variants'
 import { CatalogMovieCard } from '@/components/movies/browse/catalog-movie-card'
-import { Button } from '@/components/ui/button'
+import { Button } from '@/components/shared/ui/button'
 import type { MoviesPage } from '@/lib/catalog-movies'
 import { cn } from '@/lib/utils'
 

@@ -113,6 +113,11 @@ Being reorganised. Settled so far:
   after it (`NavLink` and `FooterColumn` in `site-config.ts`). A type used only in its own file
   stays there and isn't exported (`SocialLink`). `Genre`, `MoviesPage`, `MovieFilters` and the
   API response types still sit beside their code because the refactor hasn't reached them.
+- `src/components/shared/` holds `Container` at its root, the header (`SiteHeader`, `MainNav`,
+  `MobileNav`) in `header/`, the footer (`SiteFooter`, `FooterLinkColumn`, `CopyrightYear`) in
+  `footer/`, and the shadcn primitives in `ui/`, where `components.json` points the CLI. They
+  came from `src/components/layout/` and `src/components/ui/`; `SectionHeading` is still in
+  `src/components/layout/`.
 
 Until this section is complete, map old paths to new ones with
 `git diff -M --name-status pre-refactor HEAD -- src`.

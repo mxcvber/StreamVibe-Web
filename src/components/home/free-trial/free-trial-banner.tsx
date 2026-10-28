@@ -1,8 +1,8 @@
 import Link from 'next/link'
 
 import { PosterMosaic } from '@/components/home/hero/poster-mosaic'
-import { Container } from '@/components/layout/container'
-import { Button } from '@/components/ui/button'
+import { Container } from '@/components/shared/container'
+import { Button } from '@/components/shared/ui/button'
 import { heroPosterRows } from '@/data/posters'
 
 export function FreeTrialBanner() {

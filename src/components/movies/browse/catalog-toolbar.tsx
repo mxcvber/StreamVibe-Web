@@ -6,7 +6,7 @@ import { useOptimistic, useTransition } from 'react'
 import { StarIcon } from '@/components/icons/star'
 import { BrowseMessage } from '@/components/movies/browse/browse-message'
 import { movieSortHints, movieSortLabels } from '@/components/movies/browse/browse-variants'
-import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
+import { ToggleGroup, ToggleGroupItem } from '@/components/shared/ui/toggle-group'
 import { MOVIE_RATINGS, MOVIE_SORTS, type MovieFilters, movieFiltersSearch } from '@/lib/movie-filters'
 
 const SORT_LABEL_ID = 'movies-sort-label'

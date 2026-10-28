@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import { Button } from '@/components/shared/ui/button'
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/shared/ui/card'
 import { type BillingPeriod, billingPeriods, formatPrice, type Plan } from '@/data/plans'
 
 type PlanCardProps = {

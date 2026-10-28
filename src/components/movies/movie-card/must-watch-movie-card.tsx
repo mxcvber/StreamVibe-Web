@@ -4,7 +4,7 @@ import { MovieCardPoster } from '@/components/movies/movie-card/movie-card-poste
 import { MovieChip } from '@/components/movies/movie-card/movie-chip'
 import { RatingChip } from '@/components/movies/movie-card/rating-chip'
 import { movieCardStyles, mustWatchRuntimeChip } from '@/components/movies/movie-variants'
-import { Card } from '@/components/ui/card'
+import { Card } from '@/components/shared/ui/card'
 import type { MustWatch } from '@/lib/must-watch'
 
 const styles = movieCardStyles['must-watch']

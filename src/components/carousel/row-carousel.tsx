@@ -8,8 +8,8 @@ import {
   CarouselDots,
   CarouselNext,
   CarouselPrevious,
-} from '@/components/ui/carousel'
-import { CarouselProgress } from '@/components/ui/carousel-progress'
+} from '@/components/shared/ui/carousel'
+import { CarouselProgress } from '@/components/shared/ui/carousel-progress'
 import { cn } from '@/lib/utils'
 
 type RowCarouselProps = Omit<ComponentProps<'div'>, 'children'> & {

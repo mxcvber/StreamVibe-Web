@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { Suspense } from 'react'
 
-import { Container } from '@/components/layout/container'
+import { Container } from '@/components/shared/container'
 import { MovieGridSkeleton } from '@/components/movies/browse/movie-grid-skeleton'
 import { TopTenMovies } from '@/components/movies/browse/top-ten-movies'
 import { CatalogBox } from '@/components/movies/catalog/catalog-box'

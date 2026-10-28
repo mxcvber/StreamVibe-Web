@@ -8,7 +8,7 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from '@/components/ui/carousel'
+} from '@/components/shared/ui/carousel'
 import { useCarouselAutoplay } from '@/hooks/use-carousel-autoplay'
 import type { Movie } from '@/data/movies'
 
