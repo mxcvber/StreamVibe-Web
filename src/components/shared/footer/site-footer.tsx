@@ -18,7 +18,7 @@ export function SiteFooter() {
             <FooterLinkColumn key={column.title} {...column} />
           ))}
 
-          <div className='flex flex-col gap-4 lg:gap-5 2xl:gap-6'>
+          <div className='flex flex-col gap-4 max-sm:col-start-2 max-lg:col-start-3 lg:gap-5 2xl:gap-6'>
             <h3 className='text-16 font-semibold lg:text-18 2xl:text-20'>Connect With Us</h3>
 
             <ul className='flex gap-2.5 2xl:gap-3.5'>
