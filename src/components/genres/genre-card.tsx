@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 import { ArrowRightIcon } from '@/components/icons/arrow-right'
-import { PosterMosaic } from '@/components/home/hero/poster-mosaic'
+import { PosterMosaic } from '@/components/shared/poster-mosaic'
 import { Card } from '@/components/shared/ui/card'
 import { genreCardHref, genreCardStyles, type GenreCardVariant } from '@/components/genres/genre-variants'
 import type { Genre } from '@/data/genres'

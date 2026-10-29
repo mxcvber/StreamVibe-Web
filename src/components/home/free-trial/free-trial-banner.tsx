@@ -1,9 +1,9 @@
 import Link from 'next/link'
 
-import { PosterMosaic } from '@/components/home/hero/poster-mosaic'
+import { PosterMosaic } from '@/components/shared/poster-mosaic'
 import { Container } from '@/components/shared/container'
 import { Button } from '@/components/shared/ui/button'
-import { heroPosterRows } from '@/data/posters'
+import { posterMosaic } from '@/lib/poster-mosaic'
 
 export function FreeTrialBanner() {
   return (
@@ -17,7 +17,7 @@ export function FreeTrialBanner() {
             aria-hidden='true'
             className='absolute top-1/2 left-1/2 h-173.25 w-348.75 -translate-x-1/2 -translate-y-1/2 lg:h-88.75 lg:w-320.25 2xl:left-[calc(50%+25px)] 2xl:h-98.75 2xl:w-[1646px]'
           >
-            <PosterMosaic rows={heroPosterRows} sizes='170px' className='h-full' />
+            <PosterMosaic rows={posterMosaic(2, 9)} sizes='170px' className='h-full' />
             <div className='absolute inset-0 bg-[linear-gradient(90deg,#0f0f0f_2.4%,rgba(20,15,15,0.975)_25%,rgba(34,14,14,0.91)_47%,rgba(229,0,0,0)_169%)]' />
           </div>
 

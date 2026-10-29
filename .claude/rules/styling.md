@@ -56,4 +56,6 @@ gives the desktop artboard's 162px gutter at 1920 by itself. Don't add a wider g
 - Invisible `before:`/`after:` insets enlarge small tap targets without moving the layout.
 - Chips compact on narrow cards via `@container` on the card and `@max-[Npx]:` on the chip.
   The thresholds are measured content widths; re-measure if the chip content changes.
-- `PosterMosaic`'s gap is the `--mosaic-gap` variable, set once by the caller.
+- `PosterMosaic` keeps the artboard's box even where that is wider than the screen (the home
+  hero, the free-trial banner), and an `overflow-hidden` parent crops it. Don't fit it to the
+  viewport, or the tiles squash. Its gap is the `--mosaic-gap` variable, set once by the caller.

@@ -62,3 +62,5 @@ movie endpoints so far.
   `generateStaticParams` + `instant = false` workaround on dynamic routes (`nextjs.md`).
   Wrapping both navs in `<Suspense>` with a fallback that has no active item would fix it, but
   it changes the header on every page. Undecided.
+- `HeroSlide` and `MovieDetailHero` still pass next/image's `priority`, deprecated in Next 16.
+  The home `Hero` already uses `loading='eager'`.

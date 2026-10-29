@@ -1,5 +1,5 @@
-import { PosterMosaic } from '@/components/home/hero/poster-mosaic'
-import { heroPosterRows } from '@/data/posters'
+import { PosterMosaic } from '@/components/shared/poster-mosaic'
+import { posterMosaic } from '@/lib/poster-mosaic'
 import { cn } from '@/lib/utils'
 
 /**
@@ -21,9 +21,14 @@ import { cn } from '@/lib/utils'
  */
 export function ContactPosterBox({ className }: { className?: string }) {
   return (
-    <div className={cn('relative overflow-hidden rounded-md border-6 border-black-15 bg-black-06 2xl:rounded-lg', className)}>
+    <div
+      className={cn(
+        'relative overflow-hidden rounded-md border-6 border-black-15 bg-black-06 2xl:rounded-lg',
+        className,
+      )}
+    >
       <PosterMosaic
-        rows={heroPosterRows}
+        rows={posterMosaic(4, 9)}
         sizes='(min-width: 1536px) 136px, 98px'
         tileClassName='rounded-lg'
         className='absolute top-1/2 -left-12.25 -mt-2.5 h-136.75 w-258.75 -translate-y-1/2 lg:-left-3.25 2xl:-left-9.25 2xl:h-183.25 2xl:w-344.25'

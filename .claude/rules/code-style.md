@@ -19,3 +19,5 @@ paths:
   match the file.
 - Put a blank line between sibling JSX elements (not inline ones within text), as `SiteHeader`
   and `SiteFooter` do. Many older components don't yet.
+- Use `<Fragment>` from `react`, not `<>`. Older files still use `<>`; convert a file's
+  fragments when you edit it.

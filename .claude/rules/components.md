@@ -42,7 +42,14 @@ paths:
 - Pages without a visible title have an `sr-only` `h1`. Sections point `aria-labelledby` at
   their heading's `id`.
 
+## Images
+
+- Above-the-fold images take `loading='eager'` (the home `Hero`); Next 16 deprecates `priority`.
+- `quality` must be one of `images.qualities` in `next.config.ts` (50, 75, 100); any other
+  value is served at the closest one. `PosterMosaic` types its `quality` prop to that list.
+
 ## Icons
 
-- The icon components are Figma SVG exports with colours replaced by `currentColor`. Re-export
-  from Figma rather than editing path data by hand.
+- The icon components are Figma SVG exports with colours replaced by `currentColor`, except
+  `Logo` and `HeroPlayGraphic` (Figma's "Abstract Design"), which keep the design's colours.
+  Re-export from Figma rather than editing path data by hand.

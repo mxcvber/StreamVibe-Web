@@ -59,7 +59,10 @@ Every card is a server component.
   separate.
 - Cards: `GenreCard` (`genre` and `top10` variants), `TrendingMovieCard`, `NewReleaseMovieCard`,
   `MustWatchMovieCard` and `CatalogMovieCard`. They share `MovieCardLink`, `MovieCardPoster`,
-  `MovieChip`, `RatingChip`, `ReleaseDateChip`, `StarRating` and `PosterMosaic`.
+  `MovieChip`, `RatingChip`, `ReleaseDateChip` and `StarRating`.
+- Backdrops: `PosterMosaic`. `Hero`, `FreeTrialBanner` and `ContactPosterBox` fill it with local
+  art from `posterMosaic(rows, columns)`; `GenreCard` passes its genre's four posters, which are
+  TMDB URLs in "Popular Top 10 In Genres".
 - Lists: `MovieGrid` (paged), `TopTenMovies` (fixed), both laid out by `movieGridClassName`.
 - Frames and messages: `CatalogBox`, `CatalogRowHeading`, `CatalogRowMessage`, `BrowseMessage`,
   `MovieHeroFrame`.
@@ -72,8 +75,11 @@ Every card is a server component.
   them), `siteConfig` (nav and footer), `plans` and `planFeatures`, `faq` questions, `devices`,
   `countries`.
 - Placeholders until the API provides them: `featuredMovies` (the Movies hero),
-  `trendingViews`, the poster art from `poster()` and `heroPosterRows`, yearly prices and FAQ
+  `trendingViews`, the poster art from `poster()` and `posterMosaic()`, yearly prices and FAQ
   answers 2–7. See `state.md`.
+- The poster art is 54 Figma exports (`poster-01…54.webp`). 01–36 are the hero mosaic in
+  Figma's order, nine to a row, and 37–54 appear only in genre cards. `posterMosaic` numbers
+  tiles row by row from 01, so only nine columns reproduce the hero's rows.
 
 ## Patterns
 
@@ -118,6 +124,11 @@ Being reorganised. Settled so far:
   `footer/`, and the shadcn primitives in `ui/`, where `components.json` points the CLI. They
   came from `src/components/layout/` and `src/components/ui/`; `SectionHeading` is still in
   `src/components/layout/`.
+- The home `Hero` is `src/components/home/hero.tsx`; the other home sections aren't reorganised
+  yet. `PosterMosaic` is in `src/components/shared/`, `poster()` and `posterMosaic()` in
+  `src/lib/poster-mosaic.ts`, and `PosterSrc` in `src/types/poster-mosaic.ts`. They came from
+  `src/components/home/hero/` and `src/data/posters.ts`, where `heroPosterRows` is now
+  `posterMosaic(4, 9)`. `HeroPlayGraphic` came from `src/components/icons/abstract-design.tsx`.
 
 Until this section is complete, map old paths to new ones with
 `git diff -M --name-status pre-refactor HEAD -- src`.

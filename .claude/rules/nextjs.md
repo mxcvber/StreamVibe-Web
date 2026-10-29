@@ -22,8 +22,10 @@ Next 16.3.4 with React 19.2.8 contradicts Next 14/15 habits. When unsure about a
   `next build` fail. `experimental.turbopack` is top-level `turbopack: {}`.
 - `revalidateTag(tag, profile)` needs both arguments. `cacheLife`, `cacheTag`, `updateTag()` and
   `refresh()` are stable imports from `next/cache`.
-- next/image: `images.qualities` defaults to `[75]`, `minimumCacheTTL` is 4 hours, and
-  `remotePatterns` replaces `domains` (`image.tmdb.org` is already allowed).
+- next/image: `priority` is deprecated (the docs prefer `loading='eager'` to its replacement,
+  `preload`), `minimumCacheTTL` is 4 hours, and `remotePatterns` replaces `domains`
+  (`image.tmdb.org` is already allowed). `images.qualities` defaults to `[75]`; ours is
+  `[50, 75, 100]`, and `PosterMosaic`'s `quality` type mirrors it.
 - Parallel routes need a `default.js` per slot. AMP, `serverRuntimeConfig`,
   `publicRuntimeConfig` and `experimental.ppr` are gone. Smooth scrolling on navigation needs
   `data-scroll-behavior="smooth"` on `<html>`. Node >= 20.9.
