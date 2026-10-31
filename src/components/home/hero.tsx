@@ -14,9 +14,10 @@ export function Hero() {
       <div className='relative -mb-25 h-125 w-full overflow-hidden lg:h-174.75 2xl:-mb-16 2xl:h-215'>
         <PosterMosaic
           rows={posterMosaic(4, 9)}
-          sizes='(min-width: 1024px) 11vw, 134px'
+          visible={{ base: { rows: 2, columns: 4 }, lg: { rows: 3, columns: 6 } }}
+          sizes='(min-width: 1536px) 11vw, (min-width: 1024px) 17vw, (min-width: 672px) 25vw, 161px'
           tileClassName='rounded-lg'
-          className='absolute top-0 left-1/2 h-151.5 w-321.5 -translate-x-1/2 [--mosaic-gap:10px] lg:h-207.5 lg:w-full 2xl:h-full 2xl:[--mosaic-gap:20px]'
+          className='absolute top-0 left-1/2 h-151.5 w-full min-w-2xl -translate-x-1/2 [--mosaic-gap:10px] lg:h-207.5 2xl:h-full 2xl:[--mosaic-gap:20px]'
           loading='eager'
           quality={50}
         />

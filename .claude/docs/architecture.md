@@ -63,7 +63,8 @@ Every card is a server component.
   `NewReleaseMovieCard`, `MustWatchMovieCard` and `CatalogMovieCard` share `MovieCardLink`,
   `MovieCardPoster`, `MovieChip`, `RatingChip`, `ReleaseDateChip` and `StarRating`.
 - Backdrops: `PosterMosaic`. `Hero`, `FreeTrialBanner` and `ContactPosterBox` fill it with local
-  art from `posterMosaic(rows, columns)`. The genre cards pass their genre's four posters cast
+  art from `posterMosaic(rows, columns)`. `Hero` also passes `visible`, which shows only 2×4 of
+  its 4×9 below `lg` and 3×6 below `2xl`. The genre cards pass their genre's four posters cast
   to `PosterSrc`: local art in `GenreCard`, TMDB URLs in `TopGenresCard`.
 - Lists: `MovieGrid` (paged), `TopTenMovies` (fixed), both laid out by `movieGridClassName`.
 - Frames and messages: `CatalogBox`, `CatalogRowHeading`, `CatalogRowMessage`, `BrowseMessage`,
@@ -92,7 +93,8 @@ Every card is a server component.
   live in `movie-variants.ts` (the browse grid's in `browse-variants.ts`), typed
   `satisfies Record<Variant, …>`. A missing variant is a type error, and server skeletons can
   import the maps because the files have no `'use client'`. The genre cards don't use one:
-  `GenreCard` and `TopGenresCard` are separate components with literal classes.
+  `GenreCard` and `TopGenresCard` are separate components with literal classes. Nor does
+  `PosterMosaic`, which writes its reveal classes inline.
 - **`to*` mappers.** Plain functions turn an API DTO into a UI shape (`toTrendingMovies`,
   `toCatalogMovies`). Components never format API data, and data functions never shape it
   for the UI.
@@ -144,6 +146,7 @@ Being reorganised. Settled so far:
   `src/lib/poster-mosaic.ts`, and `PosterSrc` in `src/types/poster-mosaic.ts`. They came from
   `src/components/home/hero/` and `src/data/posters.ts`, where `heroPosterRows` is now
   `posterMosaic(4, 9)`. `HeroPlayGraphic` came from `src/components/icons/abstract-design.tsx`.
+  The newer `mosaicRevealAt()` and `MosaicReveal` sit in the same lib and types files.
 - `findGenre` is in `src/lib/find-genre.ts`, split out of `src/data/genres.ts`, which keeps
   `genres` and `Genre`.
 

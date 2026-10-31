@@ -11,7 +11,9 @@ paths:
   them in a sibling `*-variants.ts` (e.g. `movieCardStyles`) and key each one with the variant
   type via `satisfies Record<Variant, …>`. Then the component file holds only markup.
 - Leave out `'use client'` there so server components (skeletons) can import the same values.
-- Exception: shadcn files keep their `cva` definitions in place (`ui-primitives.md`).
+- Exceptions: shadcn files keep their `cva` definitions in place (`ui-primitives.md`), and
+  `PosterMosaic` writes its reveal classes inline, by the author's choice. Don't move them to a
+  variants file.
 
 ## Server and client
 
@@ -48,6 +50,13 @@ paths:
 ## Images
 
 - Above-the-fold images take `loading='eager'` (the home `Hero`); Next 16 deprecates `priority`.
+- An image hidden with `display: none` still downloads if it's eager, but not if it's lazy. So
+  `PosterMosaic` loads every tile its `visible` prop hides at the base breakpoint lazily,
+  whatever `loading` says, and the hero's `loading='eager'` reaches only the 2×4 tiles shown at
+  every width.
+- The hero mosaic's `sizes` is its tile width at each step: `161px` is four columns in the
+  672px `min-w-2xl` box ((672 − 30) / 4), then `25vw`, `17vw` and `11vw` for 4, 6 and 9
+  columns. Change it whenever the box, the gap or `visible` changes.
 - `quality` must be one of `images.qualities` in `next.config.ts` (50, 75, 100); any other
   value is served at the closest one. `PosterMosaic` types its `quality` prop to that list.
 

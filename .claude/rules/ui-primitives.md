@@ -17,7 +17,7 @@ edits: before accepting an overwrite, diff it against
 - Replace Tailwind text sizes (`text-sm`) with px tokens (`text-14`); the defaults are removed.
 - Check colours on the dark palette: `bg-muted` (Black/12) barely shows on Black/10 cards.
 - Keep the `cva` definitions in the file, as shadcn generates them, so CLI updates still diff
-  cleanly. This is the one exception to `*-variants.ts`.
+  cleanly. This is an exception to `*-variants.ts` (`components.md`).
 
 ## Sizes live here
 

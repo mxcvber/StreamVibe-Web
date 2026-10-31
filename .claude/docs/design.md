@@ -58,6 +58,9 @@ asking.
   phones.
 - Must-watch shows 3 cards per page up to 1279px and 4 from 1280. The laptop artboard's 4
   leave the chips no room below about 1300px. Plain genre cards show 4 from `lg` and 5 from `xl`.
+- The home hero's poster mosaic is 2×4 below `lg` and 3×6 below `2xl` (decided 2026-10-31),
+  not the artboards' 4×9, so smaller screens download only the posters they show. Below `lg`
+  its box is at least 672px wide, so phones crop the outer columns.
 
 **Content and labels**
 - The `newest` sort reads "Upcoming", with a hint, because the API returns unreleased movies,
