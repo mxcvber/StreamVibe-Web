@@ -7,7 +7,8 @@ import { MovieGridSkeleton } from '@/components/movies/browse/movie-grid-skeleto
 import { TopTenMovies } from '@/components/movies/browse/top-ten-movies'
 import { CatalogBox } from '@/components/movies/catalog/catalog-box'
 import { MoviesHero } from '@/components/movies/hero/movies-hero'
-import { findGenre, genres } from '@/data/genres'
+import { genres } from '@/data/genres'
+import { findGenre } from '@/lib/find-genre'
 
 const GRID_HEADING_ID = 'genre-top-ten-heading'
 
