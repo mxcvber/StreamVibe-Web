@@ -17,7 +17,9 @@ paths:
   leaves it out.
 - Imports: packages first, then `@/` imports. The blank line between the groups is optional;
   match the file.
+- Import `cn` from `@/lib/utils`, not from the `cn` package that auto-import also offers: ours
+  registers the px text sizes and section gaps (`styling.md`).
 - Put a blank line between sibling JSX elements (not inline ones within text), as `SiteHeader`
   and `SiteFooter` do. Many older components don't yet.
-- Use `<Fragment>` from `react`, not `<>`. Older files still use `<>`; convert a file's
-  fragments when you edit it.
+- Use `<Fragment>` from `react` (auto-import may pick `react/jsx-runtime`), not `<>`. Older
+  files still use `<>`; convert a file's fragments when you edit it.
