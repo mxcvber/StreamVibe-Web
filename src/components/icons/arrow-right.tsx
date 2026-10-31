@@ -1,11 +1,5 @@
 import type { SVGProps } from 'react'
 
-/**
- * Figma: "Icon / Vector 619" — vector data exported 1:1 from the StreamVibe design
- * file; colours replaced with currentColor so it follows the text colour.
- * Path data is generated from the Figma export — re-export from Figma rather
- * than editing the coordinates by hand.
- */
 export function ArrowRightIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg

@@ -1,7 +1,6 @@
 import type { PointerEvent } from 'react'
-import { useRef } from 'react'
-
 import type { CarouselApi } from '@/components/shared/ui/carousel'
+import { useRef } from 'react'
 
 const clamp01 = (n: number) => Math.min(1, Math.max(0, n))
 
@@ -19,13 +18,6 @@ function scrollToFraction(api: NonNullable<CarouselApi>, fraction: number, insta
   scrollTo.distance(location - target.get(), false)
 }
 
-/**
- * Pointer handlers that turn a track element into a scrollbar for the
- * carousel: pressing the thumb drags it (keeping the grab offset), pressing
- * elsewhere on the track glides the thumb there, and releasing settles on the
- * nearest snap. The track's own bounding box is the scale, with the thumb
- * centred under the pointer, so callers only pass the thumb width.
- */
 export function useCarouselScrub(api: CarouselApi, thumbWidth: number) {
   // Pointer − thumb centre when the press started on the thumb.
   const grabOffset = useRef(0)

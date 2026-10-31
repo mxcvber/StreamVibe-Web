@@ -3,7 +3,6 @@
 import * as React from 'react'
 import { cn } from '@/lib/utils'
 import useEmblaCarousel, { type UseEmblaCarouselType } from 'embla-carousel-react'
-
 import { ArrowLeftIcon } from '@/components/icons/arrow-left'
 import { ArrowRightIcon } from '@/components/icons/arrow-right'
 import { Button } from '@/components/shared/ui/button'
@@ -31,9 +30,6 @@ type CarouselContextProps = {
 
 const CarouselContext = React.createContext<CarouselContextProps | null>(null)
 
-// Embla is an external store: components subscribe to its selection events and
-// read the scroll state directly instead of mirroring it into React state from
-// an effect. Shared by Carousel and CarouselDots.
 function subscribeToSelection(api: CarouselApi, onStoreChange: () => void) {
   if (!api) return () => {}
   api.on('select', onStoreChange)
@@ -159,8 +155,6 @@ function CarouselItem({ className, ...props }: React.ComponentProps<'div'>) {
   )
 }
 
-// Prev/next are ordinary flow items so they can sit in the design's control
-// cluster beside the section heading rather than on the carousel's edges.
 function CarouselPrevious({
   className,
   variant = 'secondary',
@@ -210,15 +204,10 @@ function CarouselNext({
 }
 
 type CarouselDotsProps = Omit<React.ComponentProps<'div'>, 'children'> & {
-  /** Width of the active dot, e.g. `w-4.5 2xl:w-5.75`; the others share what's left. */
   activeClassName?: string
-  /** Accessible name for each dot. */
   label?: (index: number, count: number) => string
 }
 
-// One pill per scroll snap, the active one wider and red, the rest sharing the
-// remaining width. Defaults are the Movies hero indicator (81×4px, 3px gaps,
-// 23px active dot); the categories carousel narrows it via className.
 function CarouselDots({
   className,
   activeClassName = 'w-5.75',
@@ -254,12 +243,7 @@ function CarouselDots({
           aria-label={label(index, count)}
           onClick={() => api?.scrollTo(index)}
           className={cn(
-            // An invisible ::before takes each 4px pill to a 24px-tall target
-            // without changing the layout box, the same trick as
-            // `CarouselProgress`. The 1.5px inline inset is half the row's 3px
-            // gap, so neighbouring targets meet without overlapping; it is an
-            // arbitrary value because the spacing scale only steps by 0.25.
-            'relative h-1 rounded-full transition-colors outline-none before:absolute before:-inset-x-[1.5px] before:-inset-y-2.5 focus-visible:ring-3 focus-visible:ring-ring/50',
+            'relative h-1 rounded-full transition-colors outline-none before:absolute before:inset-x-[-1.5px] before:-inset-y-2.5 focus-visible:ring-3 focus-visible:ring-ring/50',
             index === selected ? cn('bg-primary', activeClassName) : 'flex-1 bg-black-20',
           )}
         />
