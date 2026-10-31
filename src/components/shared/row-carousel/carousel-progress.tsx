@@ -1,7 +1,6 @@
 'use client'
 
 import { useCallback, useSyncExternalStore } from 'react'
-
 import { useCarouselScrub } from '@/hooks/use-carousel-scrub'
 import { useCarousel } from '@/components/shared/ui/carousel'
 import { cn } from '@/lib/utils'
@@ -9,15 +8,6 @@ import { cn } from '@/lib/utils'
 const TRACK_WIDTH = 79
 const THUMB_WIDTH = 20
 
-/**
- * The mobile artboard's carousel indicator, working as its scrollbar: a 79×5
- * track with a 20px red thumb that follows the scroll position and can be
- * dragged (or the track pressed) to scroll the cards. An invisible ::before
- * widens the hit area to roughly 99×45 without changing the 5px layout box.
- * Like a native scrollbar it is hidden from assistive tech and not focusable —
- * keyboard users page the carousel with the arrow keys on the region and tab
- * through the cards.
- */
 export function CarouselProgress({ className }: { className?: string }) {
   const { api } = useCarousel()
   const scrub = useCarouselScrub(api, THUMB_WIDTH)
@@ -36,6 +26,7 @@ export function CarouselProgress({ className }: { className?: string }) {
     },
     [api],
   )
+
   // Embla reports progress slightly outside 0–1 while a drag overshoots.
   const progress = useSyncExternalStore(
     subscribe,

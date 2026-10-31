@@ -1,5 +1,5 @@
-import { GenreCarousel } from '@/components/genres/genre-carousel'
 import { CatalogRowHeading } from '@/components/movies/catalog/catalog-row-heading'
+import { GenreCarousel } from '@/components/shared/genre-carousel/genre-carousel'
 import { genres } from '@/data/genres'
 
 const HEADING_ID = 'movies-genres-heading'

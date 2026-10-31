@@ -79,7 +79,7 @@ asking.
 **Undesigned additions**
 - The Movies hero autoplays every 7s. It pauses on hover, keyboard focus, drag and hidden tabs,
   and is off for reduced motion.
-- The top-10 rank badge on catalog cards copies `GenreCard`'s "Top 10 In" badge.
+- The top-10 rank badge on catalog cards copies `TopGenresCard`'s "Top 10 In" badge.
 - Error, empty, loading and success states stay quiet: grey inline messages, red borders with
   a short message on fields, skeletons sized like the content. A checked checkbox uses the
   brand red.

@@ -8,7 +8,7 @@ paths:
 ## Variants files
 
 - Keep per-variant maps (class strings, carousel options, sizes) out of the component file. Put
-  them in a sibling `*-variants.ts` (e.g. `genreCardStyles`) and key each one with the variant
+  them in a sibling `*-variants.ts` (e.g. `movieCardStyles`) and key each one with the variant
   type via `satisfies Record<Variant, …>`. Then the component file holds only markup.
 - Leave out `'use client'` there so server components (skeletons) can import the same values.
 - Exception: shadcn files keep their `cva` definitions in place (`ui-primitives.md`).
@@ -31,6 +31,9 @@ paths:
 - Build each placeholder like the card it replaces (padding, media ratio, line heights) rather
   than one aspect ratio, since only the media scales with the card. Match the heading row's
   height where the loaded row has controls beside it, and reserve the mobile progress bar.
+- `TopGenresRowSkeleton` repeats `TopGenresCarousel`'s slide widths and `TopGenresCard`'s
+  padding and mosaic ratios as literals, since no variants file holds them. Change them
+  together.
 
 ## Accessibility
 

@@ -1,13 +1,9 @@
-import { genreCardStyles, genreSlideClassName } from '@/components/genres/genre-variants'
 import { CatalogRowHeading } from '@/components/movies/catalog/catalog-row-heading'
 import { Card } from '@/components/shared/ui/card'
 import { Skeleton } from '@/components/shared/ui/skeleton'
-import { cn } from '@/lib/utils'
 
 /** Enough placeholders to fill a page at every width (4 from `lg`). */
 const PLACEHOLDERS = 4
-
-const styles = genreCardStyles.top10
 
 /**
  * Stands in for `TopGenresRow` while the API responds: the real heading over
@@ -30,9 +26,9 @@ export function TopGenresRowSkeleton() {
       <div aria-hidden='true' className='flex flex-col gap-6'>
         <div className='-ml-5 flex overflow-hidden 2xl:-ml-7.5'>
           {Array.from({ length: PLACEHOLDERS }, (_, index) => (
-            <div key={index} className={cn('shrink-0 grow-0 pl-5 2xl:pl-7.5', genreSlideClassName.top10)}>
-              <Card className={styles.card}>
-                <Skeleton className={cn(styles.tile, styles.mosaic)} />
+            <div key={index} className='shrink-0 grow-0 pl-5 2xl:pl-7.5 basis-63 md:basis-80 lg:basis-1/4'>
+              <Card className='p-4.75 lg:p-7.25'>
+                <Skeleton className='rounded-lg aspect-191.75/177 lg:aspect-225/206 2xl:aspect-292/252' />
                 {/* Footer heights follow GenreCard: the 25/32px badge, a
                     2/4px gap and the title's 24/30px line. */}
                 <div className='flex flex-col items-start gap-0.5 2xl:gap-1'>

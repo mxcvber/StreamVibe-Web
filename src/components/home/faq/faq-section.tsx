@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 import { FAQ_DIVIDER, FaqAccordion } from '@/components/home/faq/faq-accordion'
 import { Container } from '@/components/shared/container'
-import { SectionHeading } from '@/components/layout/section-heading'
+import { SectionHeading } from '@/components/home/section-heading'
 import { Button } from '@/components/shared/ui/button'
 import { faq } from '@/data/faq'
 import { cn } from '@/lib/utils'

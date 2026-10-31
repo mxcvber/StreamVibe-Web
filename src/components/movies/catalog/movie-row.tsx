@@ -1,7 +1,7 @@
 import { connection } from 'next/server'
 import type { ReactNode } from 'react'
 
-import { RowCarousel } from '@/components/carousel/row-carousel'
+import { RowCarousel } from '@/components/shared/row-carousel/row-carousel'
 import { CatalogRowHeading } from '@/components/movies/catalog/catalog-row-heading'
 import { CatalogRowMessage } from '@/components/movies/catalog/catalog-row-message'
 import {

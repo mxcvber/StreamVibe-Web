@@ -13,9 +13,14 @@ paths:
   normal flow items so they can sit in the heading row, and `CarouselDots` is added.
 - `RowCarousel` is the shell every row shares: the heading, prev · dots · next from `lg`, the
   slides, and `CarouselProgress` under `lg`. Its `heading` should carry `flex-1`. Slides arrive
-  as children, so the cards inside them stay server components.
+  as children, so the cards inside them stay server components. The heading → slides gap is the
+  section spacing; the Movies page rows override it through `className`.
 - The slide gutter is `pl-*` on every `CarouselItem` with a matching negative `-ml-*` on the
-  track. Slide widths and Embla options per variant live in `*-variants.ts`.
+  track. Below `lg` each slide has a fixed basis that includes the gutter: the mobile card plus
+  gutter at base (`basis-49.5` is the 178px genre card, `basis-63` the 232px "Top 10 In" card),
+  wider from `md`. From `lg` the basis is a fraction of the row.
+- Slide widths and Embla options live in `movie-variants.ts` for the movie rows, and in
+  `GenreCarousel` and `TopGenresCarousel` themselves for the genre rows.
 - Embla's `breakpoints` re-initialise the carousel when a query flips, and matching entries
   merge in order, so the last one wins.
 - Pass `active: false` when there is a single slide, or it rubber-bands on drag.

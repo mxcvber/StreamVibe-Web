@@ -1,6 +1,6 @@
 import { PlanCard } from '@/components/home/plans/plan-card'
 import { Container } from '@/components/shared/container'
-import { SectionHeading } from '@/components/layout/section-heading'
+import { SectionHeading } from '@/components/home/section-heading'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/shared/ui/tabs'
 import { billingPeriods, plans } from '@/data/plans'
 

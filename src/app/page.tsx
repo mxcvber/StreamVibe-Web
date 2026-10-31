@@ -1,4 +1,4 @@
-import { CategoriesSection } from '@/components/home/categories/categories-section'
+import { CategoriesSection } from '@/components/home/categories-section'
 import { DevicesSection } from '@/components/home/devices/devices-section'
 import { FaqSection } from '@/components/home/faq/faq-section'
 import { FreeTrialBanner } from '@/components/home/free-trial/free-trial-banner'

@@ -1,11 +1,11 @@
 import { connection } from 'next/server'
 
-import { GenreCarousel } from '@/components/genres/genre-carousel'
 import { CatalogRowHeading } from '@/components/movies/catalog/catalog-row-heading'
 import { CatalogRowMessage } from '@/components/movies/catalog/catalog-row-message'
 import type { Genre } from '@/data/genres'
 import { getTopInGenres } from '@/lib/api/carousel'
 import { toGenreCards } from '@/lib/top-genres'
+import { TopGenresCarousel } from './top-genres-carousel'
 
 const HEADING_ID = 'movies-top-genres-heading'
 const TITLE = 'Popular Top 10 In Genres'
@@ -43,11 +43,10 @@ export async function TopGenresRow() {
   }
 
   return (
-    <GenreCarousel
-      genres={genres}
-      variant='top10'
+    <TopGenresCarousel
       aria-labelledby={HEADING_ID}
       className='gap-5 lg:gap-10 2xl:gap-12.5'
+      genres={genres}
       heading={
         // Keyed for the same reason as in GenresRow: it crosses into a client
         // component.

@@ -1,6 +1,6 @@
 import { DeviceCard } from '@/components/home/devices/device-card'
 import { Container } from '@/components/shared/container'
-import { SectionHeading } from '@/components/layout/section-heading'
+import { SectionHeading } from '@/components/home/section-heading'
 import { devices } from '@/data/devices'
 
 export function DevicesSection() {

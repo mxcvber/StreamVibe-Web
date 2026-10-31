@@ -43,4 +43,4 @@ The Figma sizes are in the primitives; feature components only lay them out.
 - `Input` uses `text-ellipsis` for placeholders that don't fit. `Textarea` grows with
   `field-sizing-content` and can't be resized.
 - `SelectTrigger` is boxed like `Input`, with the design's Grey/60 chevron.
-- `Carousel` is rewritten (`carousel.md`), and `CarouselProgress` is ours, not shadcn's.
+- `Carousel` is rewritten (`carousel.md`).
