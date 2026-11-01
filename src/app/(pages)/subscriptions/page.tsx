@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-import { FreeTrialBanner } from '@/components/home/free-trial/free-trial-banner'
+import { FreeTrialBanner } from '@/components/shared/free-trial-banner'
 import { PlansSection } from '@/components/shared/plans/plans-section'
 import { PlanComparisonSection } from '@/components/subscriptions/comparison/plan-comparison-section'
 

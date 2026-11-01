@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 
 import { ContactSection } from '@/components/support/contact/contact-section'
 import { FaqSection } from '@/components/shared/faq/faq-section'
-import { FreeTrialBanner } from '@/components/home/free-trial/free-trial-banner'
+import { FreeTrialBanner } from '@/components/shared/free-trial-banner'
 
 export const metadata: Metadata = {
   title: 'Support',
