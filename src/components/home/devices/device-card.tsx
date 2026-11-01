@@ -1,11 +1,6 @@
 import { Card, CardDescription, CardTitle } from '@/components/shared/ui/card'
-import type { Device } from '@/data/devices'
+import { Device } from '@/types/divece'
 
-/**
- * The red glow in the top-right corner is a Figma gradient whose export was
- * garbled (stops at 208% and 41%); this is a visual approximation of the
- * rendered design rather than the exported values.
- */
 export function DeviceCard({ device }: { device: Device }) {
   const Icon = device.icon
 
@@ -15,8 +10,10 @@ export function DeviceCard({ device }: { device: Device }) {
         <div className='rounded-lg border border-black-12 bg-background p-2.25 lg:p-2.75 2xl:p-3.75'>
           <Icon className='size-6 text-red-45 lg:size-7.5 2xl:size-10' />
         </div>
+
         <CardTitle>{device.name}</CardTitle>
       </div>
+
       <CardDescription>{device.description}</CardDescription>
     </Card>
   )

@@ -149,6 +149,8 @@ Being reorganised. Settled so far:
   The newer `mosaicRevealAt()` and `MosaicReveal` sit in the same lib and types files.
 - `findGenre` is in `src/lib/find-genre.ts`, split out of `src/data/genres.ts`, which keeps
   `genres` and `Genre`.
+- `Device` is in `src/types/divece.ts`, split out of `src/data/devices.ts`, which keeps
+  `devices`.
 
 Until this section is complete, map old paths to new ones with
 `git diff -M --name-status pre-refactor HEAD -- src`.

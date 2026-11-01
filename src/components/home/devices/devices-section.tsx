@@ -13,6 +13,7 @@ export function DevicesSection() {
           title='We Provide you streaming experience across various devices.'
           description='With StreamVibe, you can enjoy your favorite movies anytime, anywhere. Our platform is designed to be compatible with a wide range of devices, ensuring that you never miss a moment of entertainment.'
         />
+
         <ul className='grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 2xl:gap-7.5'>
           {devices.map((device) => (
             <li key={device.name}>
