@@ -1,19 +1,13 @@
-import { PlanCard } from '@/components/home/plans/plan-card'
+import { PlanCard } from '@/components/shared/plans/plan-card'
 import { Container } from '@/components/shared/container'
-import { SectionHeading } from '@/components/home/section-heading'
+import { SectionHeading } from '@/components/shared/section-heading'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/shared/ui/tabs'
 import { billingPeriods, plans } from '@/data/plans'
 
 type PlansSectionProps = {
-  /** Extra classes for the h2: the Subscription page sets it at 48px on desktop (`2xl:text-48`). */
   titleClassName?: string
 }
 
-/**
- * Tabs wrap the heading row too, because the Monthly/Yearly switch sits
- * beside the heading in the design (under it on mobile) while the cards it
- * controls sit below.
- */
 export function PlansSection({ titleClassName }: PlansSectionProps) {
   return (
     <section id='pricing'>
@@ -29,6 +23,7 @@ export function PlansSection({ titleClassName }: PlansSectionProps) {
               title="Choose the plan that's right for you"
               description='Join StreamVibe and select from our flexible subscription options tailored to suit your viewing preferences. Get ready for non-stop entertainment!'
             />
+
             <TabsList aria-label='Billing period'>
               {billingPeriods.map((period) => (
                 <TabsTrigger
@@ -41,6 +36,7 @@ export function PlansSection({ titleClassName }: PlansSectionProps) {
               ))}
             </TabsList>
           </div>
+
           {billingPeriods.map((period) => (
             <TabsContent
               key={period.value}

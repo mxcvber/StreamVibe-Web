@@ -3,7 +3,7 @@ import { DevicesSection } from '@/components/home/devices/devices-section'
 import { FaqSection } from '@/components/shared/faq/faq-section'
 import { FreeTrialBanner } from '@/components/home/free-trial/free-trial-banner'
 import { Hero } from '@/components/home/hero'
-import { PlansSection } from '@/components/home/plans/plans-section'
+import { PlansSection } from '@/components/shared/plans/plans-section'
 import { Fragment } from 'react'
 
 export default function HomePage() {

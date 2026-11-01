@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { FaqAccordion } from '@/components/shared/faq/faq-accordion'
 import { Container } from '@/components/shared/container'
-import { SectionHeading } from '@/components/home/section-heading'
+import { SectionHeading } from '@/components/shared/section-heading'
 import { Button } from '@/components/shared/ui/button'
 import { faq } from '@/data/faq'
 import { cn } from '@/lib/utils'

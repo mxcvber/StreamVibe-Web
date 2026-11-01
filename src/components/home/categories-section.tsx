@@ -1,6 +1,6 @@
 import { GenreCarousel } from '@/components/shared/genre-carousel/genre-carousel'
 import { Container } from '@/components/shared/container'
-import { SectionHeading } from '@/components/home/section-heading'
+import { SectionHeading } from '@/components/shared/section-heading'
 import { genres } from '@/data/genres'
 
 export function CategoriesSection() {

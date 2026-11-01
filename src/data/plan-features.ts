@@ -1,4 +1,6 @@
-import { formatPrice, type PlanId, plans } from '@/data/plans'
+import type { PlanId } from '@/types/plans'
+import { plans } from './plans'
+import { formatPrice } from '@/lib/format-price'
 
 export type PlanFeature = {
   label: string

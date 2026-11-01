@@ -1,6 +1,6 @@
 import { planFeatures } from '@/data/plan-features'
-import type { Plan } from '@/data/plans'
 import { cn } from '@/lib/utils'
+import { Plan } from '@/types/plans'
 
 /**
  * One plan's features as the mobile artboard's card: label over value, two to
