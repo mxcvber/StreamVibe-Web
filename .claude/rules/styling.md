@@ -30,6 +30,9 @@ gives the desktop artboard's 162px gutter at 1920 by itself. Don't add a wider g
 - Tailwind's default colours and text sizes are removed in `globals.css`. Only the Figma
   palette (`bg-black-10`, `text-grey-60`, `red-45`) and px-named sizes (`text-18`, line-height
   150% built in) exist, so `text-sm` or `bg-zinc-900` do nothing.
+- A size's built-in line-height beats any `leading-*` on a parent, because Tailwind's
+  `--tw-leading` doesn't inherit. Put the leading on the element that has the `text-*` class
+  (`PlanCard`'s price spans).
 - Keep `@theme static`: shadcn's semantic variables read the palette from plain CSS, and
   Tailwind would otherwise drop the palette variables no class uses.
 - Radii: `rounded-sm` 8px (buttons), `rounded-md` 10px (badges, tabs, inner images),

@@ -128,8 +128,8 @@ Being reorganised. Settled so far:
   after it (`NavLink` and `FooterColumn` in `site-config.ts`). A type used only in its own file
   stays there and isn't exported (`SocialLink`). `Genre`, `MoviesPage`, `MovieFilters` and the
   API response types still sit beside their code because the refactor hasn't reached them.
-- `src/components/shared/` holds `Container` and `CardWrapper` at its root, the header
-  (`SiteHeader`, `MainNav`, `MobileNav`) in `header/`, the footer (`SiteFooter`,
+- `src/components/shared/` holds `Container`, `CardWrapper` and `SectionHeading` at its root,
+  the header (`SiteHeader`, `MainNav`, `MobileNav`) in `header/`, the footer (`SiteFooter`,
   `FooterLinkColumn`, `CopyrightYear`) in `footer/`, `RowCarousel` and `CarouselProgress` in
   `row-carousel/`, `GenreCarousel` and `GenreCard` in `genre-carousel/`, and the shadcn
   primitives in `ui/`, where `components.json` points the CLI. They came from
@@ -138,10 +138,9 @@ Being reorganised. Settled so far:
 - The "Top 10 In" genre carousel sits with its only row in `src/components/movies/catalog/`
   (`TopGenresCarousel`, `TopGenresCard`). `genre-variants.ts` is gone: its values are literal
   classes in the two genre carousels, their cards and `TopGenresRowSkeleton`.
-- `src/components/home/` holds `Hero`, `CategoriesSection` and `SectionHeading` at its root; the
-  other home sections are still in subfolders. `CategoriesSection` came from
-  `src/components/home/categories/`, and `SectionHeading` (also used by `PlanComparisonSection`)
-  from `src/components/layout/`.
+- `src/components/home/` holds `Hero` and `CategoriesSection` at its root; the other home
+  sections are still in subfolders. `CategoriesSection` came from
+  `src/components/home/categories/`.
 - `PosterMosaic` is in `src/components/shared/`, `poster()` and `posterMosaic()` in
   `src/lib/poster-mosaic.ts`, and `PosterSrc` in `src/types/poster-mosaic.ts`. They came from
   `src/components/home/hero/` and `src/data/posters.ts`, where `heroPosterRows` is now
@@ -149,12 +148,16 @@ Being reorganised. Settled so far:
   The newer `mosaicRevealAt()` and `MosaicReveal` sit in the same lib and types files.
 - `findGenre` is in `src/lib/find-genre.ts`, split out of `src/data/genres.ts`, which keeps
   `genres` and `Genre`.
-- `Device` is in `src/types/divece.ts`, split out of `src/data/devices.ts`, which keeps
+- `Device` is in `src/types/devices.ts`, split out of `src/data/devices.ts`, which keeps
   `devices`.
 - `FaqSection` and `FaqAccordion` are in `src/components/shared/faq/`, moved from
   `src/components/home/faq/`. `FaqItem` is in `src/types/faq.ts`, split out of
   `src/data/faq.ts`, which keeps `faq`. `FAQ_DIVIDER` is now the `.faq-divider` class in
   `globals.css`.
+- `PlansSection` and `PlanCard` are in `src/components/shared/plans/`, moved from
+  `src/components/home/plans/`. `Plan`, `PlanId` and `BillingPeriod` are in
+  `src/types/plans.ts`, and `formatPrice` is in `src/lib/format-price.ts`, both split out of
+  `src/data/plans.ts`, which keeps `plans` and `billingPeriods`.
 
 Until this section is complete, map old paths to new ones with
 `git diff -M --name-status pre-refactor HEAD -- src`.
