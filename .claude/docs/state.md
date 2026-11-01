@@ -38,7 +38,7 @@ When it's done, sync the docs:
   support endpoint yet.
 - Inert buttons: Play Now and the bookmark on the movie page; watchlist, like and sound on the
   Movies hero; search and notifications in the header.
-- Yearly plan prices (ten months' price) and FAQ answers 2–7.
+- Yearly plan prices (ten months' price) and FAQ answers 2–8.
 
 ## Not built yet
 
@@ -64,3 +64,10 @@ movie endpoints so far.
   it changes the header on every page. Undecided.
 - `HeroSlide` and `MovieDetailHero` still pass next/image's `priority`, deprecated in Next 16.
   The home `Hero` already uses `loading='eager'`.
+- `FaqAccordion` renders each answer twice: inside `AccordionTrigger`, shown from `lg` so it
+  lines up under the question, and below the trigger for phones. Radix gives both copies the
+  item's content `id`, so an open item (the first is open on load) duplicates it. The copy in
+  the trigger also puts `div`s inside the `<button>`, which is invalid HTML, and from `lg` the
+  answer becomes part of the button's accessible name. Nothing logs these, but an HTML
+  validator reports both. `pre-refactor` kept one `AccordionContent` below the trigger,
+  indented with padding.

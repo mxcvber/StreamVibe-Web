@@ -61,3 +61,8 @@ gives the desktop artboard's 162px gutter at 1920 by itself. Don't add a wider g
   the tiles squash. The home hero is the exception: below `2xl` its `visible` prop hides rows and
   columns, so its box spans the viewport (at least 672px). Its gap is the `--mosaic-gap`
   variable, set once by the caller.
+- `.faq-divider` (`globals.css`) draws the FAQ's red gradient lines as a `border-image`,
+  which paints only where a border width exists. So rows always carry it, and borders
+  choose where a line shows: `AccordionItem`'s `not-last:border-b`, and
+  `max-lg:border-b faq-divider` on each column but the last, which keeps a line between
+  the columns where they stack below `lg`.

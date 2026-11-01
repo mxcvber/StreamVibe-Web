@@ -82,7 +82,7 @@ Every card is a server component.
   alphabetically with posters picked loosely from the same pool. Keep that order.
 - Placeholders until the API provides them: `featuredMovies` (the Movies hero),
   `trendingViews`, the poster art from `poster()` and `posterMosaic()`, yearly prices and FAQ
-  answers 2–7. See `state.md`.
+  answers 2–8. See `state.md`.
 - The poster art is 54 Figma exports (`poster-01…54.webp`). 01–36 are the hero mosaic in
   Figma's order, nine to a row, and 37–54 appear only in genre cards. `posterMosaic` numbers
   tiles row by row from 01, so only nine columns reproduce the hero's rows.
@@ -151,6 +151,10 @@ Being reorganised. Settled so far:
   `genres` and `Genre`.
 - `Device` is in `src/types/divece.ts`, split out of `src/data/devices.ts`, which keeps
   `devices`.
+- `FaqSection` and `FaqAccordion` are in `src/components/shared/faq/`, moved from
+  `src/components/home/faq/`. `FaqItem` is in `src/types/faq.ts`, split out of
+  `src/data/faq.ts`, which keeps `faq`. `FAQ_DIVIDER` is now the `.faq-divider` class in
+  `globals.css`.
 
 Until this section is complete, map old paths to new ones with
 `git diff -M --name-status pre-refactor HEAD -- src`.
