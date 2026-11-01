@@ -15,8 +15,6 @@ function Tabs({ className, orientation = 'horizontal', ...props }: React.Compone
   )
 }
 
-// The design's segmented control: a bordered black-06 pill with 8px padding (10px on desktop)
-// whose active segment is a filled black-12 rounded rectangle.
 function TabsList({ className, ...props }: React.ComponentProps<typeof TabsPrimitive.List>) {
   return (
     <TabsPrimitive.List
