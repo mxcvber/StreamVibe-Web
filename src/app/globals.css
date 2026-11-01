@@ -172,3 +172,7 @@
     @apply bg-background text-foreground;
   }
 }
+
+.faq-divider {
+  @apply [border-image:linear-gradient(90deg,transparent,var(--color-red-45)_16.67%,transparent)_1];
+}
