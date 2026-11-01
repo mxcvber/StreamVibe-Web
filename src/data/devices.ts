@@ -1,10 +1,10 @@
+import type { Device } from '@/types/devices'
 import { GamepadIcon } from '@/components/icons/gaming'
 import { LaptopIcon } from '@/components/icons/laptop'
 import { SmartTvIcon } from '@/components/icons/smart-tv'
 import { SmartphoneIcon } from '@/components/icons/smartphone'
 import { TabletIcon } from '@/components/icons/tablet'
 import { VrHeadsetIcon } from '@/components/icons/vr'
-import { Device } from '@/types/divece'
 
 const description =
   'StreamVibe is optimized for both Android and iOS smartphones. Download our app from the Google Play Store or the Apple App Store'

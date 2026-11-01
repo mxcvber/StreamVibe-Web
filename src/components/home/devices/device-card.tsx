@@ -1,5 +1,5 @@
+import type { Device } from '@/types/devices'
 import { Card, CardDescription, CardTitle } from '@/components/shared/ui/card'
-import { Device } from '@/types/divece'
 
 export function DeviceCard({ device }: { device: Device }) {
   const Icon = device.icon
