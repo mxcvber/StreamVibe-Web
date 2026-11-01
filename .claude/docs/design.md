@@ -61,6 +61,11 @@ asking.
 - The home hero's poster mosaic is 2×4 below `lg` and 3×6 below `2xl` (decided 2026-10-31),
   not the artboards' 4×9, so smaller screens download only the posters they show. Below `lg`
   its box is at least 672px wide, so phones crop the outer columns.
+- `FreeTrialBanner` is 500px tall at every width, with 80px of vertical padding, and its poster
+  mosaic is one centred box, 1596px wide (`min-w-desktop`) and as tall as the banner. The
+  artboards pad the banner 50, 80 and 100px vertically (mobile, laptop, desktop) instead, and
+  give the mosaic its own box on each: 1395×693, 1281×355 and 1646×395, the desktop one 25px
+  right of centre.
 
 **Content and labels**
 - The `newest` sort reads "Upcoming", with a hint, because the API returns unreleased movies,

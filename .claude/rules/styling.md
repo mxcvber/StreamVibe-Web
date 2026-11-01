@@ -59,11 +59,17 @@ gives the desktop artboard's 162px gutter at 1920 by itself. Don't add a wider g
 - Invisible `before:`/`after:` insets enlarge small tap targets without moving the layout.
 - Chips compact on narrow cards via `@container` on the card and `@max-[Npx]:` on the chip.
   The thresholds are measured content widths; re-measure if the chip content changes.
-- `PosterMosaic` keeps the artboard's box even where that is wider than the screen (the
-  free-trial banner), and an `overflow-hidden` parent crops it. Don't fit it to the viewport, or
-  the tiles squash. The home hero is the exception: below `2xl` its `visible` prop hides rows and
-  columns, so its box spans the viewport (at least 672px). Its gap is the `--mosaic-gap`
+- `PosterMosaic` keeps a fixed box even where that is wider than the screen, and an
+  `overflow-hidden` parent crops it. `ContactPosterBox` sizes it to the artboards' tiles, and
+  `FreeTrialBanner` to 1596px (`min-w-desktop`) at every width. Don't fit it to the viewport,
+  or the tiles squash. The home hero is the exception: below `2xl` its `visible` prop hides rows
+  and columns, so its box spans the viewport (at least 672px). Its gap is the `--mosaic-gap`
   variable, set once by the caller.
+- Fade art inside a rounded `overflow-hidden` box with a mask on the art (`mask-[…]`), not an
+  opaque gradient laid over it. Where the box's edge falls between device pixels (browser zoom,
+  125–150% display scaling), each layer is antialiased separately and the art leaks past the
+  overlay as a 1px line. `FreeTrialBanner` paints Figma's gradient as the backdrop's background
+  and masks the posters with its inverse alpha.
 - `.faq-divider` (`globals.css`) draws the FAQ's red gradient lines as a `border-image`,
   which paints only where a border width exists. So rows always carry it, and borders
   choose where a line shows: `AccordionItem`'s `not-last:border-b`, and

@@ -57,8 +57,12 @@ paths:
 - The hero mosaic's `sizes` is its tile width at each step: `161px` is four columns in the
   672px `min-w-2xl` box ((672 − 30) / 4), then `25vw`, `17vw` and `11vw` for 4, 6 and 9
   columns. Change it whenever the box, the gap or `visible` changes.
+- `FreeTrialBanner`'s `sizes` is `160px` at every width: one of nine columns in its fixed
+  1596px `min-w-desktop` box ((1596 − 8 × 20) / 9). The 500px height makes the tiles 2:3 like
+  the posters. A taller banner crops the posters' sides; `sizes` is then the tile height × 2/3.
 - `quality` must be one of `images.qualities` in `next.config.ts` (50, 75, 100); any other
   value is served at the closest one. `PosterMosaic` types its `quality` prop to that list.
+  `FreeTrialBanner` uses 50 by the author's choice; at 75 its posters weigh about a third more.
 
 ## Icons
 

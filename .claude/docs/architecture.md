@@ -138,9 +138,9 @@ Being reorganised. Settled so far:
 - The "Top 10 In" genre carousel sits with its only row in `src/components/movies/catalog/`
   (`TopGenresCarousel`, `TopGenresCard`). `genre-variants.ts` is gone: its values are literal
   classes in the two genre carousels, their cards and `TopGenresRowSkeleton`.
-- `src/components/home/` holds `Hero` and `CategoriesSection` at its root; the other home
-  sections are still in subfolders. `CategoriesSection` came from
-  `src/components/home/categories/`.
+- `src/components/home/` holds `Hero` and `CategoriesSection` at its root; the only other home
+  section, `DevicesSection`, is still in `devices/` with `DeviceCard`. `CategoriesSection` came
+  from `src/components/home/categories/`.
 - `PosterMosaic` is in `src/components/shared/`, `poster()` and `posterMosaic()` in
   `src/lib/poster-mosaic.ts`, and `PosterSrc` in `src/types/poster-mosaic.ts`. They came from
   `src/components/home/hero/` and `src/data/posters.ts`, where `heroPosterRows` is now
@@ -158,6 +158,8 @@ Being reorganised. Settled so far:
   `src/components/home/plans/`. `Plan`, `PlanId` and `BillingPeriod` are in
   `src/types/plans.ts`, and `formatPrice` is in `src/lib/format-price.ts`, both split out of
   `src/data/plans.ts`, which keeps `plans` and `billingPeriods`.
+- `FreeTrialBanner` is in `src/components/shared/`, moved from
+  `src/components/home/free-trial/`.
 
 Until this section is complete, map old paths to new ones with
 `git diff -M --name-status pre-refactor HEAD -- src`.
