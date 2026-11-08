@@ -1,6 +1,6 @@
-@import 'tailwindcss';
-@import 'tw-animate-css';
-@import 'shadcn/tailwind.css';
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
 @theme static {
   --color-*: initial;
@@ -175,4 +175,12 @@
 
 .faq-divider {
   @apply [border-image:linear-gradient(90deg,transparent,var(--color-red-45)_16.67%,transparent)_1];
+}
+
+.subscription-cell-header {
+  @apply p-6 text-left text-18 font-semibold 2xl:p-7.5 2xl:text-20;
+}
+
+.subscription-cell-body {
+  @apply border-t p-6 pt-5.75 text-left text-16 font-medium text-muted-foreground 2xl:p-7.5 2xl:pt-7.25 2xl:text-18;
 }

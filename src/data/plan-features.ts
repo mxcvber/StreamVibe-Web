@@ -2,26 +2,16 @@ import type { PlanId } from '@/types/plans'
 import { plans } from './plans'
 import { formatPrice } from '@/lib/format-price'
 
-export type PlanFeature = {
-  label: string
-  values: Record<PlanId, string>
-  /** Takes both columns of the phone layout's two-column card. */
-  wide?: boolean
-}
-
-// Read from `plans` so the table can't drift from the cards' prices.
 const monthlyPrices = Object.fromEntries(
   plans.map((plan) => [plan.id, `${formatPrice(plan.price.monthly)}/Month`]),
 ) as Record<PlanId, string>
 
-/**
- * The rows of the Subscription page's "Compare our plans" table, in its order.
- * Copy is from the design with its typos fixed ("Free Trail", "Two device",
- * "a widest") and, as in `plans.ts`, "movies and shows" cut to "movies",
- * since StreamVibe only streams movies. The mobile artboard shortens Family
- * Sharing to "5 family members."; each cell keeps one text here, which wraps
- * in the phone card instead.
- */
+type PlanFeature = {
+  label: string
+  values: Record<PlanId, string>
+  wide?: boolean
+}
+
 export const planFeatures: PlanFeature[] = [
   { label: 'Price', values: monthlyPrices },
   {
