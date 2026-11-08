@@ -34,7 +34,7 @@ Client components receive rendered output or plain data, never API access.
 | `/movies/genres/[slug]/top-10` | `MoviesHero`, `CatalogBox` > `TopTenMovies` | `getGenreTopTenMovies` → `/movies/:id/genre/top-10` | `genre-top-10` |
 | `/movies/[id]` | `MovieDetailHero` (awaits `params` inside Suspense); `generateMetadata` sets the title | `getMovie` → `/movies/:id` (404 → `null` → `notFound()`) | `movie-detail` |
 | `/support` | `ContactSection` (`ContactForm` → `sendSupportMessage`), `FaqSection`, `FreeTrialBanner` | none yet | — |
-| `/subscriptions` | `PlansSection`, `PlanComparisonSection` (`PlanComparisonTable` from `lg`, `PlanComparisonTabs` below), `FreeTrialBanner` | local only | — |
+| `/subscriptions` | `PlansSection`, `PlanComparisonSection` (`#features`, the footer's "Features" link; `PlanComparisonTable` from `lg`, `PlanComparisonTabs` below), `FreeTrialBanner` | local only | — |
 
 - A genre slug resolves through `findGenre` (the local `genres` table) to the TMDB genre id the
   API expects. The API doesn't return genre names.
@@ -160,6 +160,10 @@ Being reorganised. Settled so far:
   `src/data/plans.ts`, which keeps `plans` and `billingPeriods`.
 - `FreeTrialBanner` is in `src/components/shared/`, moved from
   `src/components/home/free-trial/`.
+- `PlanComparisonSection`, `PlanComparisonTable`, `PlanComparisonTabs` and `PlanFeatureList`
+  are at the root of `src/components/subscriptions/`, moved from its `comparison/` folder. The
+  table's `headCellClassName` and `bodyCellClassName` are now the `.subscription-cell-header`
+  and `.subscription-cell-body` classes in `globals.css`.
 
 Until this section is complete, map old paths to new ones with
 `git diff -M --name-status pre-refactor HEAD -- src`.

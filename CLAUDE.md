@@ -21,6 +21,7 @@ choice is expensive to reverse, surface the trade-off instead of just picking on
 - `npm run build` / `npm start`: production build / serve it
 - `npm run lint`: bare `eslint` (`next lint` no longer exists)
 - `npx tsc --noEmit`: type-check
+- `npx prettier --write <path>`: format a file as a save does (no npm script)
 
 ## Essentials
 

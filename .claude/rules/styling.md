@@ -75,3 +75,13 @@ gives the desktop artboard's 162px gutter at 1920 by itself. Don't add a wider g
   choose where a line shows: `AccordionItem`'s `not-last:border-b`, and
   `max-lg:border-b faq-divider` on each column but the last, which keeps a line between
   the columns where they stack below `lg`.
+- `.subscription-cell-header` and `.subscription-cell-body` (`globals.css`) hold
+  `PlanComparisonTable`'s cell styles. Like `.faq-divider`, they sit outside any `@layer`, and
+  unlayered CSS beats Tailwind's utilities (`@layer utilities`) whatever their specificity or
+  order. A utility beside them can add a property (`border-l`) but can't override one they
+  set, so change the class instead.
+- `PlanFeatureList` renders `planFeatures` in the table's order, and `grid-flow-row-dense`
+  lifts Free Trial into the slot beside Price that the full-width Content and Devices rows
+  leave empty. The phone card then matches the mobile artboard (Price | Free Trial, Content,
+  Devices, …) while screen readers keep the table's order. Don't reorder `planFeatures` for
+  the card.
