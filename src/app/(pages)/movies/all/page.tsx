@@ -2,10 +2,10 @@ import type { Metadata } from 'next'
 import { Suspense } from 'react'
 
 import { Container } from '@/components/shared/container'
-import { MovieBrowser } from '@/components/movies/browse/movie-browser'
-import { MovieBrowserFallback } from '@/components/movies/browse/movie-browser-fallback'
-import { CatalogBox } from '@/components/movies/catalog/catalog-box'
-import { MoviesHero } from '@/components/movies/hero/movies-hero'
+import { MovieBrowser } from '@/components/pages/movies/browse/movie-browser'
+import { MovieBrowserFallback } from '@/components/pages/movies/browse/movie-browser-fallback'
+import { CatalogBox } from '@/components/pages/movies/catalog/catalog-box'
+import { MoviesHero } from '@/components/pages/movies/hero/movies-hero'
 
 export const metadata: Metadata = {
   title: 'All Movies',

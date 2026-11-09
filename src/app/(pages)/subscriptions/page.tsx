@@ -1,7 +1,7 @@
 import type { Metadata } from "next"
 import { FreeTrialBanner } from "@/components/shared/free-trial-banner"
 import { PlansSection } from "@/components/shared/plans/plans-section"
-import { PlanComparisonSection } from "@/components/subscriptions/plan-comparison-section"
+import { PlanComparisonSection } from "@/components/pages/subscriptions/plan-comparison-section"
 
 export const metadata: Metadata = {
   title: "Subscriptions",

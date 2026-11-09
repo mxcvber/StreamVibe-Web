@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import { connection } from 'next/server'
 import { Suspense } from 'react'
 
-import { MovieDetailHero } from '@/components/movies/detail/movie-detail-hero'
-import { MovieDetailHeroSkeleton } from '@/components/movies/detail/movie-detail-hero-skeleton'
+import { MovieDetailHero } from '@/components/pages/movies/detail/movie-detail-hero'
+import { MovieDetailHeroSkeleton } from '@/components/pages/movies/detail/movie-detail-hero-skeleton'
 import { getMovie } from '@/lib/api/movies'
 import { parseMovieId } from '@/lib/movie-route'
 
