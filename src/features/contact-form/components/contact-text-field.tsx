@@ -2,7 +2,7 @@
 
 import { Controller } from 'react-hook-form'
 
-import type { ContactFormControl } from '@/components/support/contact/contact-form-control'
+import type { ContactFormControl } from '@/features/contact-form/types'
 import { Field, FieldError, FieldLabel } from '@/components/shared/ui/field'
 import { Input } from '@/components/shared/ui/input'
 import { Textarea } from '@/components/shared/ui/textarea'

@@ -2,7 +2,7 @@
 
 import { z } from 'zod'
 
-import { type SupportMessageResult, supportMessageSchema } from '@/lib/support-message'
+import { type SupportMessageResult, supportMessageSchema } from '@/features/contact-form/schemas'
 
 /**
  * Receives the support page's contact form. The form has already validated

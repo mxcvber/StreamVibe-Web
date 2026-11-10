@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 
-import { ContactSection } from '@/components/support/contact/contact-section'
+import { ContactSection } from '@/components/pages/support/contact-section'
 import { FaqSection } from '@/components/shared/faq/faq-section'
 import { FreeTrialBanner } from '@/components/shared/free-trial-banner'
 

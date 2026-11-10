@@ -1,4 +1,4 @@
-import type { Country } from '@/data/countries'
+import type { Country } from '@/features/contact-form/data'
 import { cn } from '@/lib/utils'
 
 /**

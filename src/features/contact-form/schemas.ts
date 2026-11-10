@@ -1,7 +1,7 @@
 import { isValidPhoneNumber } from 'libphonenumber-js'
 import { z } from 'zod'
 
-import { COUNTRY_CODES } from '@/data/countries'
+import { COUNTRY_CODES } from '@/features/contact-form/data'
 
 /**
  * The support page's contact form. One schema serves both sides: the form

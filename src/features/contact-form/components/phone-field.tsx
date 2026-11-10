@@ -3,12 +3,12 @@
 import { getCountryCallingCode } from 'libphonenumber-js'
 import { Controller } from 'react-hook-form'
 
-import type { ContactFormControl } from '@/components/support/contact/contact-form-control'
-import { CountryFlag } from '@/components/support/contact/country-flag'
+import type { ContactFormControl } from '@/features/contact-form/types'
+import { CountryFlag } from '@/features/contact-form/components/country-flag'
 import { Field, FieldError, FieldLabel } from '@/components/shared/ui/field'
 import { Input } from '@/components/shared/ui/input'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/shared/ui/select'
-import { countries, findCountry } from '@/data/countries'
+import { countries, findCountry } from '@/features/contact-form/data'
 
 const ID = 'contact-phone'
 

@@ -1,6 +1,6 @@
 import { Container } from '@/components/shared/container'
-import { ContactForm } from '@/components/support/contact/contact-form'
-import { ContactPosterBox } from '@/components/support/contact/contact-poster-box'
+import { ContactForm } from '@/features/contact-form/components/contact-form'
+import { ContactPosterBox } from '@/components/pages/support/contact-poster-box'
 
 const HEADING_ID = 'support-heading'
 
