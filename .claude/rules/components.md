@@ -1,6 +1,7 @@
 ---
 paths:
   - src/components/**
+  - src/features/**/components/**
 ---
 
 # Components
@@ -49,7 +50,8 @@ paths:
 
 ## Images
 
-- Above-the-fold images take `loading='eager'` (the home `Hero`); Next 16 deprecates `priority`.
+- Above-the-fold images take `loading='eager'` (the home `Hero`, `ContactPosterBox`); Next 16
+  deprecates `priority`.
 - An image hidden with `display: none` still downloads if it's eager, but not if it's lazy. So
   `PosterMosaic` loads every tile its `visible` prop hides at the base breakpoint lazily,
   whatever `loading` says, and the hero's `loading='eager'` reaches only the 2×4 tiles shown at
@@ -60,9 +62,13 @@ paths:
 - `FreeTrialBanner`'s `sizes` is `160px` at every width: one of nine columns in its fixed
   1596px `min-w-desktop` box ((1596 − 8 × 20) / 9). The 500px height makes the tiles 2:3 like
   the posters. A taller banner crops the posters' sides; `sizes` is then the tile height × 2/3.
+- `ContactPosterBox`'s `sizes` is its tile width at each step: four columns and three 20px gaps
+  in the mosaic's fixed width (300px, then 600 from `sm`, 340 from `lg`, 440 from `xl` and 600
+  from `2xl`), so 60, 135, 70, 95 and 135px. Change it when a width or the gap changes.
 - `quality` must be one of `images.qualities` in `next.config.ts` (50, 75, 100); any other
   value is served at the closest one. `PosterMosaic` types its `quality` prop to that list.
   `FreeTrialBanner` uses 50 by the author's choice; at 75 its posters weigh about a third more.
+  `ContactPosterBox` uses 100, also by the author's choice.
 
 ## Icons
 

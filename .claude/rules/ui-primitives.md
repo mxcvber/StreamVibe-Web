@@ -40,7 +40,15 @@ The Figma sizes are in the primitives; feature components only lay them out.
   show the error.
 - `Checkbox` has an enlarged invisible hit area. Its checked state isn't designed, so it fills
   with the brand red.
-- `Input` uses `text-ellipsis` for placeholders that don't fit. `Textarea` grows with
-  `field-sizing-content` and can't be resized.
+- `Input` uses `text-ellipsis` for placeholders that don't fit. `Textarea` has the design's
+  fixed height, scrolls long text and can't be resized.
 - `SelectTrigger` is boxed like `Input`, with the design's Grey/60 chevron.
 - `Carousel` is rewritten (`carousel.md`).
+- `Toaster` (`sonner.tsx`) passes `theme="dark"` instead of reading `next-themes`, which the
+  site doesn't use since it is dark-only. Without that, it follows the OS theme. Sonner injects
+  its CSS unlayered, so its rules beat utilities on the same element (`styling.md`). It sets the
+  system font on the toaster and 13px on the toast, so `toastOptions.classNames` puts
+  `font-sans` on the toast and `text-14` on the title and description, which Sonner doesn't
+  size. The registry's undefined `cn-toast` class is removed.
+- `Toaster` is mounted once in the root layout (`position="top-center"`, `richColors`).
+  `ContactForm` toasts the send outcome, and field errors stay inline (`forms.md`).

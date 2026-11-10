@@ -54,6 +54,11 @@ asking.
   between 1024 and 1440.
 - `ContactSection` splits its columns 429fr : 800fr (533 : 976 on desktop) rather than fixing
   the left one at 429px, which would leave the form about 385px wide at 1024.
+- `ContactPosterBox` isn't the artboards' box. Below `lg` it is a centred 5:6 frame, 344px tall
+  (600px from `sm`), and from `lg` it grows to fill the column beside the form. It centres a
+  4×4 mosaic of posters 01–16 at a fixed size per step, `sm:` and `xl:` included. The
+  artboards' box spans the column and shows the hero mosaic's first four columns at 97×122px
+  tiles (135×168 on desktop), as the `pre-refactor` version reproduced them.
 - `PlanCard` keeps 16px padding below 375px. Figma's 24px would overflow the buttons on 360px
   phones.
 - Must-watch shows 3 cards per page up to 1279px and 4 from 1280. The laptop artboard's 4
@@ -89,11 +94,14 @@ asking.
   and is off for reduced motion.
 - The top-10 rank badge on catalog cards copies `TopGenresCard`'s "Top 10 In" badge.
 - Error, empty, loading and success states stay quiet: grey inline messages, red borders with
-  a short message on fields, skeletons sized like the content. A checked checkbox uses the
-  brand red.
+  a short message on fields, skeletons sized like the content. The exception is the contact
+  form's send outcome: a Sonner toast at the top centre, in Sonner's dark rich colours. A
+  checked checkbox uses the brand red, and the terms checkbox starts checked, though the
+  artboards draw it unchecked.
 - The FAQ is two independent columns, so opening an item only reflows its own column.
-- The country picker offers 10 curated countries, defaulting to India, whose flag the artboards
-  show.
+- The country picker offers 10 curated countries, not all ~240: each flag is bundled per
+  import, and a full list would need a searchable combobox. It defaults to Canada, though the
+  artboards show India's flag, and India isn't offered.
 - Small controls get invisible, enlarged hit areas.
 
 **Approximations**

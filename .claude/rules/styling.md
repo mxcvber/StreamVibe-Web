@@ -20,10 +20,11 @@ mobile-first onto Tailwind's default breakpoints:
 | `1024–1535` | Laptop                                                      | `lg:`  |
 | `≥ 1536`    | Desktop                                                     | `2xl:` |
 
-Use `md:` only for tablet tweaks and `xl:` only where a component needs a fourth step (cards
-per carousel page). `Container` caps content at 1596px with an 80px gutter from `lg`, which
-gives the desktop artboard's 162px gutter at 1920 by itself. Don't add a wider gutter at
-`2xl`: cards would be smaller at 1536 than at 1440.
+Use `md:` only for tablet tweaks, and `xl:` and `sm:` (640) only where a component needs an
+extra step: cards per carousel page, `PlanCard`'s padding and the Support poster box.
+`Container` caps content at 1596px with an 80px gutter from `lg`, which gives the desktop
+artboard's 162px gutter at 1920 by itself. Don't add a wider gutter at `2xl`: cards would be
+smaller at 1536 than at 1440.
 
 ## Tokens
 
@@ -35,8 +36,8 @@ gives the desktop artboard's 162px gutter at 1920 by itself. Don't add a wider g
   (`PlanCard`'s price spans).
 - Keep `@theme static`: shadcn's semantic variables read the palette from plain CSS, and
   Tailwind would otherwise drop the palette variables no class uses.
-- Radii: `rounded-sm` 8px (buttons), `rounded-md` 10px (badges, tabs, inner images),
-  `rounded-lg` 12px (cards), `rounded-xl` 16px.
+- Radii: `rounded-xs` 2px (Tailwind's default; the flags), `rounded-sm` 8px (buttons),
+  `rounded-md` 10px (badges, tabs, inner images), `rounded-lg` 12px (cards), `rounded-xl` 16px.
 - A new token in a Tailwind class group (a text size, a gap) must be added to `cn`'s
   `classGroups`. Unregistered, `cn` drops `text-18` when a colour class follows, and a
   caller's `gap-5` can't override `gap-section-mobile`.
@@ -60,11 +61,11 @@ gives the desktop artboard's 162px gutter at 1920 by itself. Don't add a wider g
 - Chips compact on narrow cards via `@container` on the card and `@max-[Npx]:` on the chip.
   The thresholds are measured content widths; re-measure if the chip content changes.
 - `PosterMosaic` keeps a fixed box even where that is wider than the screen, and an
-  `overflow-hidden` parent crops it. `ContactPosterBox` sizes it to the artboards' tiles, and
-  `FreeTrialBanner` to 1596px (`min-w-desktop`) at every width. Don't fit it to the viewport,
-  or the tiles squash. The home hero is the exception: below `2xl` its `visible` prop hides rows
-  and columns, so its box spans the viewport (at least 672px). Its gap is the `--mosaic-gap`
-  variable, set once by the caller.
+  `overflow-hidden` parent crops it. `ContactPosterBox` gives its 4×4 mosaic a fixed box at
+  each step, centred in the frame (`design.md`), and `FreeTrialBanner` uses 1596px
+  (`min-w-desktop`) at every width. Don't fit it to the viewport, or the tiles squash. The home
+  hero is the exception: below `2xl` its `visible` prop hides rows and columns, so its box spans
+  the viewport (at least 672px). Its gap is the `--mosaic-gap` variable, set once by the caller.
 - Fade art inside a rounded `overflow-hidden` box with a mask on the art (`mask-[…]`), not an
   opaque gradient laid over it. Where the box's edge falls between device pixels (browser zoom,
   125–150% display scaling), each layer is antialiased separately and the art leaks past the

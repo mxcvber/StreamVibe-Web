@@ -3,6 +3,7 @@ paths:
   - src/lib/**
   - src/components/**
   - src/app/**
+  - src/features/**
 ---
 
 # Data fetching

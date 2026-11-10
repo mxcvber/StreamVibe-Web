@@ -38,8 +38,8 @@ Client components receive rendered output or plain data, never API access.
 
 - A genre slug resolves through `findGenre` (the local `genres` table) to the TMDB genre id the
   API expects. The API doesn't return genre names.
-- The root layout is `SiteHeader` (floating over the page), `<main>` and `SiteFooter`.
-  `MoviesLayout` only sets the title template.
+- The root layout is `SiteHeader` (floating over the page), `<main>`, `SiteFooter` and
+  Sonner's `Toaster`. `MoviesLayout` only sets the title template.
 
 ## Client boundary
 
@@ -47,8 +47,8 @@ Client components receive rendered output or plain data, never API access.
 - carousels: `Carousel`, `RowCarousel`, `HeroCarousel`, `CarouselProgress`, and the autoplay and
   reduced-motion hooks
 - `MovieGrid`, `CatalogToolbar`, `MainNav`, `MobileNav`
-- `ContactForm` and its fields
-- the Radix-based primitives
+- `ContactForm`, `FormContent` and the form's fields
+- the Radix-based primitives, and `Toaster`
 
 Every card is a server component.
 
@@ -120,8 +120,9 @@ Every card is a server component.
 
 Being reorganised. Settled so far:
 - Every page except home is in the route group `src/app/(pages)/`, which URLs don't include.
-  Home stays at `src/app/page.tsx` beside the root layout and `globals.css`. A route's Server
-  Actions sit beside it as `actions.ts`.
+  Home stays at `src/app/page.tsx` beside the root layout and `globals.css`. The browse grids'
+  Server Actions sit beside their routes as `actions.ts`; the contact form's is in its feature
+  folder.
 - Local data and the site config are in `src/data/` (`siteConfig` in `site-config.ts`).
   `src/config/` is gone.
 - A type that other modules import goes in `src/types/`, so far one file per module, named
@@ -135,12 +136,17 @@ Being reorganised. Settled so far:
   primitives in `ui/`, where `components.json` points the CLI. They came from
   `src/components/layout/`, `src/components/ui/`, `src/components/carousel/` and
   `src/components/genres/`. `CardWrapper` is the link and card the old `GenreCard` drew itself.
-- The "Top 10 In" genre carousel sits with its only row in `src/components/movies/catalog/`
+- Components that belong to one page are grouped by page in `src/components/pages/`: `home/`,
+  `movies/`, `subscriptions/` and `support/` (`ContactSection`, `ContactPosterBox`). Components
+  several pages use are in `shared/`, and the icons in `icons/`. The page folders were
+  `src/components/home/`, `movies/`, `subscriptions/` and `support/contact/`, whose form is now
+  in `src/features/contact-form/`.
+- The "Top 10 In" genre carousel sits with its only row in `src/components/pages/movies/catalog/`
   (`TopGenresCarousel`, `TopGenresCard`). `genre-variants.ts` is gone: its values are literal
   classes in the two genre carousels, their cards and `TopGenresRowSkeleton`.
-- `src/components/home/` holds `Hero` and `CategoriesSection` at its root; the only other home
-  section, `DevicesSection`, is still in `devices/` with `DeviceCard`. `CategoriesSection` came
-  from `src/components/home/categories/`.
+- `src/components/pages/home/` holds `Hero` and `CategoriesSection` at its root; the only
+  other home section, `DevicesSection`, is still in `devices/` with `DeviceCard`.
+  `CategoriesSection` came from `src/components/home/categories/`.
 - `PosterMosaic` is in `src/components/shared/`, `poster()` and `posterMosaic()` in
   `src/lib/poster-mosaic.ts`, and `PosterSrc` in `src/types/poster-mosaic.ts`. They came from
   `src/components/home/hero/` and `src/data/posters.ts`, where `heroPosterRows` is now
@@ -161,9 +167,20 @@ Being reorganised. Settled so far:
 - `FreeTrialBanner` is in `src/components/shared/`, moved from
   `src/components/home/free-trial/`.
 - `PlanComparisonSection`, `PlanComparisonTable`, `PlanComparisonTabs` and `PlanFeatureList`
-  are at the root of `src/components/subscriptions/`, moved from its `comparison/` folder. The
-  table's `headCellClassName` and `bodyCellClassName` are now the `.subscription-cell-header`
-  and `.subscription-cell-body` classes in `globals.css`.
+  are at the root of `src/components/pages/subscriptions/`, moved from
+  `src/components/subscriptions/comparison/`. The table's `headCellClassName` and
+  `bodyCellClassName` are now the `.subscription-cell-header` and `.subscription-cell-body`
+  classes in `globals.css`.
+- `src/features/contact-form/` holds the Support page's form, with its own Server Action,
+  schema, types and data rather than spreading them over `src/app/`, `src/lib/`, `src/types/`
+  and `src/data/`: `actions.ts` (`sendSupportMessage`), `schemas.ts` (`supportMessageSchema`
+  and its types), `types.ts` (`ContactFormControl`, `Country`), `data.ts` (`COUNTRY_CODES`,
+  `DEFAULT_COUNTRY`, `countries`) and `components/`. `ContactForm` holds the form state and
+  renders `FormContent`, its markup. `PhoneSelect`, split out of `PhoneField`, is the country
+  picker and holds `findCountry`. It came from `src/components/support/contact/`,
+  `src/app/support/actions.ts`, `src/lib/support-message.ts` and `src/data/countries.ts`.
 
 Until this section is complete, map old paths to new ones with
-`git diff -M --name-status pre-refactor HEAD -- src`.
+`git diff -M --name-status pre-refactor HEAD -- src`. It misses files that changed as they
+moved (most of the Support page's): for those, use the old paths above, or find a symbol's old
+file with `git grep -l <symbol> pre-refactor -- src`.

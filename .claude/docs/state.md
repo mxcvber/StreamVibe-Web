@@ -10,7 +10,8 @@ The tag `pre-refactor` (= `bb937b5`) keeps the commented code. Commit moves and 
 separately from content edits, so git keeps detecting renames.
 
 When it's done, sync the docs:
-1. Map old paths to new with `git diff -M --name-status pre-refactor HEAD -- src`.
+1. Map old paths to new with `git diff -M --name-status pre-refactor HEAD -- src`, plus the old
+   paths in "Where things live" for files that changed as they moved.
 2. Re-scope each rule's `paths:` and check every glob still matches
    (`git ls-files ':(glob)<glob>'`). Keep `(…)` and `[…]` out of globs
    (`src/app/**/movies/all/**`, not `src/app/(pages)/movies/all/**`). Some glob libraries read
@@ -71,3 +72,5 @@ movie endpoints so far.
   answer becomes part of the button's accessible name. Nothing logs these, but an HTML
   validator reports both. `pre-refactor` kept one `AccordionContent` below the trigger,
   indented with padding.
+- `COUNTRY_CODES`, the schema's enum, still lists `IN`, though `countries` no longer offers
+  India, so `sendSupportMessage` accepts a country the picker can't show.
