@@ -1,31 +1,28 @@
-'use client'
+"use client"
 
-import { Controller } from 'react-hook-form'
-
-import type { ContactFormControl } from '@/features/contact-form/types'
-import { Field, FieldError, FieldLabel } from '@/components/shared/ui/field'
-import { Input } from '@/components/shared/ui/input'
-import { Textarea } from '@/components/shared/ui/textarea'
+import { Controller } from "react-hook-form"
+import { Field, FieldError, FieldLabel } from "@/components/shared/ui/field"
+import { Input } from "@/components/shared/ui/input"
+import { Textarea } from "@/components/shared/ui/textarea"
+import { ContactFormControl } from "@/features/contact-form/types"
 
 type ContactTextFieldProps = {
   control: ContactFormControl
-  name: 'firstName' | 'lastName' | 'email' | 'message'
+  name: "firstName" | "lastName" | "email" | "message"
   label: string
   placeholder: string
-  type?: 'text' | 'email'
+  type?: "text" | "email"
   autoComplete?: string
-  /** Render a textarea (the message box) instead of a one-line input. */
   multiline?: boolean
   className?: string
 }
 
-/** A labelled text field of the contact form, with its validation message. */
 export function ContactTextField({
   control,
   name,
   label,
   placeholder,
-  type = 'text',
+  type = "text",
   autoComplete,
   multiline = false,
   className,
@@ -51,6 +48,7 @@ export function ContactTextField({
               aria-invalid={fieldState.invalid}
             />
           )}
+
           <FieldError errors={[fieldState.error]} />
         </Field>
       )}
