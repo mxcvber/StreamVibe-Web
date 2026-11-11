@@ -21,8 +21,6 @@ paths:
 - Components are server components unless they need state, effects or browser APIs. Shared
   pieces that a client component renders (`CatalogMovieCard` and `MovieCardLink` inside
   `MovieGrid`) have no `'use client'` and no state, so server rows use them too.
-- A JSX element passed as a prop from a server component into a client one (`RowCarousel`'s
-  `heading`) needs a `key`, or React warns. It looks redundant; keep it.
 - Function props are fine on a server component that calls them itself (`MovieRow`'s `load`,
   `toMovies` and `renderCard`). Never pass them on to a client component: only rendered
   output crosses the boundary.

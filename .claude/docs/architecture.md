@@ -28,7 +28,7 @@ Client components receive rendered output or plain data, never API access.
 | Route | Composition | Data → endpoint | Cache tag |
 | --- | --- | --- | --- |
 | `/` | `Hero`, `CategoriesSection`, `DevicesSection`, `FaqSection`, `PlansSection`, `FreeTrialBanner` | local only | — |
-| `/movies` | `MoviesHero`, then `MoviesCatalog` in a `CatalogBox`: `GenresRow` (local), `TopGenresRow`, `TrendingRow`, `NewReleasesRow`, `MustWatchRow` | `getTopInGenres` → `/carousel/top-in-genres`, `getPopularMovies` → `/carousel/popular`, `getNewReleases` → `/carousel/new-releases`, `getMustWatchMovies` → `/carousel/must-watch` | `top-in-genres`, `popular-movies`, `new-releases`, `must-watch` |
+| `/movies` | `MoviesHero`, then `MainCatalog` in a `CatalogBox`: `GenresRow` (local), `TopGenresRow`, `TrendingRow`, `NewReleasesRow`, `MustWatchRow` | `getTopInGenres` → `/carousel/top-in-genres`, `getPopularMovies` → `/carousel/popular`, `getNewReleases` → `/carousel/new-releases`, `getMustWatchMovies` → `/carousel/must-watch` | `top-in-genres`, `popular-movies`, `new-releases`, `must-watch` |
 | `/movies/all` | `MoviesHero`, `CatalogBox` > `MovieBrowser` (reads `searchParams`): `CatalogToolbar` over `AllMovies` → `MovieGrid` | `getMovies` → `/movies?sort&rating&cursor`, paged by `loadMoreMovies` | `movies` |
 | `/movies/genres/[slug]` | `MoviesHero`, `CatalogBox` > `GenreMovies` → `MovieGrid` | `getGenreMovies` → `/movies/:id/genre?cursor`, paged by `loadMoreGenreMovies` | `genre-movies` |
 | `/movies/genres/[slug]/top-10` | `MoviesHero`, `CatalogBox` > `TopTenMovies` | `getGenreTopTenMovies` → `/movies/:id/genre/top-10` | `genre-top-10` |
@@ -144,6 +144,12 @@ Being reorganised. Settled so far:
 - The "Top 10 In" genre carousel sits with its only row in `src/components/pages/movies/catalog/`
   (`TopGenresCarousel`, `TopGenresCard`). `genre-variants.ts` is gone: its values are literal
   classes in the two genre carousels, their cards and `TopGenresRowSkeleton`.
+- `MainCatalog` (in `movies-catalog.tsx`; it was `MoviesCatalog`), `GenresRow` and
+  `CatalogRowHeading` are in `src/components/pages/movies/main-catalog/`, and `CatalogBox`,
+  which the browse pages also use, is in `src/components/shared/`. All four came from
+  `src/components/movies/catalog/`, and `CatalogBox`'s `pillClassName` is now the
+  `.catalog-box-label` class in `globals.css`. The API rows, their skeletons, `MovieRow` and
+  `CatalogRowMessage` are still in `catalog/`.
 - `src/components/pages/home/` holds `Hero` and `CategoriesSection` at its root; the only
   other home section, `DevicesSection`, is still in `devices/` with `DeviceCard`.
   `CategoriesSection` came from `src/components/home/categories/`.

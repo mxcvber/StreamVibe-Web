@@ -54,8 +54,8 @@ movie endpoints so far.
 
 ## Known issues
 
-- The footer links `/movies#genres`, `#trending`, `#new-releases` and `#must-watch` have no
-  matching ids on the Movies page.
+- The footer links `/movies#trending`, `#new-releases` and `#must-watch` have no matching ids
+  on the Movies page. `/movies#genres` matches `GenresRow`'s heading id.
 - `/terms`, `/privacy` and `/cookies` (linked from the footer) return 404.
 - The plan cards and the free-trial banner link to `/subscriptions?plan=…&trial=true`, and
   the page ignores both parameters.

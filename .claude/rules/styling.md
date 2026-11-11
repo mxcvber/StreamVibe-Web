@@ -81,11 +81,12 @@ smaller at 1536 than at 1440.
   choose where a line shows: `AccordionItem`'s `not-last:border-b`, and
   `max-lg:border-b faq-divider` on each column but the last, which keeps a line between
   the columns where they stack below `lg`.
-- `.subscription-cell-header` and `.subscription-cell-body` (`globals.css`) hold
-  `PlanComparisonTable`'s cell styles. Like `.faq-divider`, they sit outside any `@layer`, and
-  unlayered CSS beats Tailwind's utilities (`@layer utilities`) whatever their specificity or
-  order. A utility beside them can add a property (`border-l`) but can't override one they
-  set, so change the class instead.
+- `globals.css` keeps its reusable classes in `@layer components`: `.faq-divider`,
+  `.subscription-cell-header` and `.subscription-cell-body` (`PlanComparisonTable`'s cells),
+  and `.catalog-box-label` (`CatalogBox`'s pill, as a link or plain text). Tailwind orders that
+  layer before `@layer utilities`, so a utility beside a class overrides what the class sets,
+  as the pill link's `hover:bg-red-50` does. Put new classes there too: unlayered CSS beats
+  every utility whatever its specificity or order (Sonner's does, `ui-primitives.md`).
 - `PlanFeatureList` renders `planFeatures` in the table's order, and `grid-flow-row-dense`
   lifts Free Trial into the slot beside Price that the full-width Content and Devices rows
   leave empty. The phone card then matches the mobile artboard (Price | Free Trial, Content,
