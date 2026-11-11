@@ -1,17 +1,13 @@
-import type { Metadata } from 'next'
-
-import { siteConfig } from '@/data/site-config'
+import type { Metadata } from "next"
+import { siteConfig } from "@/data/site-config"
 
 export const metadata: Metadata = {
-  // The template is repeated rather than inherited: a layout passes its own
-  // `title.template` down, so a plain string here would drop the root
-  // layout's and leave child pages ("All Movies") without the site name.
   title: {
-    default: 'Movies',
+    default: "Movies",
     template: `%s | ${siteConfig.name}`,
   },
 }
 
-export default function MoviesLayout({ children }: LayoutProps<'/movies'>) {
+export default function MoviesLayout({ children }: LayoutProps<"/movies">) {
   return children
 }
