@@ -5,7 +5,7 @@ import { getTopInGenres } from "@/lib/api/carousel"
 import { toGenreCards } from "@/lib/top-genres"
 import { TopGenresCarousel } from "./top-genres-carousel"
 import { CatalogRowMessage } from "./catalog-row-message"
-import { CatalogRowHeading } from "./catalog-row-heading"
+import { CatalogRowHeading } from "../main-catalog/catalog-row-heading"
 
 const HEADING_ID = "movies-top-genres-heading"
 const TITLE = "Popular Top 10 In Genres"

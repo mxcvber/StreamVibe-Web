@@ -1,6 +1,6 @@
 import { Card } from "@/components/shared/ui/card"
 import { Skeleton } from "@/components/shared/ui/skeleton"
-import { CatalogRowHeading } from "./catalog-row-heading"
+import { CatalogRowHeading } from "../main-catalog/catalog-row-heading"
 
 /** Enough placeholders to fill a page at every width (4 from `lg`). */
 const PLACEHOLDERS = 4

@@ -1,5 +1,5 @@
-import { MoviesCatalog } from "@/components/pages/movies/catalog/movies-catalog"
 import { MoviesHero } from "@/components/pages/movies/hero/movies-hero"
+import { MainCatalog } from "@/components/pages/movies/main-catalog/movies-catalog"
 import { Fragment } from "react"
 
 export default function MoviesPage() {
@@ -8,7 +8,7 @@ export default function MoviesPage() {
       <h1 className="sr-only">Movies</h1>
 
       <MoviesHero />
-      <MoviesCatalog />
+      <MainCatalog />
     </Fragment>
   )
 }

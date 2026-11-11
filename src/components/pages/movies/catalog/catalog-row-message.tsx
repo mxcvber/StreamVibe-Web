@@ -1,5 +1,5 @@
 import type { ReactNode } from "react"
-import { CatalogRowHeading } from "./catalog-row-heading"
+import { CatalogRowHeading } from "../main-catalog/catalog-row-heading"
 
 type CatalogRowMessageProps = {
   title: string

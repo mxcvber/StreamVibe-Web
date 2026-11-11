@@ -10,7 +10,7 @@ import {
   movieSlideClassName,
   movieTrackClassName,
 } from "../movie-variants"
-import { CatalogRowHeading } from "./catalog-row-heading"
+import { CatalogRowHeading } from "../main-catalog/catalog-row-heading"
 
 /** Enough placeholders to fill a page at every width (5 from `lg`). */
 const PLACEHOLDERS = 5

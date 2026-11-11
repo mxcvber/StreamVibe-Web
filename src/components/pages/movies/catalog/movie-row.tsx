@@ -4,7 +4,7 @@ import type { ReactNode } from "react"
 import { RowCarousel } from "@/components/shared/row-carousel/row-carousel"
 
 import { CarouselItem } from "@/components/shared/ui/carousel"
-import { CatalogRowHeading } from "./catalog-row-heading"
+import { CatalogRowHeading } from "../main-catalog/catalog-row-heading"
 import { CatalogRowMessage } from "./catalog-row-message"
 import {
   type MovieCardVariant,

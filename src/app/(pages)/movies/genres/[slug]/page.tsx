@@ -1,16 +1,16 @@
-import type { Metadata } from 'next'
-import { notFound } from 'next/navigation'
-import { Suspense } from 'react'
+import type { Metadata } from "next"
+import { notFound } from "next/navigation"
+import { Suspense } from "react"
 
-import { Container } from '@/components/shared/container'
-import { GenreMovies } from '@/components/pages/movies/browse/genre-movies'
-import { MovieGridSkeleton } from '@/components/pages/movies/browse/movie-grid-skeleton'
-import { CatalogBox } from '@/components/pages/movies/catalog/catalog-box'
-import { MoviesHero } from '@/components/pages/movies/hero/movies-hero'
-import { genres } from '@/data/genres'
-import { findGenre } from '@/lib/find-genre'
+import { Container } from "@/components/shared/container"
+import { GenreMovies } from "@/components/pages/movies/browse/genre-movies"
+import { MovieGridSkeleton } from "@/components/pages/movies/browse/movie-grid-skeleton"
+import { CatalogBox } from "@/components/shared/catalog-box"
+import { MoviesHero } from "@/components/pages/movies/hero/movies-hero"
+import { genres } from "@/data/genres"
+import { findGenre } from "@/lib/find-genre"
 
-const GRID_HEADING_ID = 'genre-movies-heading'
+const GRID_HEADING_ID = "genre-movies-heading"
 
 /**
  * All 19 genres are known up front, so every genre page's shell is
@@ -22,7 +22,7 @@ export function generateStaticParams() {
   return genres.map(({ slug }) => ({ slug }))
 }
 
-export async function generateMetadata({ params }: PageProps<'/movies/genres/[slug]'>): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps<"/movies/genres/[slug]">): Promise<Metadata> {
   const genre = findGenre((await params).slug)
   return genre ? { title: `${genre.name} Movies` } : {}
 }
@@ -35,16 +35,16 @@ export async function generateMetadata({ params }: PageProps<'/movies/genres/[sl
  * The slug resolves through the local genre table (`findGenre`), which also
  * gives the API's genre id; the API doesn't return the name.
  */
-export default async function GenrePage({ params }: PageProps<'/movies/genres/[slug]'>) {
+export default async function GenrePage({ params }: PageProps<"/movies/genres/[slug]">) {
   const genre = findGenre((await params).slug)
   if (!genre) notFound()
 
   return (
     <>
-      <h1 className='sr-only'>{genre.name} movies</h1>
+      <h1 className="sr-only">{genre.name} movies</h1>
       <MoviesHero />
-      <section aria-labelledby={GRID_HEADING_ID} className='mt-20 lg:mt-25 2xl:mt-45'>
-        <h2 id={GRID_HEADING_ID} className='sr-only'>
+      <section aria-labelledby={GRID_HEADING_ID} className="mt-20 lg:mt-25 2xl:mt-45">
+        <h2 id={GRID_HEADING_ID} className="sr-only">
           Browse {genre.name} movies
         </h2>
         <Container>
