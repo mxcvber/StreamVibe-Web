@@ -65,6 +65,9 @@ paths:
 - `ContactPosterBox`'s `sizes` is its tile width at each step: four columns and three 20px gaps
   in the mosaic's fixed width (300px, then 600 from `sm`, 340 from `lg`, 440 from `xl` and 600
   from `2xl`), so 60, 135, 70, 95 and 135px. Change it when a width or the gap changes.
+- `HeroSlide`'s `sizes` is the page container's width: `100vw` minus `Container`'s 16, 40 or
+  80px gutter on each side, and 1596px (`max-w-desktop`) from 1756px. Change it when the
+  gutters or the cap change.
 - `quality` must be one of `images.qualities` in `next.config.ts` (50, 75, 100); any other
   value is served at the closest one. `PosterMosaic` types its `quality` prop to that list.
   `FreeTrialBanner` uses 50 by the author's choice; at 75 its posters weigh about a third more.

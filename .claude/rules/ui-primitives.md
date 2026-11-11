@@ -26,8 +26,8 @@ The Figma sizes are in the primitives; feature components only lay them out.
 - `Button` sizes `default`, `sm`, `icon`, `icon-sm`, `lg` and `icon-lg` follow the Figma
   buttons, with desktop under `2xl:`. Paddings are the Figma value minus the 1px border. `lg`
   takes its height from its icon, so without one it renders 49px (55px on desktop).
-- `surface` (Black/06 with a Black/15 hairline) is for buttons over images: the hero's icon
-  buttons and the carousel arrows.
+- `surface` (Black/06 with a Black/15 hairline) is for buttons over images: the Movies hero's
+  watchlist button, the movie page's bookmark and the carousel arrows.
 - `Input`, `Textarea`, `Select`, `Checkbox`, `Label` and `Field` carry the form sizes.
 
 ## Deliberate differences from shadcn

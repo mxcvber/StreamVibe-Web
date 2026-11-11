@@ -21,7 +21,8 @@ mobile-first onto Tailwind's default breakpoints:
 | `≥ 1536`    | Desktop                                                     | `2xl:` |
 
 Use `md:` only for tablet tweaks, and `xl:` and `sm:` (640) only where a component needs an
-extra step: cards per carousel page, `PlanCard`'s padding and the Support poster box.
+extra step: cards per carousel page, `PlanCard`'s padding, the Support poster box and the
+Movies hero's description.
 `Container` caps content at 1596px with an 80px gutter from `lg`, which gives the desktop
 artboard's 162px gutter at 1920 by itself. Don't add a wider gutter at `2xl`: cards would be
 smaller at 1536 than at 1440.
@@ -56,6 +57,10 @@ smaller at 1536 than at 1440.
 ## Techniques in use
 
 - `hidden lg:line-clamp-2` reveals text from `lg`, because `line-clamp` also sets `display`.
+- The Movies hero's prev · dots · next row overlays the carousel frame, so it stays put while
+  the slides scroll. `HeroSlide`'s bottom padding reserves its band: the row's offset, the
+  `icon-lg` buttons and the inset above them, 16 + 48 + 40 = 104px (`lg:pb-26`) and
+  20 + 56 + 50 = 126px on desktop (`2xl:pb-31.5`). Change them together.
 - `leading-none` plus padding reproduces Figma's cap-height-trimmed badges in every browser.
 - Invisible `before:`/`after:` insets enlarge small tap targets without moving the layout.
 - Chips compact on narrow cards via `@container` on the card and `@max-[Npx]:` on the chip.

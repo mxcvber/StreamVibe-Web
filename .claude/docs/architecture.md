@@ -156,6 +156,9 @@ Being reorganised. Settled so far:
   `genres` and `Genre`.
 - `Device` is in `src/types/devices.ts`, split out of `src/data/devices.ts`, which keeps
   `devices`.
+- `featuredMovies` is in `src/data/movies-hero.ts` and its type, `HeroMovie`, in
+  `src/types/movies-hero.ts`. Both came from `src/data/movies.ts`, where the type was `Movie`
+  and had a `slug`.
 - `FaqSection` and `FaqAccordion` are in `src/components/shared/faq/`, moved from
   `src/components/home/faq/`. `FaqItem` is in `src/types/faq.ts`, split out of
   `src/data/faq.ts`, which keeps `faq`. `FAQ_DIVIDER` is now the `.faq-divider` class in

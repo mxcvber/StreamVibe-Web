@@ -30,14 +30,14 @@ When it's done, sync the docs:
 ## Placeholders waiting on the backend
 
 - `featuredMovies` (the Movies hero) uses local backdrops and copy. Its Play Now links to
-  `/movies/<slug>`, which 404s because the movie route takes TMDB ids. It needs a featured
-  endpoint.
+  `/movies/<id>`, but the ids are placeholders (1–5), not the films' TMDB ids, so the links
+  don't reach these films. It needs a featured endpoint.
 - `trendingViews` holds fixed view counts until plays are tracked.
 - The genre cards on the home page and in "Our Genres" use local poster art. "Popular Top 10 In
   Genres" already uses the API.
 - `sendSupportMessage` validates the message and then discards it, because the API has no
   support endpoint yet.
-- Inert buttons: Play Now and the bookmark on the movie page; watchlist, like and sound on the
+- Inert buttons: Play Now and the bookmark on the movie page; the watchlist button on the
   Movies hero; search and notifications in the header.
 - Yearly plan prices (ten months' price) and FAQ answers 2–8.
 
@@ -54,7 +54,7 @@ movie endpoints so far.
 
 ## Known issues
 
-- The footer links `/movies#genres`, `#trending`, `#new-releases` and `#popular` have no
+- The footer links `/movies#genres`, `#trending`, `#new-releases` and `#must-watch` have no
   matching ids on the Movies page.
 - `/terms`, `/privacy` and `/cookies` (linked from the footer) return 404.
 - The plan cards and the free-trial banner link to `/subscriptions?plan=…&trial=true`, and

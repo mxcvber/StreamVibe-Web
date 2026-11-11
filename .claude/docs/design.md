@@ -45,8 +45,8 @@ asking.
 
 **Layout**
 - Tablets (768–1023) have no artboard. They keep the mobile layout with 2-column grids, 40px
-  gutters, side-by-side heading rows and a 3-column footer. The Movies hero's actions form a
-  row from `md`.
+  gutters, side-by-side heading rows and a 3-column footer.
+- The Movies hero shows its two-line description from `sm` (640). The mobile artboard drops it.
 - The phone menu is a right-side `Sheet` drawer, because Figma has no open state. Its hamburger
   is lucide's `Menu` until Figma node 291:4952 is exported.
 - The Movies hero, the movie page and the plan comparison heading take their copy width from
@@ -79,8 +79,12 @@ asking.
   On narrow cards the "Released at" lead-in is screen-reader-only.
 - Trending and must-watch chips compact on narrow cards: no icons, and "1h 39m".
 - Ratings round to half stars, because Figma draws only full, half and empty stars.
-- The movie page keeps only Play Now and the bookmark (no add, like or sound buttons), on one
-  row on phones.
+- The movie page keeps only Play Now and the bookmark (no add, like or sound buttons), and the
+  Movies hero only Play Now and the watchlist button (no like or sound). Both stay on one row
+  on phones, where the mobile artboards put a full-width Play Now over a row of three icon
+  buttons.
+- The footer's Movies column ends with "Must - Watch" (`/movies#must-watch`), the page's
+  must-watch row, where Figma has "Popular".
 - Movie page fields the database doesn't hold map onto real columns: IMDb rating → TMDB
   rating, spoken languages → country of origin, and "From India" is dropped. Check each new
   field against `../api/prisma/schema.prisma`, and ask before extending the schema.
