@@ -5,7 +5,6 @@ import { RowCarousel } from "@/components/shared/row-carousel/row-carousel"
 
 import { CarouselItem } from "@/components/shared/ui/carousel"
 import { CatalogRowHeading } from "../main-catalog/catalog-row-heading"
-import { CatalogRowMessage } from "./catalog-row-message"
 import {
   type MovieCardVariant,
   movieCarouselOptions,
@@ -13,6 +12,7 @@ import {
   movieSlideClassName,
   movieTrackClassName,
 } from "../movie-variants"
+import { CatalogRowMessage } from "../main-catalog/catalog-row-message"
 
 type MovieRowProps<TItem, TMovie extends { id: number }> = {
   variant: MovieCardVariant

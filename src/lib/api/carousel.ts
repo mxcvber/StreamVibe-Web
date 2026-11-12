@@ -1,8 +1,8 @@
-import 'server-only'
+import "server-only"
 
-import { cacheLife, cacheTag } from 'next/cache'
+import { cacheLife, cacheTag } from "next/cache"
 
-import { api } from '@/lib/api/client'
+import { api } from "@/lib/api/client"
 import type {
   GenreTopMovies,
   MustWatchMovie,
@@ -12,21 +12,14 @@ import type {
   PopularMovie,
   PopularMoviesResponse,
   TopInGenresResponse,
-} from '@/lib/api/types'
+} from "@/lib/api/types"
 
-/**
- * Every genre with the posters of its four most popular movies. Popularity
- * only moves when the TMDB import runs, so an hour-long cache is plenty;
- * `revalidateTag('top-in-genres', 'max')` refreshes it on demand.
- *
- * Returns `data`, never the Axios response: cached values are serialized.
- */
 export async function getTopInGenres(): Promise<GenreTopMovies[]> {
-  'use cache'
-  cacheLife('hours')
-  cacheTag('top-in-genres')
+  "use cache"
+  cacheLife("hours")
+  cacheTag("top-in-genres")
 
-  const { data } = await api.get<TopInGenresResponse>('/carousel/top-in-genres')
+  const { data } = await api.get<TopInGenresResponse>("/carousel/top-in-genres")
   return data.items
 }
 
@@ -35,11 +28,11 @@ export async function getTopInGenres(): Promise<GenreTopMovies[]> {
  * like `getTopInGenres`; `revalidateTag('popular-movies', 'max')` refreshes it.
  */
 export async function getPopularMovies(): Promise<PopularMovie[]> {
-  'use cache'
-  cacheLife('hours')
-  cacheTag('popular-movies')
+  "use cache"
+  cacheLife("hours")
+  cacheTag("popular-movies")
 
-  const { data } = await api.get<PopularMoviesResponse>('/carousel/popular')
+  const { data } = await api.get<PopularMoviesResponse>("/carousel/popular")
   return data.items
 }
 
@@ -50,11 +43,11 @@ export async function getPopularMovies(): Promise<PopularMovie[]> {
  * `revalidateTag('new-releases', 'max')` refreshes it sooner.
  */
 export async function getNewReleases(): Promise<NewReleaseMovie[]> {
-  'use cache'
-  cacheLife('hours')
-  cacheTag('new-releases')
+  "use cache"
+  cacheLife("hours")
+  cacheTag("new-releases")
 
-  const { data } = await api.get<NewReleasesResponse>('/carousel/new-releases')
+  const { data } = await api.get<NewReleasesResponse>("/carousel/new-releases")
   return data.items
 }
 
@@ -64,10 +57,10 @@ export async function getNewReleases(): Promise<NewReleaseMovie[]> {
  * `getPopularMovies`; `revalidateTag('must-watch', 'max')` refreshes it.
  */
 export async function getMustWatchMovies(): Promise<MustWatchMovie[]> {
-  'use cache'
-  cacheLife('hours')
-  cacheTag('must-watch')
+  "use cache"
+  cacheLife("hours")
+  cacheTag("must-watch")
 
-  const { data } = await api.get<MustWatchResponse>('/carousel/must-watch')
+  const { data } = await api.get<MustWatchResponse>("/carousel/must-watch")
   return data.items
 }

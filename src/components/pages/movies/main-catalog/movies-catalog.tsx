@@ -1,15 +1,15 @@
 import { Suspense } from "react"
 import { Container } from "@/components/shared/container"
 import { CatalogBox } from "../../../shared/catalog-box"
-import { TopGenresRowSkeleton } from "../catalog/top-genres-row-skeleton"
 import { TrendingRowSkeleton } from "../catalog/trending-row-skeleton"
-import { TopGenresRow } from "../catalog/top-genres-row"
 import { TrendingRow } from "../catalog/trending-row"
 import { NewReleasesRowSkeleton } from "../catalog/new-releases-row-skeleton"
 import { NewReleasesRow } from "../catalog/new-releases-row"
 import { MustWatchRowSkeleton } from "../catalog/must-watch-row-skeleton"
 import { MustWatchRow } from "../catalog/must-watch-row"
 import { GenresRow } from "./genres-row"
+import { TopGenresRowSkeleton } from "./top-genres-catalog/top-genres-row-skeleton"
+import { TopGenresRow } from "./top-genres-catalog/top-genres-row"
 
 export function MainCatalog() {
   return (
