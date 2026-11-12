@@ -29,11 +29,11 @@ One module per API area. Each exported function:
 
 ```ts
 export async function getTopInGenres(): Promise<GenreTopMovies[]> {
-  'use cache'
-  cacheLife('hours')
-  cacheTag('top-in-genres')
+  "use cache"
+  cacheLife("hours")
+  cacheTag("top-in-genres")
 
-  const { data } = await api.get<TopInGenresResponse>('/carousel/top-in-genres')
+  const { data } = await api.get<TopInGenresResponse>("/carousel/top-in-genres")
   return data.items
 }
 ```
@@ -51,6 +51,8 @@ export async function getTopInGenres(): Promise<GenreTopMovies[]> {
 
 ## Components that read API data
 
+Reference implementation: `TopGenresRow`.
+
 - The async server component calls `await connection()` before reading. Then `next build`
   never calls the API, and a failed request is never baked into the prerendered page.
 - Render it inside `<Suspense>` with a skeleton sized like the loaded content. Pass `params`
@@ -60,7 +62,7 @@ export async function getTopInGenres(): Promise<GenreTopMovies[]> {
   `try` too, so a malformed item shows the message instead of failing the page.
 - `notFound()` throws: call it outside the `try`, or the `catch` swallows it.
 - Rows of movie cards go through `MovieRow`: add the variant to `movie-variants.ts` and pass
-  `load`, `toMovies` and `renderCard`. Reference implementation: `TopGenresRow`.
+  `load`, `toMovies` and `renderCard`.
 - Parse URL input before it reaches the API. `parseMovieFilters` falls back to the defaults
   (the API would answer 400), and `parseMovieId` rejects anything but a positive Postgres
   `integer` (the API would answer 500).

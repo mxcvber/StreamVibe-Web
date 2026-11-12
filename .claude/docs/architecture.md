@@ -141,15 +141,19 @@ Being reorganised. Settled so far:
   several pages use are in `shared/`, and the icons in `icons/`. The page folders were
   `src/components/home/`, `movies/`, `subscriptions/` and `support/contact/`, whose form is now
   in `src/features/contact-form/`.
-- The "Top 10 In" genre carousel sits with its only row in `src/components/pages/movies/catalog/`
-  (`TopGenresCarousel`, `TopGenresCard`). `genre-variants.ts` is gone: its values are literal
-  classes in the two genre carousels, their cards and `TopGenresRowSkeleton`.
-- `MainCatalog` (in `movies-catalog.tsx`; it was `MoviesCatalog`), `GenresRow` and
-  `CatalogRowHeading` are in `src/components/pages/movies/main-catalog/`, and `CatalogBox`,
-  which the browse pages also use, is in `src/components/shared/`. All four came from
-  `src/components/movies/catalog/`, and `CatalogBox`'s `pillClassName` is now the
-  `.catalog-box-label` class in `globals.css`. The API rows, their skeletons, `MovieRow` and
-  `CatalogRowMessage` are still in `catalog/`.
+- "Popular Top 10 In Genres" has its own folder,
+  `src/components/pages/movies/main-catalog/top-genres-catalog/`: `TopGenresRow`,
+  `TopGenresRowSkeleton` (both from `src/components/movies/catalog/`), and the "Top 10 In"
+  carousel and card only that row uses (`TopGenresCarousel`, `TopGenresCard`).
+  `genre-variants.ts` is gone: its values are literal classes in the two genre carousels, their
+  cards and `TopGenresRowSkeleton`.
+- `MainCatalog` (in `movies-catalog.tsx`; it was `MoviesCatalog`), `GenresRow`,
+  `CatalogRowHeading` and `CatalogRowMessage` are in `src/components/pages/movies/main-catalog/`,
+  and `CatalogBox`, which the browse pages also use, is in `src/components/shared/`. All five
+  came from `src/components/movies/catalog/`, and `CatalogBox`'s `pillClassName` is now the
+  `.catalog-box-label` class in `globals.css`. `TrendingRow`, `NewReleasesRow`, `MustWatchRow`,
+  their skeletons, `MovieRow` and `MovieRowSkeleton` are still in
+  `src/components/pages/movies/catalog/`.
 - `src/components/pages/home/` holds `Hero` and `CategoriesSection` at its root; the only
   other home section, `DevicesSection`, is still in `devices/` with `DeviceCard`.
   `CategoriesSection` came from `src/components/home/categories/`.

@@ -30,11 +30,16 @@ paths:
 - Compose loading states from `Skeleton`. Keep the real heading and mark the placeholders
   `aria-hidden`.
 - Build each placeholder like the card it replaces (padding, media ratio, line heights) rather
-  than one aspect ratio, since only the media scales with the card. Match the heading row's
-  height where the loaded row has controls beside it, and reserve the mobile progress bar.
-- `TopGenresRowSkeleton` repeats `TopGenresCarousel`'s slide widths and `TopGenresCard`'s
-  padding and mosaic ratios as literals, since no variants file holds them. Change them
-  together.
+  than one aspect ratio, since only the media scales with the card.
+- `TopGenresRowSkeleton` draws `RowCarousel`'s controls: the prev · dots · next box from `lg`
+  (its real frame, with grey shapes for the buttons and dots) and the mobile progress track.
+  `MovieRowSkeleton` only reserves them: the heading row's height where the controls sit
+  beside it, and the progress bar's space.
+- `TopGenresRowSkeleton` repeats these as literals, since no variants file holds them:
+  `TopGenresCarousel`'s slide widths and card padding, `TopGenresCard`'s mosaic ratios and
+  footer heights (the 25/32px badge, a 2/4px gap and the title's 24/30px line), `RowCarousel`'s
+  heading-row and controls-box classes, the `icon` button's size (44px, 56px on `2xl`),
+  `CarouselDots`' width and `CarouselProgress`'s track size. Change them together.
 
 ## Accessibility
 
