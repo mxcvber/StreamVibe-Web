@@ -22,6 +22,8 @@ choice is expensive to reverse, surface the trade-off instead of just picking on
 - `npm run lint`: bare `eslint` (`next lint` no longer exists)
 - `npx tsc --noEmit`: type-check
 - `npx prettier --write <path>`: format a file as a save does (no npm script)
+- `npm run api:types`: regenerate `src/lib/api/schema.d.ts` from `../api/openapi.json`, after
+  the API's DTOs change (`npm run openapi` in `../api` writes that file)
 
 ## Essentials
 
