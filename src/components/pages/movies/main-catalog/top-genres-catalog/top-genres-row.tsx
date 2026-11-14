@@ -1,10 +1,10 @@
 import type { Genre } from "@/data/genres"
 import { connection } from "next/server"
-import { toGenreCards } from "@/lib/top-genres"
 import { CatalogRowHeading } from "../catalog-row-heading"
 import { getTopInGenres } from "@/lib/api/carousel"
 import { CatalogRowMessage } from "../catalog-row-message"
 import { TopGenresCarousel } from "./top-genres-carousel"
+import { toGenreTopCards } from "@/lib/to-movies"
 
 const TITLE = "Popular Top 10 In Genres"
 
@@ -18,7 +18,7 @@ export async function TopGenresRow() {
   let genres: Genre[]
 
   try {
-    genres = toGenreCards(await getTopInGenres())
+    genres = toGenreTopCards(await getTopInGenres())
   } catch (error) {
     console.error("Failed to load the top movies per genre", error)
     return (

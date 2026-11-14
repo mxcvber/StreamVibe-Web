@@ -23,10 +23,7 @@ export async function getTopInGenres(): Promise<GenreTopMovies[]> {
   return data.items
 }
 
-/**
- * The 20 most popular movies, for the Movies page's "Trending Now" row. Cached
- * like `getTopInGenres`; `revalidateTag('popular-movies', 'max')` refreshes it.
- */
+// The 20 most popular movies, for the Movies page's "Trending Now" row.
 export async function getPopularMovies(): Promise<PopularMovie[]> {
   "use cache"
   cacheLife("hours")

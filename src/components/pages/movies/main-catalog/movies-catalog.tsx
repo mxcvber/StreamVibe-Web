@@ -1,8 +1,6 @@
 import { Suspense } from "react"
 import { Container } from "@/components/shared/container"
 import { CatalogBox } from "../../../shared/catalog-box"
-import { TrendingRowSkeleton } from "../catalog/trending-row-skeleton"
-import { TrendingRow } from "../catalog/trending-row"
 import { NewReleasesRowSkeleton } from "../catalog/new-releases-row-skeleton"
 import { NewReleasesRow } from "../catalog/new-releases-row"
 import { MustWatchRowSkeleton } from "../catalog/must-watch-row-skeleton"
@@ -10,6 +8,8 @@ import { MustWatchRow } from "../catalog/must-watch-row"
 import { GenresRow } from "./genres-row"
 import { TopGenresRowSkeleton } from "./top-genres-catalog/top-genres-row-skeleton"
 import { TopGenresRow } from "./top-genres-catalog/top-genres-row"
+import { TrendingRow } from "./trending-catalog/trending-row"
+import { TrendingRowSkeleton } from "./trending-catalog/trending-row-skeleton"
 
 export function MainCatalog() {
   return (
