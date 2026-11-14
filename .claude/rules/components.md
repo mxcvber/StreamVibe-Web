@@ -19,7 +19,7 @@ paths:
 ## Server and client
 
 - Components are server components unless they need state, effects or browser APIs. Shared
-  pieces that a client component renders (`CatalogMovieCard` and `MovieCardLink` inside
+  pieces that a client component renders (`CatalogMovieCard` and `MovieCardPoster` inside
   `MovieGrid`) have no `'use client'` and no state, so server rows use them too.
 - Function props are fine on a server component that calls them itself (`MovieRow`'s `load`,
   `toMovies` and `renderCard`). Never pass them on to a client component: only rendered
@@ -31,15 +31,19 @@ paths:
   `aria-hidden`.
 - Build each placeholder like the card it replaces (padding, media ratio, line heights) rather
   than one aspect ratio, since only the media scales with the card.
-- `TopGenresRowSkeleton` draws `RowCarousel`'s controls: the prev · dots · next box from `lg`
-  (its real frame, with grey shapes for the buttons and dots) and the mobile progress track.
-  `MovieRowSkeleton` only reserves them: the heading row's height where the controls sit
-  beside it, and the progress bar's space.
-- `TopGenresRowSkeleton` repeats these as literals, since no variants file holds them:
-  `TopGenresCarousel`'s slide widths and card padding, `TopGenresCard`'s mosaic ratios and
-  footer heights (the 25/32px badge, a 2/4px gap and the title's 24/30px line), `RowCarousel`'s
+- `TopGenresRowSkeleton` and `TrendingRowSkeleton` draw `RowCarousel`'s controls: the
+  prev · dots · next box from `lg` (its real frame, with grey shapes for the buttons and dots)
+  and the mobile progress track. `MovieRowSkeleton` only reserves them: the heading row's
+  height where the controls sit beside it, and the progress bar's space.
+- Both repeat these as literals, since no variants file holds them: `RowCarousel`'s
   heading-row and controls-box classes, the `icon` button's size (44px, 56px on `2xl`),
-  `CarouselDots`' width and `CarouselProgress`'s track size. Change them together.
+  `CarouselDots`' width and `CarouselProgress`'s track size. Each also copies its own row.
+  `TopGenresRowSkeleton`: `TopGenresCarousel`'s slide widths and card padding, and
+  `TopGenresCard`'s mosaic ratios and footer heights (the 25/32px badge, a 2/4px gap and the
+  title's 24/30px line). `TrendingRowSkeleton`: `TrendingCarousel`'s track margin, slide widths
+  and card box (padding, gap and radius, the same values as `movie-variants.ts`' `cardBox`),
+  `TrendingMovieCard`'s poster ratios and radius, and `MovieChip`'s height (28px, 36px on
+  `2xl`). Change them together.
 
 ## Accessibility
 
