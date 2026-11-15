@@ -33,12 +33,7 @@ export async function getPopularMovies(): Promise<PopularMovie[]> {
   return data.items
 }
 
-/**
- * The 20 newest already-released movies, for the Movies page's "New Releases"
- * row. The API decides "today" per request, so with an hour-long cache a movie
- * joins the row within an hour of its release date;
- * `revalidateTag('new-releases', 'max')` refreshes it sooner.
- */
+// The 20 newest already-released movies, for the Movies page's "New Releases" row.
 export async function getNewReleases(): Promise<NewReleaseMovie[]> {
   "use cache"
   cacheLife("hours")

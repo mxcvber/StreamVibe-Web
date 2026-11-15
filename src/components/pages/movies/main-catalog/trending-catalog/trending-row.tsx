@@ -33,7 +33,7 @@ export async function TrendingRow() {
 
   return (
     <TrendingCarousel
-      aria-labelledby={"movies-trending-heading"}
+      aria-labelledby="trending"
       className="gap-5 lg:gap-10 2xl:gap-12.5"
       items={trendingMovies}
       heading={<CatalogRowHeading id="trending">{TITLE}</CatalogRowHeading>}

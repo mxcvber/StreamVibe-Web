@@ -40,16 +40,16 @@ export const movieCardStyles = {
   //   poster: "aspect-[157.6/195] rounded-md lg:aspect-[192/232] 2xl:aspect-[243.6/281] 2xl:rounded-lg",
   //   sizes: "(min-width: 1536px) 244px, (min-width: 1024px) 192px, (min-width: 768px) 200px, 158px",
   // },
-  "new-releases": {
-    // The pill hugs its text and is centered up to laptop, and spans the card
-    // on desktop. `@container` lets the pill hide its "Released at" on narrow
-    // cards.
-    card: `${cardBox} @container items-center 2xl:items-stretch`,
-    // 154.4×193 mobile, 192×230 laptop, 243.6×281 desktop. `w-full` because
-    // the card centers its children.
-    poster: "aspect-[154.4/193] w-full rounded-md lg:aspect-[192/230] 2xl:aspect-[243.6/281] 2xl:rounded-lg",
-    sizes: "(min-width: 1536px) 244px, (min-width: 1024px) 192px, (min-width: 768px) 200px, 155px",
-  },
+  // "new-releases": {
+  //   // The pill hugs its text and is centered up to laptop, and spans the card
+  //   // on desktop. `@container` lets the pill hide its "Released at" on narrow
+  //   // cards.
+  //   // card: `${cardBox} @container items-center 2xl:items-stretch`,
+  //   // 154.4×193 mobile, 192×230 laptop, 243.6×281 desktop. `w-full` because
+  //   // the card centers its children.
+  //   // poster: "aspect-[154.4/193] w-full rounded-md lg:aspect-[192/230] 2xl:aspect-[243.6/281] 2xl:rounded-lg",
+  //   sizes: "(min-width: 1536px) 244px, (min-width: 1024px) 192px, (min-width: 768px) 200px, 155px",
+  // },
   "must-watch": {
     // `@container` lets the runtime chip drop its icon on narrow cards.
     card: `${cardBox} @container`,
@@ -111,16 +111,16 @@ export const mustWatchRuntimeChip =
  */
 export const movieSlideClassName = {
   // trending: "basis-[197.6px] pl-4 md:basis-60 lg:basis-1/5 lg:pl-5",
-  "new-releases": "basis-[198.4px] pl-5 md:basis-61 lg:basis-1/5",
+  // "new-releases": "basis-[198.4px] pl-5 md:basis-61 lg:basis-1/5",
   "must-watch": "basis-61.75 pl-4 md:basis-75.25 lg:basis-1/3 lg:pl-5 xl:basis-1/4",
 }
 
 /** The track's negative margin, cancelling the slide gutter above. */
 export const movieTrackClassName = {
   // trending: "-ml-4 lg:-ml-5",
-  "new-releases": "-ml-5",
+  // "new-releases": "-ml-5",
   "must-watch": "-ml-4 lg:-ml-5",
-} satisfies Record<MovieCardVariant, string>
+} 
 
 /**
  * Embla options. Cards per page follow the slide widths above: one at a time
@@ -130,11 +130,11 @@ export const movieTrackClassName = {
  */
 type CarouselOptions = NonNullable<Parameters<typeof useEmblaCarousel>[0]>
 
-const fivePerPage = {
-  align: "start",
-  slidesToScroll: 1,
-  breakpoints: { "(min-width: 64rem)": { slidesToScroll: 5 } },
-} as const satisfies CarouselOptions
+// const fivePerPage = {
+//   align: "start",
+//   slidesToScroll: 1,
+//   breakpoints: { "(min-width: 64rem)": { slidesToScroll: 5 } },
+// } as const satisfies CarouselOptions
 
 const threeThenFourPerPage = {
   align: "start",
@@ -147,6 +147,6 @@ const threeThenFourPerPage = {
 
 export const movieCarouselOptions = {
   // trending: fivePerPage,
-  "new-releases": fivePerPage,
+  // "new-releases": fivePerPage,
   "must-watch": threeThenFourPerPage,
 } as const

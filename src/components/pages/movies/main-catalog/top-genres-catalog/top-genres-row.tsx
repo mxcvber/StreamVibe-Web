@@ -34,7 +34,6 @@ export async function TopGenresRow() {
 
   return (
     <TopGenresCarousel
-      aria-labelledby={"movies-top-genres-heading"}
       className="gap-5 lg:gap-10 2xl:gap-12.5"
       genres={genres}
       heading={<CatalogRowHeading>{TITLE}</CatalogRowHeading>}

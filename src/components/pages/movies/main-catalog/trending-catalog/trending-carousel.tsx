@@ -22,7 +22,7 @@ export function TrendingCarousel({ items, ...props }: TrendingCarouselProps) {
       {items.map((item) => (
         <CarouselItem key={item.id} className="basis-[197.6px] pl-4 md:basis-60 lg:basis-1/5 lg:pl-5">
           <CardWrapper
-            className="gap-3 rounded-md p-2.75 lg:gap-4 lg:p-3.75 2xl:gap-5 2xl:rounded-lg 2xl:p-4.75"
+            className="@container gap-3 rounded-md p-2.75 lg:gap-4 lg:p-3.75 2xl:gap-5 2xl:rounded-lg 2xl:p-4.75"
             href={`/movies/${item.id}`}
           >
             <TrendingMovieCard movie={item} />
