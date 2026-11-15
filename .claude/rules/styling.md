@@ -65,6 +65,8 @@ smaller at 1536 than at 1440.
 - Invisible `before:`/`after:` insets enlarge small tap targets without moving the layout.
 - Chips compact on narrow cards via `@container` on the card and `@max-[Npx]:` on the chip.
   The thresholds are measured content widths; re-measure if the chip content changes.
+  `CardWrapper` doesn't set `@container`, so a carousel whose cards hold such chips passes it
+  in the wrapper's `className`, as `TrendingCarousel` and `NewReleasesCarousel` do.
 - `PosterMosaic` keeps a fixed box even where that is wider than the screen, and an
   `overflow-hidden` parent crops it. `ContactPosterBox` gives its 4×4 mosaic a fixed box at
   each step, centred in the frame (`design.md`), and `FreeTrialBanner` uses 1596px

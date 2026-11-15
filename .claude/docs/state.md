@@ -54,8 +54,18 @@ movie endpoints so far.
 
 ## Known issues
 
-- The footer links `/movies#new-releases` and `#must-watch` have no matching ids on the Movies
-  page. `/movies#genres` and `#trending` match `GenresRow`'s and `TrendingRow`'s heading ids.
+- `npx tsc --noEmit` fails, and with it `next build`: `MovieRow` and `MovieRowSkeleton` index
+  `movie-variants.ts`' maps by `MovieCardVariant`, which still includes `new-releases` after
+  the class and option maps dropped it (six TS7053 errors). It ends when the author deletes
+  `MovieCardVariant`, `MovieRow` and `MovieRowSkeleton`.
+- The footer link `/movies#must-watch` has no matching id on the Movies page: `MovieRow` gives
+  the heading `movies-must-watch-heading`. `/movies#genres`, `#trending` and `#new-releases`
+  match `GenresRow`'s, `TrendingRow`'s and `NewReleasesRow`'s heading ids.
+- The Must-Watch cards and `CatalogMovieCard` (the `/movies/all`, genre and top-10 grids) don't
+  link to the movie page: the trending move deleted `MovieCardLink` and left it commented out
+  in both. The Trending and New Releases cards link through `CardWrapper`.
+- `TopGenresRow`'s carousel region has no accessible name: its heading has no `id`, and the
+  row no longer passes `aria-labelledby` (it pointed at a missing `movies-top-genres-heading`).
 - `/terms`, `/privacy` and `/cookies` (linked from the footer) return 404.
 - The plan cards and the free-trial banner link to `/subscriptions?plan=…&trial=true`, and
   the page ignores both parameters.

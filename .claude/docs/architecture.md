@@ -11,7 +11,9 @@ The folder layout is being reorganised; see "Where things live".
   calls the API.
 - Data functions are cached per argument (`'use cache'` + `cacheLife('hours')` + `cacheTag`).
   Movie data changes only when the backend's TMDB import runs, so an hour is plenty;
-  `revalidateTag(tag, 'max')` refreshes a tag on demand.
+  `revalidateTag(tag, 'max')` refreshes a tag on demand. New Releases also changes as dates
+  pass: the API compares release dates with each request's "today", so a movie joins the row
+  within an hour of its release date.
 
 ## Data flow
 
@@ -56,13 +58,13 @@ Every card is a server component.
 
 - Layout: `Container`, `SiteHeader`, `SiteFooter`, `SectionHeading`.
 - Carousels: `RowCarousel` is the shell for `GenreCarousel`, `TopGenresCarousel`,
-  `TrendingCarousel` and `MovieRow`. `HeroCarousel` is separate.
-- Cards: `GenreCard`, `TopGenresCard` (the "Top 10 In" card) and `TrendingMovieCard` render
-  only their contents. Their carousels wrap each in `CardWrapper` (the `Link` and `Card`, with
-  the hover border and focus ring) and set its padding and `href`. `NewReleaseMovieCard`,
-  `MustWatchMovieCard` and `CatalogMovieCard` draw their own `Card` inside `MovieCardLink`.
-  The movie cards share `MovieCardPoster`, `MovieChip`, `RatingChip`, `ReleaseDateChip` and
-  `StarRating`.
+  `TrendingCarousel`, `NewReleasesCarousel` and `MovieRow`. `HeroCarousel` is separate.
+- Cards: `GenreCard`, `TopGenresCard` (the "Top 10 In" card), `TrendingMovieCard` and
+  `NewReleaseMovieCard` render only their contents. Their carousels wrap each in `CardWrapper`
+  (the `Link` and `Card`, with the hover border and focus ring) and set its padding and `href`.
+  `MustWatchMovieCard` and `CatalogMovieCard` draw their own `Card`, with no link since
+  `MovieCardLink` was deleted (`state.md`). The movie cards share `MovieCardPoster`,
+  `MovieChip`, `RatingChip` and `StarRating`.
 - Backdrops: `PosterMosaic`. `Hero`, `FreeTrialBanner` and `ContactPosterBox` fill it with local
   art from `posterMosaic(rows, columns)`. `Hero` also passes `visible`, which shows only 2×4 of
   its 4×9 below `lg` and 3×6 below `2xl`. The genre cards pass their genre's four posters cast
@@ -70,8 +72,9 @@ Every card is a server component.
 - Lists: `MovieGrid` (paged), `TopTenMovies` (fixed), both laid out by `movieGridClassName`.
 - Frames and messages: `CatalogBox`, `CatalogRowHeading`, `CatalogRowMessage`, `BrowseMessage`,
   `MovieHeroFrame`.
-- Skeletons: `MovieRowSkeleton` (wrapped per row), `TopGenresRowSkeleton`,
-  `TrendingRowSkeleton`, `MovieGridSkeleton`, `MovieBrowserFallback`, `MovieDetailHeroSkeleton`.
+- Skeletons: `MovieRowSkeleton` (wrapped by `MustWatchRowSkeleton`), `TopGenresRowSkeleton`,
+  `TrendingRowSkeleton`, `NewReleasesRowSkeleton`, `MovieGridSkeleton`, `MovieBrowserFallback`,
+  `MovieDetailHeroSkeleton`.
 
 ## Local data
 
@@ -90,19 +93,21 @@ Every card is a server component.
 
 ## Patterns
 
-- **Variants files.** The New Releases and Must-Watch cards' per-variant class strings, sizes
-  and carousel options live in `movie-variants.ts` (the browse grid's in `browse-variants.ts`),
-  typed `satisfies Record<Variant, …>`. A missing variant is a type error, and server skeletons
-  can import the maps because the files have no `'use client'`. The genre and trending cards
-  don't use one: `GenreCard`, `TopGenresCard` and `TrendingMovieCard` are separate components
-  with literal classes. Nor does `PosterMosaic`, which writes its reveal classes inline.
+- **Variants files.** The Must-Watch card's class strings, sizes and carousel options live in
+  `movie-variants.ts` (the browse grid's in `browse-variants.ts`), and server skeletons can
+  import them because the files have no `'use client'`. `movie-variants.ts` lost its
+  `satisfies Record<Variant, …>` checks as the rows moved out, so a missing variant now fails
+  only where a map is indexed. The genre, trending and new-release cards don't use one:
+  `GenreCard`, `TopGenresCard`, `TrendingMovieCard` and `NewReleaseMovieCard` are separate
+  components with literal classes. Nor does `PosterMosaic`, which writes its reveal classes
+  inline.
 - **`to*` mappers.** Plain functions turn an API DTO into a UI shape (`toTrendingMovies`,
   `toCatalogMovies`). Components never format API data, and data functions never shape it
   for the UI.
 - **Generic server row.** `MovieRow<TItem, TMovie>` takes `load`, `toMovies` and `renderCard`
-  and owns the loading, error and empty states of `NewReleasesRow` and `MustWatchRow`;
-  `TopGenresRow` and `TrendingRow` render their own. Function props are allowed because it is
-  a server component; only the rendered cards reach the client.
+  and owns the loading, error and empty states of `MustWatchRow`, the last row that uses it;
+  `TopGenresRow`, `TrendingRow` and `NewReleasesRow` render their own. Function props are
+  allowed because it is a server component; only the rendered cards reach the client.
 - **Bound Server Action.** The server parent binds the list's arguments
   (`loadMoreMovies.bind(null, filters)`). `MovieGrid` only knows `loadMoreAction(cursor)`, so one
   grid serves every list.
@@ -158,15 +163,23 @@ Being reorganised. Settled so far:
   carousel, the card and `TrendingRowSkeleton`. `MovieCardPoster` and `MovieChip` moved from
   `src/components/movies/movie-card/` to `main-catalog/`, and the other movie cards,
   `CatalogMovieCard` included, import them from there.
+- "New Releases" has its own folder too,
+  `src/components/pages/movies/main-catalog/new-releases-catalog/`: `NewReleasesRow`,
+  `NewReleasesRowSkeleton` (both from `src/components/movies/catalog/`), `NewReleaseMovieCard`
+  and `ReleaseDateChip` (from `src/components/movies/movie-card/`), and the new
+  `NewReleasesCarousel`, which wraps each card in `CardWrapper` as `TrendingCarousel` does, so
+  the cards link to `/movies/<id>` again. The row no longer goes through `MovieRow`, and the
+  `new-releases` entries in `movie-variants.ts` are commented out: their values are literal
+  classes in the carousel, the card and `NewReleasesRowSkeleton`. Only `MovieCardVariant` and
+  `movieRowCopy` still list the variant (`state.md`).
 - `MainCatalog` (in `movies-catalog.tsx`; it was `MoviesCatalog`), `GenresRow`,
   `CatalogRowHeading` and `CatalogRowMessage` are in `src/components/pages/movies/main-catalog/`,
   and `CatalogBox`, which the browse pages also use, is in `src/components/shared/`. All five
   came from `src/components/movies/catalog/`, and `CatalogBox`'s `pillClassName` is now the
-  `.catalog-box-label` class in `globals.css`. `NewReleasesRow`, `MustWatchRow`, their
-  skeletons, `MovieRow` and `MovieRowSkeleton` are still in
-  `src/components/pages/movies/catalog/`, and their cards in `movie-card/`, with
-  `MovieCardLink` (which the author plans to remove), `RatingChip`, `ReleaseDateChip` and
-  `StarRating`.
+  `.catalog-box-label` class in `globals.css`. `MustWatchRow`, its skeleton, `MovieRow` and
+  `MovieRowSkeleton` are still in `src/components/pages/movies/catalog/` (the author plans to
+  delete `MovieRow`, `MovieRowSkeleton` and `MovieCardVariant`), and `MustWatchMovieCard` in
+  `movie-card/` with `RatingChip` and `StarRating`.
 - `src/components/pages/home/` holds `Hero` and `CategoriesSection` at its root; the only
   other home section, `DevicesSection`, is still in `devices/` with `DeviceCard`.
   `CategoriesSection` came from `src/components/home/categories/`.
@@ -178,8 +191,9 @@ Being reorganised. Settled so far:
 - `findGenre` is in `src/lib/find-genre.ts`, split out of `src/data/genres.ts`, which keeps
   `genres` and `Genre`.
 - `src/lib/to-movies.ts` holds `toGenreTopCards` (it was `toGenreCards`, in
-  `src/lib/top-genres.ts`) and `toTrendingMovies` with its `TrendingMovie` type (from
-  `src/lib/trending-movies.ts`). The placeholder `trendingViews` moved in from
+  `src/lib/top-genres.ts`), `toTrendingMovies` with its `TrendingMovie` type (from
+  `src/lib/trending-movies.ts`) and `toNewReleases` with its `NewRelease` type (from
+  `src/lib/new-releases.ts`). The placeholder `trendingViews` moved in from
   `src/data/trending-views.ts`, unexported. The other `to*` mappers are still in their own
   modules.
 - `Device` is in `src/types/devices.ts`, split out of `src/data/devices.ts`, which keeps

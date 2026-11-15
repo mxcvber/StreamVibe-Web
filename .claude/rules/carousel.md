@@ -19,8 +19,8 @@ paths:
   track. Below `lg` each slide has a fixed basis that includes the gutter: the mobile card plus
   gutter at base (`basis-49.5` is the 178px genre card, `basis-63` the 232px "Top 10 In" card),
   wider from `md`. From `lg` the basis is a fraction of the row.
-- Slide widths and Embla options live in `movie-variants.ts` for the New Releases and
-  Must-Watch rows, and in `GenreCarousel`, `TopGenresCarousel` and `TrendingCarousel`
+- Slide widths and Embla options live in `movie-variants.ts` for the Must-Watch row, and in
+  `GenreCarousel`, `TopGenresCarousel`, `TrendingCarousel` and `NewReleasesCarousel`
   themselves for the others.
 - Embla's `breakpoints` re-initialise the carousel when a query flips, and matching entries
   merge in order, so the last one wins.
