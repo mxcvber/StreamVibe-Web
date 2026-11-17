@@ -75,8 +75,9 @@ Every card is a server component.
 - Lists: `MovieGrid` (paged), `TopTenMovies` (fixed), both laid out by `movieGridClassName`.
 - Frames and messages: `CatalogBox`, `CatalogRowHeading`, `CatalogRowMessage`, `BrowseMessage`,
   `MovieHeroFrame`.
-- Skeletons: `TopGenresRowSkeleton`, `TrendingRowSkeleton`, `NewReleasesRowSkeleton`,
-  `MustWatchRowSkeleton`, `MovieGridSkeleton`, `MovieBrowserFallback`,
+- Skeletons: `CatalogRowSkeleton` (the shared row frame) and its wrappers
+  `TopGenresRowSkeleton`, `TrendingRowSkeleton`, `NewReleasesRowSkeleton` and
+  `MustWatchRowSkeleton`, then `MovieGridSkeleton`, `MovieBrowserFallback` and
   `MovieDetailHeroSkeleton`.
 
 ## Local data

@@ -31,11 +31,15 @@ paths:
 - Build each placeholder like the card it replaces (padding, media ratio, line heights) rather
   than one aspect ratio, since only the media scales with the card.
 - `TopGenresRowSkeleton`, `TrendingRowSkeleton`, `NewReleasesRowSkeleton` and
-  `MustWatchRowSkeleton` draw `RowCarousel`'s controls: the prev · dots · next box from `lg`
-  (its real frame, with grey shapes for the buttons and dots) and the mobile progress track.
-- All four repeat these as literals, since no variants file holds them: `RowCarousel`'s
-  heading-row and controls-box classes, the `icon` button's size (44px, 56px on `2xl`),
-  `CarouselDots`' width and `CarouselProgress`'s track size. Each also copies its own row.
+  `MustWatchRowSkeleton` are thin wrappers around `CatalogRowSkeleton` (`main-catalog/`), which
+  draws `RowCarousel`'s frame: the heading, the prev · dots · next box from `lg` (its real
+  frame, with grey shapes for the buttons and dots), the track and the mobile progress track.
+  Each wrapper passes its title, placeholder count, track margin, slide classes and one `card`.
+- The heading row and the controls box are `globals.css`' `.row-carousel-header` and
+  `.row-carousel-controls`, which `RowCarousel` uses too. `CatalogRowSkeleton` still repeats as
+  literals the `icon` button's size (44px, 56px on `2xl`), `CarouselDots`' width and
+  `CarouselProgress`'s track size, and its `-ml-4` / `pl-4` defaults copy `CarouselContent` and
+  `CarouselItem`. Each wrapper copies its own row.
   `TopGenresRowSkeleton`: `TopGenresCarousel`'s slide widths and card padding, and
   `TopGenresCard`'s mosaic ratios and footer heights (the 25/32px badge, a 2/4px gap and the
   title's 24/30px line). `TrendingRowSkeleton`: `TrendingCarousel`'s track margin, slide widths

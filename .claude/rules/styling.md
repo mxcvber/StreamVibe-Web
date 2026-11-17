@@ -89,7 +89,9 @@ smaller at 1536 than at 1440.
   the columns where they stack below `lg`.
 - `globals.css` keeps its reusable classes in `@layer components`: `.faq-divider`,
   `.subscription-cell-header` and `.subscription-cell-body` (`PlanComparisonTable`'s cells),
-  and `.catalog-box-label` (`CatalogBox`'s pill, as a link or plain text). Tailwind orders that
+  `.catalog-box-label` (`CatalogBox`'s pill, as a link or plain text), and
+  `.row-carousel-header` and `.row-carousel-controls` (`RowCarousel`'s heading row and
+  prev · dots · next box, shared with `CatalogRowSkeleton`). Tailwind orders that
   layer before `@layer utilities`, so a utility beside a class overrides what the class sets,
   as the pill link's `hover:bg-red-50` does. Put new classes there too: unlayered CSS beats
   every utility whatever its specificity or order (Sonner's does, `ui-primitives.md`).
