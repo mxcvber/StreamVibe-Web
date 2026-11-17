@@ -2,7 +2,7 @@
 paths:
   - src/app/**
   - src/features/**/actions.ts
-  - src/lib/api/**
+  - src/api/**
   - next.config.ts
 ---
 

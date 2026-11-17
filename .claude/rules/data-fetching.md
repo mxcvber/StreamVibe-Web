@@ -1,5 +1,6 @@
 ---
 paths:
+  - src/api/**
   - src/lib/**
   - src/components/**
   - src/app/**
@@ -19,8 +20,8 @@ project uses **Cache Components** (`cacheComponents: true` in `next.config.ts`).
   `import 'server-only'`.
 - `api` checks `API_URL` in a request interceptor, not at import, so a build without it passes.
 - Response types (`MovieDetail`, `MovieListResponse`, …) are generated from the API's OpenAPI
-  document. `npm run api:types` turns `../api/openapi.json` into `src/lib/api/schema.d.ts`;
-  `src/lib/api/types.ts` aliases its schemas to the names the app imports. Rerun it after the
+  document. `npm run api:types` turns `../api/openapi.json` into `src/api/schema.d.ts`;
+  `src/api/types.ts` aliases its schemas to the names the app imports. Rerun it after the
   API's `openapi.json` changes, and never edit `schema.d.ts` by hand.
 
 ## Data functions

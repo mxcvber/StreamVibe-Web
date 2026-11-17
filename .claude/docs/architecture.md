@@ -139,6 +139,11 @@ Being reorganised. Settled so far:
   after it (`NavLink` and `FooterColumn` in `site-config.ts`). A type used only in its own file
   stays there and isn't exported (`SocialLink`). `Genre`, `MoviesPage`, `MovieFilters` and the
   API response types still sit beside their code because the refactor hasn't reached them.
+- The API layer is in `src/api/`, moved from `src/lib/api/`: the Axios instance `api`
+  (`client.ts`), the data functions (`getTopInGenres` and the other carousel calls in
+  `carousel.ts`; `getMovies`, `getMovie` and the other movie calls in `movies.ts`), the
+  response type aliases (`types.ts`) and the generated `schema.d.ts`. The `to*` mappers stay
+  in `src/lib/`.
 - `src/components/shared/` holds `Container`, `CardWrapper` and `SectionHeading` at its root,
   the header (`SiteHeader`, `MainNav`, `MobileNav`) in `header/`, the footer (`SiteFooter`,
   `FooterLinkColumn`, `CopyrightYear`) in `footer/`, `RowCarousel` and `CarouselProgress` in
