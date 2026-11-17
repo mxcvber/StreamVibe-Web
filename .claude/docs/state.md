@@ -54,16 +54,9 @@ movie endpoints so far.
 
 ## Known issues
 
-- `npx tsc --noEmit` fails, and with it `next build`: `MovieRow` and `MovieRowSkeleton` index
-  `movie-variants.ts`' maps by `MovieCardVariant`, which still includes `new-releases` after
-  the class and option maps dropped it (six TS7053 errors). It ends when the author deletes
-  `MovieCardVariant`, `MovieRow` and `MovieRowSkeleton`.
-- The footer link `/movies#must-watch` has no matching id on the Movies page: `MovieRow` gives
-  the heading `movies-must-watch-heading`. `/movies#genres`, `#trending` and `#new-releases`
-  match `GenresRow`'s, `TrendingRow`'s and `NewReleasesRow`'s heading ids.
-- The Must-Watch cards and `CatalogMovieCard` (the `/movies/all`, genre and top-10 grids) don't
-  link to the movie page: the trending move deleted `MovieCardLink` and left it commented out
-  in both. The Trending and New Releases cards link through `CardWrapper`.
+- `CatalogMovieCard` (the `/movies/all`, genre and top-10 grids) doesn't link to the movie
+  page: the trending move deleted `MovieCardLink` and left it commented out there. The Movies
+  page's movie cards link through `CardWrapper`.
 - `TopGenresRow`'s carousel region has no accessible name: its heading has no `id`, and the
   row no longer passes `aria-labelledby` (it pointed at a missing `movies-top-genres-heading`).
 - `/terms`, `/privacy` and `/cookies` (linked from the footer) return 404.

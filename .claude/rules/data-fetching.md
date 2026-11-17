@@ -61,10 +61,9 @@ Reference implementation: `TopGenresRow`.
   heading with a short inline message so the rest of the page still works. Map inside the
   `try` too, so a malformed item shows the message instead of failing the page.
 - `notFound()` throws: call it outside the `try`, or the `catch` swallows it.
-- `MustWatchRow` goes through `MovieRow`: a variant in `movie-variants.ts`, plus `load`,
-  `toMovies` and `renderCard`. `TopGenresRow`, `TrendingRow` and `NewReleasesRow` don't: each
-  loads, maps and renders its own states, and keeps its carousel, card and skeleton in its own
-  folder.
+- `TopGenresRow`, `TrendingRow`, `NewReleasesRow` and `MustWatchRow` each load, map and render
+  their own states, and keep their carousel, card and skeleton in their own folder. There is no
+  generic row: `MovieRow` was deleted with the last row that used it.
 - Parse URL input before it reaches the API. `parseMovieFilters` falls back to the defaults
   (the API would answer 400), and `parseMovieId` rejects anything but a positive Postgres
   `integer` (the API would answer 500).

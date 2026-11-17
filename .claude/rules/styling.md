@@ -66,7 +66,11 @@ smaller at 1536 than at 1440.
 - Chips compact on narrow cards via `@container` on the card and `@max-[Npx]:` on the chip.
   The thresholds are measured content widths; re-measure if the chip content changes.
   `CardWrapper` doesn't set `@container`, so a carousel whose cards hold such chips passes it
-  in the wrapper's `className`, as `TrendingCarousel` and `NewReleasesCarousel` do.
+  in the wrapper's `className`, as `TrendingCarousel`, `NewReleasesCarousel` and
+  `MustWatchCarousel` do.
+- `StarRating` draws a half star as a red star clipped over a grey one. Its
+  `[clip-path:inset(0_52.45%_0_0)]` cuts at the icon's vertical axis, 6.66px into its 14px box.
+  Re-measure it if `StarIcon` changes.
 - `PosterMosaic` keeps a fixed box even where that is wider than the screen, and an
   `overflow-hidden` parent crops it. `ContactPosterBox` gives its 4×4 mosaic a fixed box at
   each step, centred in the frame (`design.md`), and `FreeTrialBanner` uses 1596px
