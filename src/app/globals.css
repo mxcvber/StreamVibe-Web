@@ -186,6 +186,14 @@
     @apply border-t p-6 pt-5.75 text-left text-16 font-medium text-muted-foreground 2xl:p-7.5 2xl:pt-7.25 2xl:text-18;
   }
 
+  .row-carousel-header {
+    @apply flex flex-col gap-5 md:flex-row md:items-end md:gap-25;
+  }
+
+  .row-carousel-controls {
+    @apply hidden items-center gap-3 rounded-lg border border-black-12 bg-black-06 p-2.75 lg:flex 2xl:gap-4 2xl:p-3.75;
+  }
+
   .catalog-box-label {
     @apply rounded-[6px] bg-primary px-5 py-2 text-16 font-semibold 2xl:rounded-sm 2xl:px-6 2xl:py-2.5 2xl:text-20;
   }
