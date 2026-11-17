@@ -9,8 +9,8 @@ paths:
   semicolons, 120 columns. VS Code's `prettier.*` settings don't apply while a config file
   exists, so every option belongs in `.prettierrc`. `npx prettier --write <path>` formats a
   file as a save would.
-- `prettier-plugin-tailwindcss` sorts the classes in `className` and `@apply` against
-  `globals.css` (`tailwindStylesheet`). Classes passed to `cn()` aren't sorted.
+- `prettier-plugin-tailwindcss` sorts the classes in `className`, `@apply` and calls to the
+  `tailwindFunctions` (`cn()`, `clsx()`, `cva()`) against `globals.css` (`tailwindStylesheet`).
 - Files Prettier hasn't formatted with this config yet keep an older style: single quotes in
   most of `src`, semicolons in a few of `components/icons`. In those, match the file. The
   author's next save converts the whole file, so its diff mixes reformatting with the real
