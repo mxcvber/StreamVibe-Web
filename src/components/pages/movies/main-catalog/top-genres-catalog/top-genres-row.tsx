@@ -1,7 +1,7 @@
 import type { Genre } from "@/data/genres"
 import { connection } from "next/server"
 import { CatalogRowHeading } from "../catalog-row-heading"
-import { getTopInGenres } from "@/lib/api/carousel"
+import { getTopInGenres } from "@/api/carousel"
 import { CatalogRowMessage } from "../catalog-row-message"
 import { TopGenresCarousel } from "./top-genres-carousel"
 import { toGenreTopCards } from "@/lib/to-movies"

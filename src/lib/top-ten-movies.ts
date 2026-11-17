@@ -1,5 +1,5 @@
-import type { TopTenMovie } from '@/lib/api/types'
-import { type CatalogMovie, toCatalogMovies } from '@/lib/catalog-movies'
+import type { TopTenMovie } from "@/api/types"
+import { type CatalogMovie, toCatalogMovies } from "@/lib/catalog-movies"
 
 /** A top-10 grid card: a catalog card with its place in the list. */
 export type RankedMovie = CatalogMovie & {

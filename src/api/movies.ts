@@ -1,11 +1,11 @@
-import 'server-only'
+import "server-only"
 
-import { isAxiosError } from 'axios'
-import { cacheLife, cacheTag } from 'next/cache'
+import { isAxiosError } from "axios"
+import { cacheLife, cacheTag } from "next/cache"
 
-import { api } from '@/lib/api/client'
-import type { MovieDetail, MovieListResponse, TopTenMovie, TopTenMoviesResponse } from '@/lib/api/types'
-import type { MovieFilters } from '@/lib/movie-filters'
+import { api } from "@/api/client"
+import type { MovieDetail, MovieListResponse, TopTenMovie, TopTenMoviesResponse } from "@/api/types"
+import type { MovieFilters } from "@/lib/movie-filters"
 
 type GetMoviesOptions = MovieFilters & {
   /** The previous page's `nextCursor`; omit it for the first page. */
@@ -23,11 +23,11 @@ type GetMoviesOptions = MovieFilters & {
  * `nextCursor` to load the next page.
  */
 export async function getMovies({ sort, rating, cursor }: GetMoviesOptions): Promise<MovieListResponse> {
-  'use cache'
-  cacheLife('hours')
-  cacheTag('movies')
+  "use cache"
+  cacheLife("hours")
+  cacheTag("movies")
 
-  const { data } = await api.get<MovieListResponse>('/movies', {
+  const { data } = await api.get<MovieListResponse>("/movies", {
     params: { sort, rating: rating ?? undefined, cursor },
   })
   return data
@@ -47,9 +47,9 @@ export async function getMovies({ sort, rating, cursor }: GetMoviesOptions): Pro
  * `nextCursor` to load the next page.
  */
 export async function getGenreMovies(genreId: number, cursor?: number): Promise<MovieListResponse> {
-  'use cache'
-  cacheLife('hours')
-  cacheTag('genre-movies')
+  "use cache"
+  cacheLife("hours")
+  cacheTag("genre-movies")
 
   const { data } = await api.get<MovieListResponse>(`/movies/${genreId}/genre`, {
     params: { cursor },
@@ -67,9 +67,9 @@ export async function getGenreMovies(genreId: number, cursor?: number): Promise<
  * Returns `data.items`, like the carousel functions: the list has no pages.
  */
 export async function getGenreTopTenMovies(genreId: number): Promise<TopTenMovie[]> {
-  'use cache'
-  cacheLife('hours')
-  cacheTag('genre-top-10')
+  "use cache"
+  cacheLife("hours")
+  cacheTag("genre-top-10")
 
   const { data } = await api.get<TopTenMoviesResponse>(`/movies/${genreId}/genre/top-10`)
   return data.items
@@ -86,9 +86,9 @@ export async function getGenreTopTenMovies(genreId: number): Promise<TopTenMovie
  * an unknown id stays unknown until the next import. Any other failure throws.
  */
 export async function getMovie(id: number): Promise<MovieDetail | null> {
-  'use cache'
-  cacheLife('hours')
-  cacheTag('movie-detail')
+  "use cache"
+  cacheLife("hours")
+  cacheTag("movie-detail")
 
   try {
     const { data } = await api.get<MovieDetail>(`/movies/${id}`)

@@ -1,6 +1,6 @@
 import { connection } from "next/server"
 import { CatalogRowHeading } from "../catalog-row-heading"
-import { getNewReleases } from "@/lib/api/carousel"
+import { getNewReleases } from "@/api/carousel"
 import { CatalogRowMessage } from "../catalog-row-message"
 import { type NewRelease, toNewReleases } from "@/lib/to-movies"
 import { NewReleasesCarousel } from "./new-releases-carousel"
@@ -33,7 +33,7 @@ export async function NewReleasesRow() {
 
   return (
     <NewReleasesCarousel
-      aria-labelledby='new-releases'
+      aria-labelledby="new-releases"
       className="gap-5 lg:gap-10 2xl:gap-12.5"
       items={newReleases}
       heading={<CatalogRowHeading id="new-releases">{TITLE}</CatalogRowHeading>}

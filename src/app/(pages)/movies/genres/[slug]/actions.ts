@@ -1,8 +1,8 @@
-'use server'
+"use server"
 
-import { genres } from '@/data/genres'
-import { getGenreMovies } from '@/lib/api/movies'
-import { type MoviesPage, toMoviesPage } from '@/lib/catalog-movies'
+import { genres } from "@/data/genres"
+import { getGenreMovies } from "@/api/movies"
+import { type MoviesPage, toMoviesPage } from "@/lib/catalog-movies"
 
 /**
  * The page of a genre's grid after `cursor`, for its "Load more" button. A

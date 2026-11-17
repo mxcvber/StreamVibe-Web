@@ -2,7 +2,7 @@ import "server-only"
 
 import { cacheLife, cacheTag } from "next/cache"
 
-import { api } from "@/lib/api/client"
+import { api } from "@/api/client"
 import type {
   GenreTopMovies,
   MustWatchMovie,
@@ -12,7 +12,7 @@ import type {
   PopularMovie,
   PopularMoviesResponse,
   TopInGenresResponse,
-} from "@/lib/api/types"
+} from "@/api/types"
 
 export async function getTopInGenres(): Promise<GenreTopMovies[]> {
   "use cache"

@@ -1,5 +1,5 @@
-import type { MovieListItem, MovieListResponse } from '@/lib/api/types'
-import { tmdbPosterUrl } from '@/lib/tmdb-image'
+import type { MovieListItem, MovieListResponse } from "@/api/types"
+import { tmdbPosterUrl } from "@/lib/tmdb-image"
 
 /** What a catalog grid card ("All Movies", a genre's page, its top 10) renders. */
 export type CatalogMovie = {
@@ -22,14 +22,14 @@ export type MoviesPage = {
  * only the fields a card reads, so catalog pages and top-10 lists both fit.
  */
 export function toCatalogMovies(
-  items: Pick<MovieListItem, 'id' | 'title' | 'posterPath' | 'voteAverage'>[],
+  items: Pick<MovieListItem, "id" | "title" | "posterPath" | "voteAverage">[],
 ): CatalogMovie[] {
   return items.map(({ id, title, posterPath, voteAverage }) => ({
     id,
     title,
     // 276px at most (four columns just under 1536px), so 552px at 2×: w500
     // falls short.
-    posterUrl: tmdbPosterUrl(posterPath, 'w780'),
+    posterUrl: tmdbPosterUrl(posterPath, "w780"),
     // Like `toMustWatch`: Figma draws only full, half and empty stars.
     stars: Math.round(voteAverage) / 2,
   }))

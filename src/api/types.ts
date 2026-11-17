@@ -3,7 +3,7 @@
 // never edit schema.d.ts by hand. These aliases keep the names the app imports;
 // the field docs are on the generated types.
 
-import type { components } from "@/lib/api/schema"
+import type { components } from "@/api/schema"
 
 type Schema = components["schemas"]
 

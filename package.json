@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "api:types": "openapi-typescript ../api/openapi.json -o src/lib/api/schema.d.ts"
+    "api:types": "openapi-typescript ../api/openapi.json -o src/api/schema.d.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.9.2",

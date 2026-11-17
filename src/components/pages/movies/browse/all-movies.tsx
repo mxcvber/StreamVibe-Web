@@ -1,11 +1,11 @@
-import { connection } from 'next/server'
+import { connection } from "next/server"
 
-import { loadMoreMovies } from '@/app/(pages)/movies/all/actions'
-import { BrowseMessage } from '@/components/pages/movies/browse/browse-message'
-import { MovieGrid } from '@/components/pages/movies/browse/movie-grid'
-import { getMovies } from '@/lib/api/movies'
-import { type MoviesPage, toMoviesPage } from '@/lib/catalog-movies'
-import { DEFAULT_MOVIE_SORT, type MovieFilters } from '@/lib/movie-filters'
+import { loadMoreMovies } from "@/app/(pages)/movies/all/actions"
+import { BrowseMessage } from "@/components/pages/movies/browse/browse-message"
+import { MovieGrid } from "@/components/pages/movies/browse/movie-grid"
+import { getMovies } from "@/api/movies"
+import { type MoviesPage, toMoviesPage } from "@/lib/catalog-movies"
+import { DEFAULT_MOVIE_SORT, type MovieFilters } from "@/lib/movie-filters"
 
 type AllMoviesProps = {
   filters: MovieFilters
@@ -27,7 +27,7 @@ export async function AllMovies({ filters }: AllMoviesProps) {
   try {
     page = toMoviesPage(await getMovies(filters))
   } catch (error) {
-    console.error('Failed to load the movie catalog', error)
+    console.error("Failed to load the movie catalog", error)
     return <BrowseMessage>We couldn&apos;t load the movies right now. Please try again later.</BrowseMessage>
   }
 
@@ -35,7 +35,7 @@ export async function AllMovies({ filters }: AllMoviesProps) {
     // Upcoming narrows the list as a filter does, and is often empty with one.
     const filtered = filters.rating !== null || filters.sort !== DEFAULT_MOVIE_SORT
     return (
-      <BrowseMessage>{filtered ? 'No movies match these filters.' : 'There are no movies to show yet.'}</BrowseMessage>
+      <BrowseMessage>{filtered ? "No movies match these filters." : "There are no movies to show yet."}</BrowseMessage>
     )
   }
 

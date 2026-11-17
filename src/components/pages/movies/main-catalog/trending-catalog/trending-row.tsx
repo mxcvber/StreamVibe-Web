@@ -1,6 +1,6 @@
 import { connection } from "next/server"
 import { CatalogRowHeading } from "../catalog-row-heading"
-import { getPopularMovies } from "@/lib/api/carousel"
+import { getPopularMovies } from "@/api/carousel"
 import { CatalogRowMessage } from "../catalog-row-message"
 import { toTrendingMovies, TrendingMovie } from "@/lib/to-movies"
 import { TrendingCarousel } from "./trending-carousel"

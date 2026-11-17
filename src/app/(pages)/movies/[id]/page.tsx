@@ -1,11 +1,11 @@
-import type { Metadata } from 'next'
-import { connection } from 'next/server'
-import { Suspense } from 'react'
+import type { Metadata } from "next"
+import { connection } from "next/server"
+import { Suspense } from "react"
 
-import { MovieDetailHero } from '@/components/pages/movies/detail/movie-detail-hero'
-import { MovieDetailHeroSkeleton } from '@/components/pages/movies/detail/movie-detail-hero-skeleton'
-import { getMovie } from '@/lib/api/movies'
-import { parseMovieId } from '@/lib/movie-route'
+import { MovieDetailHero } from "@/components/pages/movies/detail/movie-detail-hero"
+import { MovieDetailHeroSkeleton } from "@/components/pages/movies/detail/movie-detail-hero-skeleton"
+import { getMovie } from "@/api/movies"
+import { parseMovieId } from "@/lib/movie-route"
 
 /**
  * One known id (Avatar), only so the build has a pathname to prerender with:
@@ -15,7 +15,7 @@ import { parseMovieId } from '@/lib/movie-route'
  * calls the API. Every other id renders on request.
  */
 export function generateStaticParams() {
-  return [{ id: '19995' }]
+  return [{ id: "19995" }]
 }
 
 /**
@@ -32,7 +32,7 @@ export const instant = false
  * with it. A failed request falls back to the layout's "Movies" title; the
  * hero logs the error and shows its message.
  */
-export async function generateMetadata({ params }: PageProps<'/movies/[id]'>): Promise<Metadata> {
+export async function generateMetadata({ params }: PageProps<"/movies/[id]">): Promise<Metadata> {
   const { id: param } = await params
   await connection()
 
@@ -56,7 +56,7 @@ export async function generateMetadata({ params }: PageProps<'/movies/[id]'>): P
  * (see Cache Components' guidance on dynamic params). Unknown ids render the
  * not-found page there.
  */
-export default function MoviePage({ params }: PageProps<'/movies/[id]'>) {
+export default function MoviePage({ params }: PageProps<"/movies/[id]">) {
   return (
     <Suspense fallback={<MovieDetailHeroSkeleton />}>
       <MovieDetailHero params={params} />

@@ -1,11 +1,11 @@
-import { connection } from 'next/server'
+import { connection } from "next/server"
 
-import { loadMoreGenreMovies } from '@/app/(pages)/movies/genres/[slug]/actions'
-import { BrowseMessage } from '@/components/pages/movies/browse/browse-message'
-import { MovieGrid } from '@/components/pages/movies/browse/movie-grid'
-import type { Genre } from '@/data/genres'
-import { type MoviesPage, toMoviesPage } from '@/lib/catalog-movies'
-import { getGenreMovies } from '@/lib/api/movies'
+import { loadMoreGenreMovies } from "@/app/(pages)/movies/genres/[slug]/actions"
+import { BrowseMessage } from "@/components/pages/movies/browse/browse-message"
+import { MovieGrid } from "@/components/pages/movies/browse/movie-grid"
+import type { Genre } from "@/data/genres"
+import { type MoviesPage, toMoviesPage } from "@/lib/catalog-movies"
+import { getGenreMovies } from "@/api/movies"
 
 type GenreMoviesProps = {
   genre: Genre

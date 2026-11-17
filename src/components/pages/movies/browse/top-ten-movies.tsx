@@ -1,11 +1,11 @@
-import { connection } from 'next/server'
+import { connection } from "next/server"
 
-import { BrowseMessage } from '@/components/pages/movies/browse/browse-message'
-import { movieGridClassName, movieGridItemClassName } from '@/components/pages/movies/browse/browse-variants'
-import { CatalogMovieCard } from '@/components/pages/movies/browse/catalog-movie-card'
-import type { Genre } from '@/data/genres'
-import { getGenreTopTenMovies } from '@/lib/api/movies'
-import { type RankedMovie, toTopTenMovies } from '@/lib/top-ten-movies'
+import { BrowseMessage } from "@/components/pages/movies/browse/browse-message"
+import { movieGridClassName, movieGridItemClassName } from "@/components/pages/movies/browse/browse-variants"
+import { CatalogMovieCard } from "@/components/pages/movies/browse/catalog-movie-card"
+import type { Genre } from "@/data/genres"
+import { getGenreTopTenMovies } from "@/api/movies"
+import { type RankedMovie, toTopTenMovies } from "@/lib/top-ten-movies"
 
 type TopTenMoviesProps = {
   genre: Genre

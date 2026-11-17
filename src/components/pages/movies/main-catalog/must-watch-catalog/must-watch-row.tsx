@@ -1,7 +1,7 @@
 import { type MustWatch, toMustWatch } from "@/lib/to-movies"
 import { connection } from "next/server"
 import { CatalogRowHeading } from "../catalog-row-heading"
-import { getMustWatchMovies } from "@/lib/api/carousel"
+import { getMustWatchMovies } from "@/api/carousel"
 import { CatalogRowMessage } from "../catalog-row-message"
 import { MustWatchCarousel } from "./must-watch-carousel"
 

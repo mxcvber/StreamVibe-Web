@@ -1,8 +1,8 @@
-'use server'
+"use server"
 
-import { getMovies } from '@/lib/api/movies'
-import { type MoviesPage, toMoviesPage } from '@/lib/catalog-movies'
-import { type MovieFilters, isMovieFilters } from '@/lib/movie-filters'
+import { getMovies } from "@/api/movies"
+import { type MoviesPage, toMoviesPage } from "@/lib/catalog-movies"
+import { type MovieFilters, isMovieFilters } from "@/lib/movie-filters"
 
 /**
  * The page of the "All Movies" grid after `cursor`, in the same sort and
@@ -16,7 +16,7 @@ import { type MovieFilters, isMovieFilters } from '@/lib/movie-filters'
  */
 export async function loadMoreMovies(filters: MovieFilters, cursor: number): Promise<MoviesPage> {
   if (!isMovieFilters(filters)) {
-    throw new Error('Invalid movie filters')
+    throw new Error("Invalid movie filters")
   }
   if (!Number.isSafeInteger(cursor) || cursor < 1) {
     throw new Error(`Invalid movies cursor: ${cursor}`)

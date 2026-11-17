@@ -1,5 +1,5 @@
 import type { Genre } from "@/data/genres"
-import type { GenreTopMovies, MustWatchMovie, NewReleaseMovie, PopularMovie } from "@/lib/api/types"
+import type { GenreTopMovies, MustWatchMovie, NewReleaseMovie, PopularMovie } from "@/api/types"
 import { slugify } from "@/lib/slugify"
 import { tmdbPosterUrl } from "@/lib/tmdb-image"
 import { formatCount, formatReleaseDate, formatRuntime } from "./format"
