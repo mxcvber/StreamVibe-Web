@@ -20,7 +20,6 @@ export function formatRuntime(minutes: number, unit: "long" | "short" = "long") 
   return `${hours}h ${rest}${min}`
 }
 
-/** A view or vote count shortened like the designs: "1.5K", "41K", "1.2M". */
 export function formatCount(count: number) {
   return compactNumber.format(count)
 }

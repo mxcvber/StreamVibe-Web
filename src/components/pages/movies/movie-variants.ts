@@ -10,13 +10,13 @@ import type useEmblaCarousel from "embla-carousel-react"
  * The artboards differ slightly between rows (card width, gutter, poster
  * height), so each row follows its own artboard rather than sharing values.
  */
-export type MovieCardVariant = "new-releases" | "must-watch"
+// export type MovieCardVariant = "new-releases" | "must-watch"
 
-export const movieRowCopy = {
-  // trending: { title: 'Trending Now', headingId: 'movies-trending-heading', noun: 'trending movies' },
-  "new-releases": { title: "New Releases", headingId: "movies-new-releases-heading", noun: "new releases" },
-  "must-watch": { title: "Must - Watch Movies", headingId: "movies-must-watch-heading", noun: "must-watch movies" },
-}
+// export const movieRowCopy = {
+//   // trending: { title: 'Trending Now', headingId: 'movies-trending-heading', noun: 'trending movies' },
+//   // "new-releases": { title: "New Releases", headingId: "movies-new-releases-heading", noun: "new releases" },
+//   // "must-watch": { title: "Must - Watch Movies", headingId: "movies-must-watch-heading", noun: "must-watch movies" },
+// }
 
 /**
  * Padding (less the 1px border Figma draws inside the box), gap and radius.
@@ -32,34 +32,34 @@ export const cardBox = "gap-3 rounded-md p-2.75 lg:gap-4 lg:p-3.75 2xl:gap-5 2xl
  * height, so they keep their proportions when the card shrinks with the
  * viewport.
  */
-export const movieCardStyles = {
-  // trending: {
-  //   // `@container` lets the chips compact themselves on narrow cards.
-  //   card: `${cardBox} @container`, //////////////////
-  //   // 157.6×195 mobile, 192×232 laptop, 243.6×281 desktop.
-  //   poster: "aspect-[157.6/195] rounded-md lg:aspect-[192/232] 2xl:aspect-[243.6/281] 2xl:rounded-lg",
-  //   sizes: "(min-width: 1536px) 244px, (min-width: 1024px) 192px, (min-width: 768px) 200px, 158px",
-  // },
-  // "new-releases": {
-  //   // The pill hugs its text and is centered up to laptop, and spans the card
-  //   // on desktop. `@container` lets the pill hide its "Released at" on narrow
-  //   // cards.
-  //   // card: `${cardBox} @container items-center 2xl:items-stretch`,
-  //   // 154.4×193 mobile, 192×230 laptop, 243.6×281 desktop. `w-full` because
-  //   // the card centers its children.
-  //   // poster: "aspect-[154.4/193] w-full rounded-md lg:aspect-[192/230] 2xl:aspect-[243.6/281] 2xl:rounded-lg",
-  //   sizes: "(min-width: 1536px) 244px, (min-width: 1024px) 192px, (min-width: 768px) 200px, 155px",
-  // },
-  "must-watch": {
-    // `@container` lets the runtime chip drop its icon on narrow cards.
-    card: `${cardBox} @container`,
-    // 207×235 mobile, 253×324 laptop, 319.5×404 desktop.
-    poster: "aspect-[207/235] rounded-md lg:aspect-[253/324] 2xl:aspect-[319.5/404] 2xl:rounded-lg",
-    // The widest poster in each range: 3 per page up to 1279px, 4 from 1280.
-    sizes:
-      "(min-width: 1536px) 319px, (min-width: 1280px) 277px, (min-width: 1024px) 301px, (min-width: 768px) 261px, 207px",
-  },
-}
+// export const movieCardStyles = {
+//   // trending: {
+//   //   // `@container` lets the chips compact themselves on narrow cards.
+//   //   card: `${cardBox} @container`, //////////////////
+//   //   // 157.6×195 mobile, 192×232 laptop, 243.6×281 desktop.
+//   //   poster: "aspect-[157.6/195] rounded-md lg:aspect-[192/232] 2xl:aspect-[243.6/281] 2xl:rounded-lg",
+//   //   sizes: "(min-width: 1536px) 244px, (min-width: 1024px) 192px, (min-width: 768px) 200px, 158px",
+//   // },
+//   // "new-releases": {
+//   //   // The pill hugs its text and is centered up to laptop, and spans the card
+//   //   // on desktop. `@container` lets the pill hide its "Released at" on narrow
+//   //   // cards.
+//   //   // card: `${cardBox} @container items-center 2xl:items-stretch`,
+//   //   // 154.4×193 mobile, 192×230 laptop, 243.6×281 desktop. `w-full` because
+//   //   // the card centers its children.
+//   //   // poster: "aspect-[154.4/193] w-full rounded-md lg:aspect-[192/230] 2xl:aspect-[243.6/281] 2xl:rounded-lg",
+//   //   sizes: "(min-width: 1536px) 244px, (min-width: 1024px) 192px, (min-width: 768px) 200px, 155px",
+//   // },
+//   // "must-watch": {
+//   //   // `@container` lets the runtime chip drop its icon on narrow cards.
+//   //   // card: `${cardBox} @container`,
+//   //   // 207×235 mobile, 253×324 laptop, 319.5×404 desktop.
+//   //   // poster: "aspect-[207/235] rounded-md lg:aspect-[253/324] 2xl:aspect-[319.5/404] 2xl:rounded-lg",
+//   //   // The widest poster in each range: 3 per page up to 1279px, 4 from 1280.
+//   //   sizes:
+//   //     "(min-width: 1536px) 319px, (min-width: 1280px) 277px, (min-width: 1024px) 301px, (min-width: 768px) 261px, 207px",
+//   // },
+// }
 
 /**
  * "Trending Now" chips on cards too narrow for both on one line: no icons
@@ -71,13 +71,13 @@ export const movieCardStyles = {
  * widest pair needs 100px, inside a 1024px laptop's 105px. Literal strings so
  * Tailwind can see them.
  */
-export const trendingChipCompact = {
-  // chip: "@max-[154px]:pr-1.25 @max-[154px]:pl-1.25 @max-[154px]:[&_svg]:hidden 2xl:@max-[197px]:pr-1.25 2xl:@max-[197px]:[&_svg]:hidden",
-  /** On the full runtime ("1h 39min"). */
-  // full: "@max-[154px]:hidden 2xl:@max-[197px]:hidden",
-  /** On the short runtime ("1h 39m"). */
-  // short: "hidden @max-[154px]:inline 2xl:@max-[197px]:inline",
-}
+// export const trendingChipCompact = {
+//   // chip: "@max-[154px]:pr-1.25 @max-[154px]:pl-1.25 @max-[154px]:[&_svg]:hidden 2xl:@max-[197px]:pr-1.25 2xl:@max-[197px]:[&_svg]:hidden",
+//   /** On the full runtime ("1h 39min"). */
+//   // full: "@max-[154px]:hidden 2xl:@max-[197px]:hidden",
+//   /** On the short runtime ("1h 39m"). */
+//   // short: "hidden @max-[154px]:inline 2xl:@max-[197px]:inline",
+// }
 
 /**
  * "Must - Watch Movies" runtime chip. Its padding is the artboard's 6/10/6/6
@@ -94,8 +94,8 @@ export const trendingChipCompact = {
  * compact: the widest likely pair there is 0.5px over, spilling into the
  * card's padding. Literal strings so Tailwind can see them.
  */
-export const mustWatchRuntimeChip =
-  "min-h-8 py-1.25 pr-2.25 pl-1.25 lg:@max-[212px]:pl-2.25 lg:@max-[212px]:[&_svg]:hidden 2xl:@max-[261px]:pl-2.25 2xl:@max-[261px]:[&_svg]:hidden"
+// export const mustWatchRuntimeChip =
+//   "min-h-8 py-1.25 pr-2.25 pl-1.25 lg:@max-[212px]:pl-2.25 lg:@max-[212px]:[&_svg]:hidden 2xl:@max-[261px]:pl-2.25 2xl:@max-[261px]:[&_svg]:hidden"
 
 /**
  * Slide widths: fixed-width cards that scroll one at a time under `lg`, then a
@@ -109,18 +109,18 @@ export const mustWatchRuntimeChip =
  *   1279px and a quarter from `xl`: the laptop artboard's four per page leave
  *   the runtime and rating chips no room side by side below ~1300px.
  */
-export const movieSlideClassName = {
-  // trending: "basis-[197.6px] pl-4 md:basis-60 lg:basis-1/5 lg:pl-5",
-  // "new-releases": "basis-[198.4px] pl-5 md:basis-61 lg:basis-1/5",
-  "must-watch": "basis-61.75 pl-4 md:basis-75.25 lg:basis-1/3 lg:pl-5 xl:basis-1/4",
-}
+// export const movieSlideClassName = {
+//   // trending: "basis-[197.6px] pl-4 md:basis-60 lg:basis-1/5 lg:pl-5",
+//   // "new-releases": "basis-[198.4px] pl-5 md:basis-61 lg:basis-1/5",
+//   "must-watch": "basis-61.75 pl-4 md:basis-75.25 lg:basis-1/3 lg:pl-5 xl:basis-1/4",
+// }
 
 /** The track's negative margin, cancelling the slide gutter above. */
-export const movieTrackClassName = {
-  // trending: "-ml-4 lg:-ml-5",
-  // "new-releases": "-ml-5",
-  "must-watch": "-ml-4 lg:-ml-5",
-} 
+// export const movieTrackClassName = {
+//   // trending: "-ml-4 lg:-ml-5",
+//   // "new-releases": "-ml-5",
+//   "must-watch": "-ml-4 lg:-ml-5",
+// }
 
 /**
  * Embla options. Cards per page follow the slide widths above: one at a time
@@ -128,7 +128,7 @@ export const movieTrackClassName = {
  * breakpoint query flips, and merges the matching ones in order, so the last
  * match wins.
  */
-type CarouselOptions = NonNullable<Parameters<typeof useEmblaCarousel>[0]>
+// type CarouselOptions = NonNullable<Parameters<typeof useEmblaCarousel>[0]>
 
 // const fivePerPage = {
 //   align: "start",
@@ -136,17 +136,17 @@ type CarouselOptions = NonNullable<Parameters<typeof useEmblaCarousel>[0]>
 //   breakpoints: { "(min-width: 64rem)": { slidesToScroll: 5 } },
 // } as const satisfies CarouselOptions
 
-const threeThenFourPerPage = {
-  align: "start",
-  slidesToScroll: 1,
-  breakpoints: {
-    "(min-width: 64rem)": { slidesToScroll: 3 },
-    "(min-width: 80rem)": { slidesToScroll: 4 },
-  },
-} as const satisfies CarouselOptions
+// const threeThenFourPerPage = {
+//   align: "start",
+//   slidesToScroll: 1,
+//   breakpoints: {
+//     "(min-width: 64rem)": { slidesToScroll: 3 },
+//     "(min-width: 80rem)": { slidesToScroll: 4 },
+//   },
+// } as const satisfies CarouselOptions
 
-export const movieCarouselOptions = {
-  // trending: fivePerPage,
-  // "new-releases": fivePerPage,
-  "must-watch": threeThenFourPerPage,
-} as const
+// export const movieCarouselOptions = {
+//   // trending: fivePerPage,
+//   // "new-releases": fivePerPage,
+//   "must-watch": threeThenFourPerPage,
+// } as const

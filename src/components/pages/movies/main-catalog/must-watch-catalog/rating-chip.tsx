@@ -1,23 +1,12 @@
 import { cn } from "@/lib/utils"
-import { StarRating } from "./star-rating"
+import { StarRating } from "../../../../shared/star-rating"
 
-type RatingChipProps = {
-  /** 0–5 in halves. */
+interface RatingChipProps {
   stars: number
-  /** Formatted vote count ("20K"). */
   votes: string
   className?: string
 }
 
-/**
- * A Must-Watch card's rating pill: five stars and the vote count, read out as
- * "Rated 4.5 out of 5 from 20K votes". 30px tall with 12px text, 33px with
- * 14px text on desktop. Padding is the design's 6/8px (6/10px from laptop)
- * less the 1px border Figma draws inside the box.
- *
- * Not a `MovieChip`: that sizes every icon inside it to 20/24px, and this one
- * holds five 14/18px stars.
- */
 export function RatingChip({ stars, votes, className }: RatingChipProps) {
   return (
     <p

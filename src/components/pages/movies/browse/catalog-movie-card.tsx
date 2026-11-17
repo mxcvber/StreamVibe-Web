@@ -1,7 +1,7 @@
 import { catalogMovieCardStyles as styles } from "@/components/pages/movies/browse/browse-variants"
 // import { MovieCardLink } from "@/components/pages/movies/movie-card/movie-card-link"
 import { MovieCardPoster } from "@/components/pages/movies/main-catalog/movie-card-poster"
-import { StarRating } from "@/components/pages/movies/movie-card/star-rating"
+import { StarRating } from "@/components/shared/star-rating"
 import { cardBox } from "@/components/pages/movies/movie-variants"
 import { Card } from "@/components/shared/ui/card"
 import type { CatalogMovie } from "@/lib/catalog-movies"

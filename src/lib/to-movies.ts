@@ -1,5 +1,5 @@
 import type { Genre } from "@/data/genres"
-import type { GenreTopMovies, NewReleaseMovie, PopularMovie } from "@/lib/api/types"
+import type { GenreTopMovies, MustWatchMovie, NewReleaseMovie, PopularMovie } from "@/lib/api/types"
 import { slugify } from "@/lib/slugify"
 import { tmdbPosterUrl } from "@/lib/tmdb-image"
 import { formatCount, formatReleaseDate, formatRuntime } from "./format"
@@ -44,6 +44,19 @@ export type NewRelease = {
   releasedOn: string
 }
 
+/** What a "Must - Watch Movies" card renders. */
+export type MustWatch = {
+  id: number
+  title: string
+  posterUrl: string
+  /** Formatted ("1h 57min"); null hides the runtime chip. */
+  runtime: string | null
+  /** 0–5 in halves: the 0–10 average rounded to a whole number, then halved. */
+  stars: number
+  /** Formatted ("20K"). */
+  votes: string
+}
+
 /** Maps the API's popular movies to the cards' shape, keeping their order. */
 export function toTrendingMovies(items: PopularMovie[]): TrendingMovie[] {
   return items.map(({ id, title, posterPath, runtime }, index) => {
@@ -59,15 +72,27 @@ export function toTrendingMovies(items: PopularMovie[]): TrendingMovie[] {
   })
 }
 
-
 /** Maps the API's new releases to the cards' shape, keeping their order. */
 export function toNewReleases(items: NewReleaseMovie[]): NewRelease[] {
   return items.map(({ id, title, posterPath, releaseDate }) => ({
     id,
     title,
     // 244px at most (desktop), so 488px at 2×.
-    posterUrl: tmdbPosterUrl(posterPath, 'w500'),
+    posterUrl: tmdbPosterUrl(posterPath, "w500"),
     releaseDate,
     releasedOn: formatReleaseDate(releaseDate),
+  }))
+}
+
+/** Maps the API's must-watch movies to the cards' shape, keeping their order. */
+export function toMustWatch(items: MustWatchMovie[]): MustWatch[] {
+  return items.map(({ id, title, posterPath, runtime, voteAverage, voteCount }) => ({
+    id,
+    title,
+    posterUrl: tmdbPosterUrl(posterPath, "w780"),
+    runtime: runtime === null ? null : formatRuntime(runtime),
+    // Figma draws only full, half and empty stars, so 8.3 → 4 and 8.6 → 4.5.
+    stars: Math.round(voteAverage) / 2,
+    votes: formatCount(voteCount),
   }))
 }

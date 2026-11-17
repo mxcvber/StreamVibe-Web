@@ -43,11 +43,7 @@ export async function getNewReleases(): Promise<NewReleaseMovie[]> {
   return data.items
 }
 
-/**
- * The 20 highest-rated movies, for the Movies page's "Must - Watch Movies"
- * row. Ratings only move when the TMDB import runs, so it is cached like
- * `getPopularMovies`; `revalidateTag('must-watch', 'max')` refreshes it.
- */
+// The 20 highest-rated movies, for the Movies page's "Must - Watch Movies" row.
 export async function getMustWatchMovies(): Promise<MustWatchMovie[]> {
   "use cache"
   cacheLife("hours")
