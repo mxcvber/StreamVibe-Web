@@ -58,7 +58,7 @@ asking.
   (600px from `sm`), and from `lg` it grows to fill the column beside the form. It centres a
   4×4 mosaic of posters 01–16 at a fixed size per step, `sm:` and `xl:` included. The
   artboards' box spans the column and shows the hero mosaic's first four columns at 97×122px
-  tiles (135×168 on desktop), as the `pre-refactor` version reproduced them.
+  tiles (135×168 on desktop), as the version before the refactor reproduced them.
 - `PlanCard` keeps 16px padding below 375px. Figma's 24px would overflow the buttons on 360px
   phones.
 - Must-watch shows 3 cards per page up to 1279px and 4 from 1280. The laptop artboard's 4

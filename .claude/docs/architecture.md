@@ -244,7 +244,4 @@ Being reorganised. Settled so far:
   picker and holds `findCountry`. It came from `src/components/support/contact/`,
   `src/app/support/actions.ts`, `src/lib/support-message.ts` and `src/data/countries.ts`.
 
-Until this section is complete, map old paths to new ones with
-`git diff -M --name-status pre-refactor HEAD -- src`. It misses files that changed as they
-moved (most of the Support page's): for those, use the old paths above, or find a symbol's old
-file with `git grep -l <symbol> pre-refactor -- src`.
+Until this section is complete, the old paths above map old locations to new ones.

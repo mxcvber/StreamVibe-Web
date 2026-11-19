@@ -8,8 +8,7 @@ paths:
 
 The files in `components/shared/ui` started as shadcn CLI output (style `radix-nova`) and were
 edited to match Figma. `npx shadcn add <name> --overwrite` replaces a file and erases those
-edits: before accepting an overwrite, diff it against
-`git show pre-refactor:src/components/ui/<name>.tsx` (the tag keeps the old path).
+edits: before accepting an overwrite, check `git diff` on the file for the edits it removed.
 
 ## Adapting a file the CLI adds
 

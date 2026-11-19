@@ -47,9 +47,7 @@ choice is expensive to reverse, surface the trade-off instead of just picking on
 
 ## Refactor in progress (temporary)
 
-The author is restructuring folders and removing most comments. Tag `pre-refactor` keeps the
-commented code: when the reason behind something is unclear, read
-`git show pre-refactor:<old path>` (map paths with
-`git diff -M --name-status pre-refactor HEAD -- src`; for a file that changed as it moved,
-`git grep -l <symbol> pre-refactor -- src`). Rule `paths:` and doc references may lag;
-`.claude/docs/state.md` records the last sync.
+The author is restructuring folders and removing most comments, step by step. Before each
+commit they say what changed and where: read the diff (`git status`, `git diff`,
+`git diff --staged`) and bring the rules and docs in line with it. Rule `paths:` and doc
+references may lag; `.claude/docs/state.md` records the last sync.
