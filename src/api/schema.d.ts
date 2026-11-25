@@ -4,22 +4,6 @@
  */
 
 export interface paths {
-    "/api/v1": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["AppController_getHello"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/api/v1/carousel/top-in-genres": {
         parameters: {
             query?: never;
@@ -27,7 +11,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        get: operations["CarouselController_findTopMoviePosters"];
+        get: operations["CarouselController_findTopInGenres"];
         put?: never;
         post?: never;
         delete?: never;
@@ -36,14 +20,14 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/v1/carousel/popular": {
+    "/api/v1/carousel/trending-now": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        get: operations["CarouselController_findPopularMovies"];
+        get: operations["CarouselController_findTrendingNowMovies"];
         put?: never;
         post?: never;
         delete?: never;
@@ -107,7 +91,6 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** One movie's page, minus its reviews. `id` is the TMDB movie id. */
         get: operations["MoviesController_findOne"];
         put?: never;
         post?: never;
@@ -124,7 +107,6 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** A genre's released movies, newest first. `id` is the TMDB genre id. */
         get: operations["MoviesController_findMoviesByGenre"];
         put?: never;
         post?: never;
@@ -141,7 +123,6 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** A genre's 10 most popular movies. `id` is the TMDB genre id. */
         get: operations["MoviesController_findTopTenMoviesByGenre"];
         put?: never;
         post?: never;
@@ -156,151 +137,89 @@ export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
         MoviePosterDto: {
-            /** @description TMDB movie id. */
             id: number;
             title: string;
-            /** @description TMDB image path ("/abc123.jpg"); the frontend builds the image URL. */
             posterPath: string;
         };
-        GenreDto: {
-            /** @description TMDB genre id. */
+        CarouselTopInGenresDto: {
             id: number;
             name: string;
-            /** @description Most popular first; empty for a genre with no movies. */
             movies: components["schemas"]["MoviePosterDto"][];
         };
-        TopInGenresDto: {
-            items: components["schemas"]["GenreDto"][];
-        };
-        PopularMovieDto: {
-            /** @description TMDB movie id. */
+        CarouselTrendingNowDto: {
             id: number;
             title: string;
-            /** @description TMDB image path ("/abc123.jpg"); the frontend builds the image URL. */
             posterPath: string;
-            /** @description Minutes; null when TMDB had no runtime (it sends 0, the importer stores null). */
             runtime: number | null;
         };
-        PopularMoviesDto: {
-            /** @description Most popular first. */
-            items: components["schemas"]["PopularMovieDto"][];
-        };
-        NewReleaseMovieDto: {
-            /** @description TMDB movie id. */
+        CarouselNewReleasesDto: {
             id: number;
             title: string;
-            /** @description TMDB image path ("/abc123.jpg"); the frontend builds the image URL. */
             posterPath: string;
-            /** @description "YYYY-MM-DD" — a calendar date, so no timestamp to shift across time zones. */
             releaseDate: string;
         };
-        NewReleasesDto: {
-            /** @description Newest first; already released only. */
-            items: components["schemas"]["NewReleaseMovieDto"][];
-        };
-        MustWatchMovieDto: {
-            /** @description TMDB movie id. */
+        CarouselMustWatchDto: {
             id: number;
             title: string;
-            /** @description TMDB image path ("/abc123.jpg"); the frontend builds the image URL. */
             posterPath: string;
-            /** @description Minutes; null when TMDB had no runtime (it sends 0, the importer stores null). */
             runtime: number | null;
-            /** @description TMDB average, 0–10; the frontend halves it for the 5-star display. */
             voteAverage: number;
-            /** @description TMDB vote count, raw; the frontend abbreviates it ("20K"). */
             voteCount: number;
         };
-        MustWatchMoviesDto: {
-            /** @description Highest weighted rating first. */
-            items: components["schemas"]["MustWatchMovieDto"][];
-        };
         MovieListItemDto: {
-            /** @description TMDB movie id. */
             id: number;
             title: string;
-            /** @description TMDB image path ("/abc123.jpg"); the frontend builds the image URL. */
             posterPath: string;
-            /** @description "YYYY-MM-DD"; null when TMDB had no release date. */
             releaseDate: string | null;
-            /** @description TMDB average, 0–10. */
             voteAverage: number;
         };
         MovieListDto: {
-            /** @description In the route's order: the requested `sort` on /movies, newest first on a genre. */
             items: components["schemas"]["MovieListItemDto"][];
             /** @description Pass as `cursor` to get the next page; null on the last page. */
             nextCursor: number | null;
         };
         GenreTagDto: {
-            /** @description TMDB genre id. */
             id: number;
             name: string;
         };
         CastMemberDto: {
-            /** @description The role; null when TMDB names none. */
             character: string | null;
-            /** @description TMDB person id. */
             id: number;
             name: string;
-            /** @description TMDB image path; null when TMDB has no photo. */
             profilePath: string | null;
         };
         CrewMemberDto: {
-            /** @description This person's key jobs on the movie, highest-ranked first. */
             jobs: string[];
-            /** @description TMDB person id. */
             id: number;
             name: string;
-            /** @description TMDB image path; null when TMDB has no photo. */
             profilePath: string | null;
         };
         MovieDetailDto: {
-            /** @description TMDB movie id. */
             id: number;
             title: string;
             tagline: string | null;
             overview: string | null;
-            /** @description TMDB image path ("/abc123.jpg"); the frontend builds the image URL. */
             posterPath: string;
-            /** @description Landscape hero image; null for a few movies — use the poster then. */
             backdropPath: string | null;
-            /** @description YouTube video id of the trailer. */
             trailerKey: string;
-            /** @description "YYYY-MM-DD"; null when TMDB had no release date. */
             releaseDate: string | null;
-            /** @description Minutes; null when unknown. */
             runtime: number | null;
-            /** @description Null when unknown, as is revenue. */
             budget: number | null;
             revenue: number | null;
             homepage: string | null;
-            /** @description ISO 3166-1 codes, e.g. "IN". */
             originCountry: string[];
-            /** @description TMDB average, 0–10; the frontend halves it for the 5-star display. */
             voteAverage: number;
-            /** @description StreamVibe review average, 1–5; null until the movie has a review. */
             streamVibeRating: number | null;
             reviewCount: number;
-            /** @description By name. */
             genres: components["schemas"]["GenreTagDto"][];
-            /** @description Top-billed, lead first. */
             cast: components["schemas"]["CastMemberDto"][];
-            /** @description Key jobs only, one entry per person. */
             crew: components["schemas"]["CrewMemberDto"][];
         };
         TopTenMovieDto: {
-            /** @description TMDB movie id. */
             id: number;
             title: string;
-            /** @description TMDB image path ("/abc123.jpg"); the frontend builds the image URL. */
             posterPath: string;
-            /** @description TMDB average, 0–10; the frontend halves it for the 5-star display. */
             voteAverage: number;
-        };
-        TopTenMoviesDto: {
-            /** @description Most popular first. */
-            items: components["schemas"]["TopTenMovieDto"][];
         };
     };
     responses: never;
@@ -311,7 +230,7 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
-    AppController_getHello: {
+    CarouselController_findTopInGenres: {
         parameters: {
             query?: never;
             header?: never;
@@ -325,12 +244,12 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": string;
+                    "application/json": components["schemas"]["CarouselTopInGenresDto"][];
                 };
             };
         };
     };
-    CarouselController_findTopMoviePosters: {
+    CarouselController_findTrendingNowMovies: {
         parameters: {
             query?: never;
             header?: never;
@@ -344,26 +263,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["TopInGenresDto"];
-                };
-            };
-        };
-    };
-    CarouselController_findPopularMovies: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["PopularMoviesDto"];
+                    "application/json": components["schemas"]["CarouselTrendingNowDto"][];
                 };
             };
         };
@@ -382,7 +282,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["NewReleasesDto"];
+                    "application/json": components["schemas"]["CarouselNewReleasesDto"][];
                 };
             };
         };
@@ -401,7 +301,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["MustWatchMoviesDto"];
+                    "application/json": components["schemas"]["CarouselMustWatchDto"][];
                 };
             };
         };
@@ -411,12 +311,7 @@ export interface operations {
             query?: {
                 /** @description Movies per page. */
                 limit?: number;
-                /** @description Order of the list. `newest` lists upcoming movies only, soonest first. */
                 sort?: "popular" | "top-rated" | "newest";
-                /**
-                 * @description Only movies whose card shows this many stars or half a star more, from
-                 *     at least 30 TMDB votes.
-                 */
                 rating?: number;
                 /** @description The `nextCursor` of the previous page; omit it for the first page. */
                 cursor?: number;
@@ -500,7 +395,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["TopTenMoviesDto"];
+                    "application/json": components["schemas"]["TopTenMovieDto"][];
                 };
             };
         };

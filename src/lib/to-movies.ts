@@ -1,5 +1,5 @@
 import type { Genre } from "@/data/genres"
-import type { GenreTopMovies, MustWatchMovie, NewReleaseMovie, PopularMovie } from "@/api/types"
+import type { CarouselMustWatch, CarouselNewReleases, CarouselTopInGenres, CarouselTrendingNow } from "@/api/types"
 import { slugify } from "@/lib/slugify"
 import { tmdbPosterUrl } from "@/lib/tmdb-image"
 import { formatCount, formatReleaseDate, formatRuntime } from "./format"
@@ -13,7 +13,7 @@ const trendingViews: readonly number[] = [
  * Maps the API's genres to the cards' `Genre` shape. The card's 2×2 mosaic
  * needs exactly four posters, so genres with fewer are left out.
  */
-export function toGenreTopCards(items: GenreTopMovies[]): Genre[] {
+export function toGenreTopCards(items: CarouselTopInGenres[]): Genre[] {
   return items.flatMap(({ id, name, movies }) => {
     const [a, b, c, d] = movies.map((movie) => tmdbPosterUrl(movie.posterPath))
     if (!d) return []
@@ -57,8 +57,8 @@ export type MustWatch = {
   votes: string
 }
 
-/** Maps the API's popular movies to the cards' shape, keeping their order. */
-export function toTrendingMovies(items: PopularMovie[]): TrendingMovie[] {
+/** Maps the API's trending movies to the cards' shape, keeping their order. */
+export function toTrendingMovies(items: CarouselTrendingNow[]): TrendingMovie[] {
   return items.map(({ id, title, posterPath, runtime }, index) => {
     const views = trendingViews[index]
 
@@ -73,7 +73,7 @@ export function toTrendingMovies(items: PopularMovie[]): TrendingMovie[] {
 }
 
 /** Maps the API's new releases to the cards' shape, keeping their order. */
-export function toNewReleases(items: NewReleaseMovie[]): NewRelease[] {
+export function toNewReleases(items: CarouselNewReleases[]): NewRelease[] {
   return items.map(({ id, title, posterPath, releaseDate }) => ({
     id,
     title,
@@ -85,7 +85,7 @@ export function toNewReleases(items: NewReleaseMovie[]): NewRelease[] {
 }
 
 /** Maps the API's must-watch movies to the cards' shape, keeping their order. */
-export function toMustWatch(items: MustWatchMovie[]): MustWatch[] {
+export function toMustWatch(items: CarouselMustWatch[]): MustWatch[] {
   return items.map(({ id, title, posterPath, runtime, voteAverage, voteCount }) => ({
     id,
     title,

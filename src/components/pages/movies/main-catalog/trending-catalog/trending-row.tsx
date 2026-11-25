@@ -1,6 +1,6 @@
 import { connection } from "next/server"
 import { CatalogRowHeading } from "../catalog-row-heading"
-import { getPopularMovies } from "@/api/carousel"
+import { getTrendingNowMovies } from "@/api/carousel"
 import { CatalogRowMessage } from "../catalog-row-message"
 import { toTrendingMovies, TrendingMovie } from "@/lib/to-movies"
 import { TrendingCarousel } from "./trending-carousel"
@@ -17,7 +17,7 @@ export async function TrendingRow() {
   let trendingMovies: TrendingMovie[]
 
   try {
-    trendingMovies = toTrendingMovies(await getPopularMovies())
+    trendingMovies = toTrendingMovies(await getTrendingNowMovies())
   } catch (error) {
     console.error("Failed to load the trending movies", error)
     return (

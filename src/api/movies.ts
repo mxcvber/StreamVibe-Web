@@ -4,7 +4,7 @@ import { isAxiosError } from "axios"
 import { cacheLife, cacheTag } from "next/cache"
 
 import { api } from "@/api/client"
-import type { MovieDetail, MovieListResponse, TopTenMovie, TopTenMoviesResponse } from "@/api/types"
+import type { MovieDetail, MovieList, TopTenMovie } from "@/api/types"
 import type { MovieFilters } from "@/lib/movie-filters"
 
 type GetMoviesOptions = MovieFilters & {
@@ -22,12 +22,12 @@ type GetMoviesOptions = MovieFilters & {
  * Returns the whole `data` rather than `data.items`: the grid needs
  * `nextCursor` to load the next page.
  */
-export async function getMovies({ sort, rating, cursor }: GetMoviesOptions): Promise<MovieListResponse> {
+export async function getMovies({ sort, rating, cursor }: GetMoviesOptions): Promise<MovieList> {
   "use cache"
   cacheLife("hours")
   cacheTag("movies")
 
-  const { data } = await api.get<MovieListResponse>("/movies", {
+  const { data } = await api.get<MovieList>("/movies", {
     params: { sort, rating: rating ?? undefined, cursor },
   })
   return data
@@ -46,12 +46,12 @@ export async function getMovies({ sort, rating, cursor }: GetMoviesOptions): Pro
  * Returns the whole `data` rather than `data.items`: the grid needs
  * `nextCursor` to load the next page.
  */
-export async function getGenreMovies(genreId: number, cursor?: number): Promise<MovieListResponse> {
+export async function getGenreMovies(genreId: number, cursor?: number): Promise<MovieList> {
   "use cache"
   cacheLife("hours")
   cacheTag("genre-movies")
 
-  const { data } = await api.get<MovieListResponse>(`/movies/${genreId}/genre`, {
+  const { data } = await api.get<MovieList>(`/movies/${genreId}/genre`, {
     params: { cursor },
   })
   return data
@@ -63,16 +63,14 @@ export async function getGenreMovies(genreId: number, cursor?: number): Promise<
  * cached on its own. Popularity only moves when the TMDB import runs, so an
  * hour-long cache is plenty; `revalidateTag('genre-top-10', 'max')` refreshes
  * every genre.
- *
- * Returns `data.items`, like the carousel functions: the list has no pages.
  */
 export async function getGenreTopTenMovies(genreId: number): Promise<TopTenMovie[]> {
   "use cache"
   cacheLife("hours")
   cacheTag("genre-top-10")
 
-  const { data } = await api.get<TopTenMoviesResponse>(`/movies/${genreId}/genre/top-10`)
-  return data.items
+  const { data } = await api.get<TopTenMovie[]>(`/movies/${genreId}/genre/top-10`)
+  return data
 }
 
 /**

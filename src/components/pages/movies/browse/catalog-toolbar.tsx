@@ -98,8 +98,8 @@ export function CatalogToolbar({ filters, disabled = false }: CatalogToolbarProp
               <ToggleGroupItem
                 key={rating}
                 value={String(rating)}
-                // The API matches cards showing N or N.5 stars; 5 is the top.
-                aria-label={rating === 5 ? '5 stars' : `${rating} or ${rating}.5 stars`}
+                // The API matches cards showing N - 0.5 or N stars; 1 also includes 0.
+                aria-label={rating === 1 ? '1 star or less' : `${rating - 0.5} or ${rating} stars`}
                 className={itemClassName}
               >
                 {rating}

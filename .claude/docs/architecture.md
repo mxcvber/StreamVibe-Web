@@ -11,9 +11,9 @@ The folder layout is being reorganised; see "Where things live".
   calls the API.
 - Data functions are cached per argument (`'use cache'` + `cacheLife('hours')` + `cacheTag`).
   Movie data changes only when the backend's TMDB import runs, so an hour is plenty;
-  `revalidateTag(tag, 'max')` refreshes a tag on demand. New Releases also changes as dates
-  pass: the API compares release dates with each request's "today", so a movie joins the row
-  within an hour of its release date.
+  `revalidateTag(tag, 'max')` refreshes a tag on demand. New Releases and Trending Now also
+  change as dates pass: the API compares release dates with each request's "today", so a movie
+  becomes eligible for either row within an hour of its release date.
 
 ## Data flow
 
@@ -30,7 +30,7 @@ Client components receive rendered output or plain data, never API access.
 | Route | Composition | Data → endpoint | Cache tag |
 | --- | --- | --- | --- |
 | `/` | `Hero`, `CategoriesSection`, `DevicesSection`, `FaqSection`, `PlansSection`, `FreeTrialBanner` | local only | — |
-| `/movies` | `MoviesHero`, then `MainCatalog` in a `CatalogBox`: `GenresRow` (local), `TopGenresRow`, `TrendingRow`, `NewReleasesRow`, `MustWatchRow` | `getTopInGenres` → `/carousel/top-in-genres`, `getPopularMovies` → `/carousel/popular`, `getNewReleases` → `/carousel/new-releases`, `getMustWatchMovies` → `/carousel/must-watch` | `top-in-genres`, `popular-movies`, `new-releases`, `must-watch` |
+| `/movies` | `MoviesHero`, then `MainCatalog` in a `CatalogBox`: `GenresRow` (local), `TopGenresRow`, `TrendingRow`, `NewReleasesRow`, `MustWatchRow` | `getTopInGenres` → `/carousel/top-in-genres`, `getTrendingNowMovies` → `/carousel/trending-now`, `getNewReleases` → `/carousel/new-releases`, `getMustWatchMovies` → `/carousel/must-watch` | `top-in-genres`, `trending-now`, `new-releases`, `must-watch` |
 | `/movies/all` | `MoviesHero`, `CatalogBox` > `MovieBrowser` (reads `searchParams`): `CatalogToolbar` over `AllMovies` → `MovieGrid` | `getMovies` → `/movies?sort&rating&cursor`, paged by `loadMoreMovies` | `movies` |
 | `/movies/genres/[slug]` | `MoviesHero`, `CatalogBox` > `GenreMovies` → `MovieGrid` | `getGenreMovies` → `/movies/:id/genre?cursor`, paged by `loadMoreGenreMovies` | `genre-movies` |
 | `/movies/genres/[slug]/top-10` | `MoviesHero`, `CatalogBox` > `TopTenMovies` | `getGenreTopTenMovies` → `/movies/:id/genre/top-10` | `genre-top-10` |

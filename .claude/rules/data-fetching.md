@@ -19,23 +19,26 @@ project uses **Cache Components** (`cacheComponents: true` in `next.config.ts`).
   `NEXT_PUBLIC_`, and import API modules only from server code. They start with
   `import 'server-only'`.
 - `api` checks `API_URL` in a request interceptor, not at import, so a build without it passes.
-- Response types (`MovieDetail`, `MovieListResponse`, …) are generated from the API's OpenAPI
-  document. `npm run api:types` turns `../api/openapi.json` into `src/api/schema.d.ts`;
-  `src/api/types.ts` aliases its schemas to the names the app imports. Rerun it after the
-  API's `openapi.json` changes, and never edit `schema.d.ts` by hand.
+- Response types (`MovieDetail`, `MovieList`, …) are generated from the API's OpenAPI document.
+  `npm run api:types` turns `../api/openapi.json` into `src/api/schema.d.ts`; `src/api/types.ts`
+  aliases each schema under its name without `Dto`. Rerun it after the API's `openapi.json`
+  changes, and never edit `schema.d.ts` by hand. When a DTO is renamed, its alias stops
+  type-checking: rename the alias to match, and its importers with it.
+- What the fields mean (units, nulls, order) is in `../api/.claude/docs/architecture.md`
+  ("Fields"), not on the types.
 
 ## Data functions
 
 One module per API area. Each exported function:
 
 ```ts
-export async function getTopInGenres(): Promise<GenreTopMovies[]> {
+export async function getTopInGenres(): Promise<CarouselTopInGenres[]> {
   "use cache"
   cacheLife("hours")
   cacheTag("top-in-genres")
 
-  const { data } = await api.get<TopInGenresResponse>("/carousel/top-in-genres")
-  return data.items
+  const { data } = await api.get<CarouselTopInGenres[]>("/carousel/top-in-genres")
+  return data
 }
 ```
 
@@ -65,7 +68,7 @@ Reference implementation: `TopGenresRow`.
 - `TopGenresRow`, `TrendingRow`, `NewReleasesRow` and `MustWatchRow` each load, map and render
   their own states, and keep their carousel, card and skeleton in their own folder. There is no
   generic row: `MovieRow` was deleted with the last row that used it.
-- Parse URL input before it reaches the API. `parseMovieFilters` falls back to the defaults
-  (the API would answer 400), and `parseMovieId` rejects anything but a positive Postgres
-  `integer` (the API would answer 500).
+- Parse URL input before it reaches the API, which answers anything invalid with a 400.
+  `parseMovieFilters` falls back to the defaults, and `parseMovieId` rejects anything but a
+  positive Postgres `integer`, so a bad id shows the not-found page instead of the load error.
 - Paging, Server Actions and grids: `browse.md`.

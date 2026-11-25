@@ -4,14 +4,14 @@
  * them. Not server-only: the client toolbar builds URLs with it too.
  */
 
-/** The `sort` values the API accepts (../api/src/movies/movie-sort.ts). */
+/** The `sort` values the API accepts (../api/src/modules/movies/utils/movie-sort.ts). */
 export const MOVIE_SORTS = ['popular', 'top-rated', 'newest'] as const
 
 export type MovieSort = (typeof MOVIE_SORTS)[number]
 
 export const DEFAULT_MOVIE_SORT: MovieSort = 'popular'
 
-/** The `rating` values the API accepts: N matches cards showing N or N.5 stars. */
+/** The `rating` values the API accepts: N matches cards showing N - 0.5 or N stars (1 also 0). */
 export const MOVIE_RATINGS = [1, 2, 3, 4, 5] as const
 
 export type MovieRating = (typeof MOVIE_RATINGS)[number]

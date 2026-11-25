@@ -1,4 +1,4 @@
-import type { MovieListItem, MovieListResponse } from "@/api/types"
+import type { MovieList, MovieListItem } from "@/api/types"
 import { tmdbPosterUrl } from "@/lib/tmdb-image"
 
 /** What a catalog grid card ("All Movies", a genre's page, its top 10) renders. */
@@ -36,6 +36,6 @@ export function toCatalogMovies(
 }
 
 /** Maps a `GET /movies` or `GET /movies/:id/genre` page to a grid page. */
-export function toMoviesPage({ items, nextCursor }: MovieListResponse): MoviesPage {
+export function toMoviesPage({ items, nextCursor }: MovieList): MoviesPage {
   return { movies: toCatalogMovies(items), nextCursor }
 }
