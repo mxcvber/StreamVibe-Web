@@ -21,7 +21,8 @@ project uses **Cache Components** (`cacheComponents: true` in `next.config.ts`).
 - `api` checks `API_URL` in a request interceptor, not at import, so a build without it passes.
 - Response types (`MovieDetail`, `MovieList`, …) are generated from the API's OpenAPI document.
   `npm run api:types` turns `../api/openapi.json` into `src/api/schema.d.ts`; `src/api/types.ts`
-  aliases each schema under its name without `Dto`. Rerun it after the API's `openapi.json`
+  aliases each schema under its name without `Dto`, grouped by area (common, carousel, movie);
+  a new alias goes in its group. Rerun it after the API's `openapi.json`
   changes, and never edit `schema.d.ts` by hand. When a DTO is renamed, its alias stops
   type-checking: rename the alias to match, and its importers with it.
 - What the fields mean (units, nulls, order) is in `../api/.claude/docs/architecture.md`
@@ -50,6 +51,11 @@ export async function getTopInGenres(): Promise<CarouselTopInGenres[]> {
 - Map API shapes to UI shapes in a separate `to*` helper (`toGenreTopCards`), not inside the
   data function or the component. Stars are `Math.round(voteAverage) / 2` (Figma draws only
   full, half and empty stars), and dates format with `timeZone: 'UTC'`.
+- `toGenreTopCards` drops a genre with fewer than four posters: its card's 2×2 mosaic needs
+  four. In the card shapes (`src/types/movie-carousel.ts`), `null` hides a chip: a movie with
+  no runtime, or a trending card past the 20 `trendingViews` entries, which has no views.
+  `TrendingMovie.runtime` carries `long` and `short` forms for the chip's narrow-card
+  compaction (`design.md`).
 - Posters are TMDB paths. Build URLs with `tmdbPosterUrl` or `tmdbBackdropUrl`, at the smallest
   size that covers the tile at 2× DPR.
 

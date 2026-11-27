@@ -136,10 +136,12 @@ Being reorganised. Settled so far:
   folder.
 - Local data and the site config are in `src/data/` (`siteConfig` in `site-config.ts`).
   `src/config/` is gone.
-- A type that other modules import goes in `src/types/`, so far one file per module, named
-  after it (`NavLink` and `FooterColumn` in `site-config.ts`). A type used only in its own file
-  stays there and isn't exported (`SocialLink`). `Genre`, `MoviesPage`, `MovieFilters` and the
-  API response types still sit beside their code because the refactor hasn't reached them.
+- A type that other modules import goes in `src/types/`, in a file named after its module
+  (`NavLink` and `FooterColumn` in `site-config.ts`) or after the feature it serves
+  (`TrendingMovie`, `NewRelease` and `MustWatch`, the Movies page carousel cards' shapes, in
+  `movie-carousel.ts`). A type used only in its own file stays there and isn't exported
+  (`SocialLink`). `Genre`, `MoviesPage`, `MovieFilters` and the API response types still sit
+  beside their code because the refactor hasn't reached them.
 - The API layer is in `src/api/`, moved from `src/lib/api/`: the Axios instance `api`
   (`client.ts`), the data functions (`getTopInGenres` and the other carousel calls in
   `carousel.ts`; `getMovies`, `getMovie` and the other movie calls in `movies.ts`), the
@@ -209,12 +211,12 @@ Being reorganised. Settled so far:
 - `findGenre` is in `src/lib/find-genre.ts`, split out of `src/data/genres.ts`, which keeps
   `genres` and `Genre`.
 - `src/lib/to-movies.ts` holds `toGenreTopCards` (it was `toGenreCards`, in
-  `src/lib/top-genres.ts`), `toTrendingMovies` with its `TrendingMovie` type (from
-  `src/lib/trending-movies.ts`), `toNewReleases` with its `NewRelease` type (from
-  `src/lib/new-releases.ts`) and `toMustWatch` with its `MustWatch` type (from
-  `src/lib/must-watch.ts`). The placeholder `trendingViews` moved in from
-  `src/data/trending-views.ts`, unexported. The other `to*` mappers are still in their own
-  modules.
+  `src/lib/top-genres.ts`), `toTrendingMovies` (from `src/lib/trending-movies.ts`),
+  `toNewReleases` (from `src/lib/new-releases.ts`) and `toMustWatch` (from
+  `src/lib/must-watch.ts`). Their card shapes, `TrendingMovie`, `NewRelease` and `MustWatch`,
+  came in with them and then moved on to `src/types/movie-carousel.ts`. The placeholder
+  `trendingViews` moved in from `src/data/trending-views.ts`, unexported. The other `to*`
+  mappers are still in their own modules.
 - `Device` is in `src/types/devices.ts`, split out of `src/data/devices.ts`, which keeps
   `devices`.
 - `featuredMovies` is in `src/data/movies-hero.ts` and its type, `HeroMovie`, in
