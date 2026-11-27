@@ -1,8 +1,8 @@
 import type { ComponentProps, ReactNode } from "react"
+import type { TrendingMovie } from "@/types/movie-carousel"
 import { RowCarousel } from "@/components/shared/row-carousel/row-carousel"
 import { CarouselItem } from "@/components/shared/ui/carousel"
 import CardWrapper from "@/components/shared/card-wrapper"
-import { TrendingMovie } from "@/lib/to-movies"
 import { TrendingMovieCard } from "./trending-movie-card"
 
 const opts = {

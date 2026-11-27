@@ -1,5 +1,5 @@
+import type { MustWatch } from "@/types/movie-carousel"
 import { ClockIcon } from "@/components/icons/clock"
-import { MustWatch } from "@/lib/to-movies"
 import { MovieCardPoster } from "../movie-card-poster"
 import { MovieChip } from "../movie-chip"
 import { RatingChip } from "./rating-chip"

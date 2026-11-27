@@ -1,8 +1,9 @@
+import type { TrendingMovie } from "@/types/movie-carousel"
 import { connection } from "next/server"
 import { CatalogRowHeading } from "../catalog-row-heading"
 import { getTrendingNowMovies } from "@/api/carousel"
 import { CatalogRowMessage } from "../catalog-row-message"
-import { toTrendingMovies, TrendingMovie } from "@/lib/to-movies"
+import { toTrendingMovies } from "@/lib/to-movies"
 import { TrendingCarousel } from "./trending-carousel"
 
 const TITLE = "Trending Now"

@@ -2,8 +2,9 @@ import { connection } from "next/server"
 import { CatalogRowHeading } from "../catalog-row-heading"
 import { getNewReleases } from "@/api/carousel"
 import { CatalogRowMessage } from "../catalog-row-message"
-import { type NewRelease, toNewReleases } from "@/lib/to-movies"
+import { toNewReleases } from "@/lib/to-movies"
 import { NewReleasesCarousel } from "./new-releases-carousel"
+import type { NewRelease } from "@/types/movie-carousel"
 
 const TITLE = "New Releases"
 

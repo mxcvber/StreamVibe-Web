@@ -1,5 +1,5 @@
-import type { MustWatch } from "@/lib/to-movies"
 import type { ComponentProps, ReactNode } from "react"
+import type { MustWatch } from "@/types/movie-carousel"
 import { RowCarousel } from "@/components/shared/row-carousel/row-carousel"
 import { CarouselItem } from "@/components/shared/ui/carousel"
 import CardWrapper from "@/components/shared/card-wrapper"

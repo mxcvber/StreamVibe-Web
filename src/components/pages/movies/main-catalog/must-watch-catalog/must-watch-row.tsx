@@ -1,4 +1,5 @@
-import { type MustWatch, toMustWatch } from "@/lib/to-movies"
+import type { MustWatch } from "@/types/movie-carousel"
+import { toMustWatch } from "@/lib/to-movies"
 import { connection } from "next/server"
 import { CatalogRowHeading } from "../catalog-row-heading"
 import { getMustWatchMovies } from "@/api/carousel"

@@ -1,6 +1,6 @@
+import type { TrendingMovie } from "@/types/movie-carousel"
 import { ClockIcon } from "@/components/icons/clock"
 import { EyeIcon } from "@/components/icons/eye"
-import { TrendingMovie } from "@/lib/to-movies"
 import { Fragment } from "react"
 import { MovieCardPoster } from "../movie-card-poster"
 import { MovieChip } from "../movie-chip"
